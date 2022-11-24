@@ -67,24 +67,8 @@ class facturas extends Controller
 
     public function index()
     {
-        $empresas = tbl_facturas::join('tbl_empresas as e', 'tbl_facturas.id_empresa', '=', 'e.id_empresa')
-            ->select('e.nom_empresa')
-            ->get();
-        $usuarios = tbl_facturas::join('users as user', 'tbl_facturas.id_user', '=', 'user.id')
-            ->select('user.nom_user')
-            ->get();
-        $articulos = tbl_facturas::join('tbl_articulos as art', 'tbl_facturas.cod_articulo', '=', 'art.cod_articulo')
-            ->select(
-                'tbl_facturas.*',
-                'art.nom_articulo',
-                'art.cod_articulo',
-            )
-            ->get();
-        $valueone = compact('empresas');
-        $valuetwo = compact('usuarios');
-        $valuthree = compact('articulos');
-        $facturas = array_merge($valueone);
-        return compact('valuthree');
+        $facturas = tbl_facturas::all();
+        return view('Facturas.facturas', compact('facturas'));
     }
     public function create()
     {
@@ -124,7 +108,7 @@ class facturas extends Controller
         $facturas->total = $total;
         $facturas->descripcion = $request->descripcion;
         $facturas->cod_articulo = $request->cod_articulo;
-        $facturas->nit_empresa = $request->nit_empresa;
+        $facturas->id_empresa = $request->nit_empresa;
         $facturas->id_user = $request->nit_empresa;
         $facturas->save();
         session()->flash('actualizado', 'La Factura a sido actualizada con exito');

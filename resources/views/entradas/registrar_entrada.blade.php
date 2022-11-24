@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('layouts.plantilla')
 
 <!--estilo css -->
 @section('estilos')
@@ -7,7 +7,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('ver_entrada')}}
+{{ route('entradas.index')}}
 @stop
 
 <!-- palabra nav -->
@@ -22,39 +22,38 @@
 @stop
 
 @section('seccion')
-<form class="registrar_usuario" action="{{route('post_reg_entrada')}}" method="POST" enctype="multipart/form-data">
-@csrf
+<form class="registrar_usuario" action="{{route('entradas.store')}}" method="POST" enctype="multipart/form-data">
+    @csrf
     <h2 class="form_titulo">Registrar entrada</h2>
     <div class="form_container">
         <div class="from_group">
             <select name="cod_articulo" class="from_group">
-                <option value=""><button href="{{route('reg_articulo')}}" ><a >Seleccione un Artículo</a></button></option>
-                @foreach ($articulos_view as $articulo)
+                <option value=""><button href="{{route('articulos.create')}}"><a>Seleccione un Artículo</a></button></option>
+                @foreach ($articulos as $articulo)
                 <option value="{{$articulo->cod_articulo}}">{{$articulo->cod_articulo }} - {{$articulo->nom_articulo}} - {{$articulo->color_articulo}} - {{$articulo->tipo_articulo}}</option>
                 @endforeach
             </select>
-        </div> 
+        </div>
         <div class="from_group">
             <select name="causal" id="causal">
                 <option selected>Causal entrada</option>
                 <option value="Factura de compra - Materia prima o insumos">Factura de compra - Materia prima o insumos</option>
                 <option value="Devolucion - producto">Devolucion - producto</option>
                 <option value="Confección Satelite - producto">Confección Satelite - producto</option>
-            </select>                  
+            </select>
         </div>
         <div class="from_group">
             <select name="num_factura" class="from_group">
                 <option selected>Seleccione una factura</option>
                 <option value="">No aplica</option>
-                @foreach ($facturas_view as $factura)
+                @foreach ($facturas as $factura)
                 <option value="{{$factura->num_factura}}">{{$factura->num_factura}} - {{$factura->tipo_factura}} </option>
                 @endforeach
             </select>
         </div>
         <div class="from_group">
-            <input type="number"  class="from_input" placeholder=" " name="cantidad" 
-            required maxlength="10" minlength="10">
-            <label for="tipo" class="from_label" >Cantidad</label>
+            <input type="number" class="from_input" placeholder=" " name="cantidad" required maxlength="10" minlength="10">
+            <label for="tipo" class="from_label">Cantidad</label>
             <span class="from_line"></span>
         </div>
         <input type="submit" value="Registrar" class="form_submit" class="gap" name="Registrar">
@@ -81,8 +80,7 @@
 </script>
 @endforeach
 
-@endif 
+@endif
 
 
 @stop
-

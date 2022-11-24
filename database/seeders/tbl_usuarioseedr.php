@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ class tbl_usuarioseedr extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        User::create([
             'cedula' => '10035410',
             'email' => 'camilo1003diaz@gmail.com',
             'password' => bcrypt('camilo'),
@@ -23,11 +24,10 @@ class tbl_usuarioseedr extends Seeder
             'apellidos_user' => 'Diaz Florez',
             'fecha_ingreso' => '2022-11-02',
             'telefono_user' => '1234567891',
-            'direccion_user' => 'calle 23',
-            'cod_rol' => '1'
-        ]);
+            'direccion_user' => 'calle 23'
+        ])->assignRole('Administrador');
 
-        DB::table('users')->insert([
+        User::create([
             'cedula' => '10035411',
             'email' => 'jecatro648@misena.edu.co',
             'password' => bcrypt('estebanquito'),
@@ -35,11 +35,10 @@ class tbl_usuarioseedr extends Seeder
             'apellidos_user' => 'Castro Carvajal',
             'fecha_ingreso' => '2022-11-02',
             'telefono_user' => '1234567891',
-            'direccion_user' => 'calle 24',
-            'cod_rol' => '2'
-        ]);
+            'direccion_user' => 'calle 24'
+        ])->assignRole('Almacenista');
 
-        DB::table('users')->insert([
+        User::create([
             'cedula' => '10035412',
             'email' => 'yury.gutierrez1@misena.edu.co',
             'password' => bcrypt('natalia'),
@@ -47,11 +46,10 @@ class tbl_usuarioseedr extends Seeder
             'apellidos_user' => 'Gutierrez Hernandez',
             'fecha_ingreso' => '2022-11-03',
             'telefono_user' => '1234567891',
-            'direccion_user' => 'calle 25',
-            'cod_rol' => '3'
-        ]);
+            'direccion_user' => 'calle 25'
+        ])->assignRole('Contador');
 
-        DB::table('users')->insert([
+        User::create([
             'cedula' => '10035413',
             'email' => 'suescunandres23@gmail.com',
             'password' => bcrypt('andres'),
@@ -59,11 +57,10 @@ class tbl_usuarioseedr extends Seeder
             'apellidos_user' => 'Suescun',
             'fecha_ingreso' => '2022-11-04',
             'telefono_user' => '1234567891',
-            'direccion_user' => 'calle 26',
-            'cod_rol' => '4'
-        ]);
+            'direccion_user' => 'calle 26'
+        ])->assignRole('Cliente');
 
-        DB::table('users')->insert([
+        User::create([
             'cedula' => '10035414',
             'email' => 'waramos176@misena.edu.co',
             'password' => bcrypt('william'),
@@ -71,8 +68,7 @@ class tbl_usuarioseedr extends Seeder
             'apellidos_user' => 'Ramos Quiñones',
             'fecha_ingreso' => '2022-11-05',
             'telefono_user' => '1234567891',
-            'direccion_user' => 'calle 27',
-            'cod_rol' => '5'
-        ]);
+            'direccion_user' => 'calle 27'
+        ])->assignRole('Representante');
     }
 }

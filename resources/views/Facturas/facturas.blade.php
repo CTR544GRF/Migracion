@@ -68,19 +68,18 @@
         <tbody id="myTable">
             @foreach ($facturas as $factura )
             <tr>
-                <td data-label="Nu.factura">{{ $factura->articulos['num_factura'] }}</td>
+                <td data-label="Nu.factura">{{ $factura->num_factura }}</td>
                 <td data-label="Fecha">{{ $factura->fecha }}</td>
                 <td data-label="Tipo de factura">{{ $factura->tipo_factura }}</td>
-                <td data-label="Valor unitario">{{ $factura->valor_unitario }}
-                <td>
-                <td data-label="cantidad">{{ $factura->cantidad }}</td>
+                <td data-label="Valor unitario">{{ $factura->valor_unitario}}</td>
+                <td data-label="cantidad">{{ $factura->cantidad}}</td>
                 <td data-label="Sub total">{{ $factura->sub_total }}</td>
                 <td data-label="iva">{{ $factura->iva }}</td>
                 <td data-label="Total">{{ $factura->total }}</td>
                 <td data-label="Descripción">{{ $factura->descripcion }}</td>
-                <td data-label="Codigo articulo">{{ $factura->articulos(cod_articulo) }} - {{ $factura->articulos[nom_articulo] }}</td>
-                <td data-label="Nit">{{$factura->empresas[nom_empresa] }}</td>
-                <td data-label="Id usuario">{{ $factura->usuarios[nom_usuario] }}</td>
+                <td data-label="Codigo articulo">{{ $factura->cod_articulo }}</td>
+                <td data-label="Nit">{{$factura->id_empresa }}</td>
+                <td data-label="Id usuario">{{ $factura->id_user}}</td>
                 <td data-label="Editar"><a href="{{ route('facturas.edit', $factura) }}">Editar</a> </td>
                 <td>
                     //decarga de facturas oendeiete

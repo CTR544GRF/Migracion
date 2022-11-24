@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('layouts.plantilla')
 
 <!--estilo css -->
 @section('estilos')
@@ -7,7 +7,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('reg_entrada')}}
+{{ route('entradas.create')}}
 @stop
 
 <!-- palabra nav -->
@@ -26,22 +26,22 @@
     <div class="alingdownload">
         <div class="downloads">
             <button class="btn_download">
-                <a href="{{route('csv_entrada')}}">
+                <a href="{{route('entradas.csv')}}">
                     <span>CSV</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('excel_entrada')}}">
+                <a href="{{route('entradas.xlsx')}}">
                     <span>EXCEL</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('pdf_entrada')}}">
+                <a href="{{route('entradas.pdf')}}">
                     <span>PDF</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('print_entrada')}}" target="_blank"><span>IMPRIMIR</span>
+                <a href="{{route('entradas.print')}}" target="_blank"><span>IMPRIMIR</span>
                 </a>
             </button>
         </div>
@@ -64,7 +64,7 @@
         <tbody id="myTable">
             @foreach ($entradas as $entrada)
             <tr>
-                <td data-label="codigoR">{{$entrada->cod_registro}}</td>
+                <td data-label="codigo">{{$entrada->cod_registro}}</td>
                 <td data-label="tipo">{{$entrada->tipo}}</td>
                 <td data-label="codigoA">{{$entrada->cod_articulo}}</td>
                 <td data-label="descripcionA">{{$entrada->descripcion_articulo}}</td>

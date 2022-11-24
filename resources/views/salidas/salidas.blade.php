@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('layouts.plantilla')
 
 <!--estilo css -->
 @section('estilos')
@@ -7,7 +7,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('reg_salida')}}
+{{ route('salidas.create')}}
 @stop
 
 <!-- palabra nav -->
@@ -26,22 +26,22 @@
     <div class="alingdownload">
         <div class="downloads">
             <button class="btn_download">
-                <a href="{{route('csv_salida')}}">
+                <a href="{{route('salidas.csv')}}">
                     <span>CSV</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('excel_salida')}}">
+                <a href="{{route('salidas.xlsx')}}">
                     <span>EXCEL</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('pdf_salida')}}">
+                <a href="{{route('salidas.pdf')}}">
                     <span>PDF</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('print_salida')}}" target="_blank"><span>IMPRIMIR</span>
+                <a href="{{route('salidas.print')}}" target="_blank"><span>IMPRIMIR</span>
                 </a>
             </button>
         </div>

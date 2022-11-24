@@ -40,13 +40,13 @@ class entradas extends Controller
 
 
         if ($request->causal == "Factura de compra - Materia prima o insumos" && $request->num_factura == "Seleccione una factura") {
-            return redirect()->route('post_reg_entrada')->with('error', 'Debe seleccionar un numero de factura');
+            return redirect()->route('entradas.create')->with('error', 'Debe seleccionar un numero de factura');
         } elseif ($request->causal == "Factura de compra - Materia prima o insumos" && is_null($request->num_factura)) {
-            return redirect()->route('post_reg_entrada')->with('error', 'Debe seleccionar un numero de factura');
+            return redirect()->route('entradas.create')->with('error', 'Debe seleccionar un numero de factura');
         }
 
         if ($request->num_factura == "Seleccione una factura") {
-            return redirect()->route('post_reg_entrada')->with('error', 'Dejo algún campo sin seleccionar');
+            return redirect()->route('entradas.create')->with('error', 'Dejo algún campo sin seleccionar');
         }
 
         $entradas = new tbl_registros();
@@ -57,24 +57,23 @@ class entradas extends Controller
         $entradas->num_factura = $request->num_factura;
         if ($entradas->save()) :
             $this->updateOrInsertInventory($request->cod_articulo, $request->cantidad);
-            return redirect()->route('post_reg_entrada')->with('guardado', 'El registro de entrada se realizo con exito');
+            return redirect()->route('entradas.create')->with('guardado', 'El registro de entrada se realizo con exito');
         endif;
     }
 
     public function index()
     {
-
         $entradas = tbl_registros::leftJoin('tbl_articulos as a', 'tbl_registros.cod_articulo', '=', 'a.cod_articulo')
             ->select('tbl_registros.*', 'descripcion_articulo')
             ->where('tipo', '=', 'Entrada')->get();
         return view('entradas.entradas', compact('entradas'));
     }
 
-    public function index2()
+    public function create()
     {
-        $articulos_view = tbl_articulos::all();
-        $facturas_view = tbl_facturas::all();
-        return view('entradas.registrar_entrada', compact('articulos_view', 'facturas_view'));
+        $articulos = tbl_articulos::all();
+        $facturas = tbl_facturas::all();
+        return view('entradas.registrar_entrada', compact('articulos', 'facturas'));
     }
 
     private function updateOrInsertInventory($id, $cantidadEntrada)
@@ -83,7 +82,7 @@ class entradas extends Controller
             ->where('cod_articulo', $id)->exists();
         //Si el articulo ya existe en el inventario lo actualiza
         if ($bool) :
-            //Selecciona la cantidad actual de un articulo 
+            //Selecciona la cantidad actual de un articulo
             $cantidadActual =  DB::table('tbl_inventarios')
                 ->select('existencias')
                 ->where('cod_articulo', '=', $id)->get();
@@ -92,7 +91,7 @@ class entradas extends Controller
             //Inserta o actualiza en la tabla de inventarios dependiendo si el codigo de articulo existe
             DB::table('tbl_inventarios')->where('cod_articulo', $id)
                 ->update(['existencias' => $total]);
-        //si no existe el registro del articulo en el inventario lo crea     
+        //si no existe el registro del articulo en el inventario lo crea
         else :
             $nomnbreArticulo = tbl_articulos::select('nom_articulo')
                 ->where('cod_articulo', '=', $id)->get();
