@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('cedula')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->String('nom_user', 20);
-            $table->String('apellidos_user', 20);
+            $table->String('nom_user', 50);
+            $table->String('apellidos_user', 50);
             $table->date('fecha_ingreso', 20);
             $table->String('telefono_user', 10);
             $table->String('direccion_user', 30);

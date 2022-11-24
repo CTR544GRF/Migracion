@@ -89,7 +89,6 @@
                 <h3>Cod Articulo</h3>
                 <div class="tbl_abajo">
                     <select name="cod_articulo" id="cod_articulo" required>
-                        <option value="0">Articulos</option>
                         <option value="0">Registar Articulos</option>
                         @foreach ($articulos as $articulo)
                         <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->nom_articulo}}</option>

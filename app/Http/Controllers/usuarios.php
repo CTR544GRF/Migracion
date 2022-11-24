@@ -13,6 +13,13 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class usuarios extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.usuarios.create')->only('create');
+        $this->middleware('can:admin.usuarios.index')->only('index');
+        $this->middleware('can:admin.usuarios.edit')->only('edit');
+        $this->middleware('can:admin.usuarios.destroy')->only('destroy');
+    }
 
     public function exportPdf()
     {
@@ -80,6 +87,7 @@ class usuarios extends Controller
             $usuarios->telefono_user = $request->telefono;
             $usuarios->direccion_user = $request->direccion;
             $usuarios->cod_rol = $request->rol;
+            $usuarios->syncRoles($request->rol);
             $usuarios->save();
             return redirect()->route('usuarios.create')->with('guardado', 'Tarea creada correctamente');
         }

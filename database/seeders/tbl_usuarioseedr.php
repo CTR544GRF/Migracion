@@ -61,8 +61,8 @@ class tbl_usuarioseedr extends Seeder
             'fecha_ingreso' => '2022-11-04',
             'telefono_user' => '1234567891',
             'direccion_user' => 'calle 26',
-            'cod_rol' => '4'
-        ])->assignRole('Cliente');
+            'cod_rol' => '3'
+        ])->assignRole('Contador');
 
         User::create([
             'cedula' => '10035414',
@@ -73,7 +73,7 @@ class tbl_usuarioseedr extends Seeder
             'fecha_ingreso' => '2022-11-05',
             'telefono_user' => '1234567891',
             'direccion_user' => 'calle 27',
-            'cod_rol' => '5'
-        ])->assignRole('Representante');
+            'cod_rol' => '3'
+        ])->assignRole('Contador');
     }
 }

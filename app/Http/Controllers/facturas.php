@@ -41,7 +41,8 @@ class facturas extends Controller
             'cantidad' => 'required|digits_between:1,20|integer',
             'iva' => 'required|digits_between:1,3|integer',
             'descripcion' => 'required|max:150|string',
-            'id_user' => 'required_if:nit_empresa,null'
+            'id_user' => 'required_if:nit_empresa,null',
+            'cod_articulo' => 'required'
         ]);
 
         $subtotal = ($request->cantidad) * ($request->valor_unitario);
