@@ -32,14 +32,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::view('/', 'welcome')->name('onepage');
 
 //Resourses views
-Route::resource('articulos', articulos::class);
-Route::resource('facturas', facturas::class);
-Route::resource('empresas', empresas::class);
-Route::resource('usuarios', usuarios::class);
-Route::resource('entradas', entradas::class);
-Route::resource('salidas', salidas::class);
-Route::resource('inventario', inventario::class);
-Route::resource('roles', roles::class);
+Route::resource('articulos', articulos::class)->middleware('can');
+Route::resource('facturas', facturas::class)->middleware('can');
+Route::resource('empresas', empresas::class)->middleware('can');
+Route::resource('usuarios', usuarios::class)->middleware('can');
+Route::resource('entradas', entradas::class)->middleware('can');
+Route::resource('salidas', salidas::class)->middleware('can');
+Route::resource('inventario', inventario::class)->middleware('can');
+Route::resource('roles', roles::class)->middleware('can');
 
 //Downloads
 
