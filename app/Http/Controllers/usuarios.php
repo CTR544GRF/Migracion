@@ -8,13 +8,12 @@ use App\Models\tbl_roles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 
 
 
 class usuarios extends Controller
 {
+
     public function exportPdf()
     {
         $usuarios = tbl_usuarios::get();
@@ -26,6 +25,12 @@ class usuarios extends Controller
         $usuarios = tbl_usuarios::get();
         $pdf = PDF::loadView('pdf.usuarios', compact('usuarios'))->setPaper('a4', 'landscape');
         return $pdf->stream('usuarios.pdf');
+    }
+
+    public function create()
+    {
+        $roles = tbl_roles::all();
+        return view('usuarios.registrar_usuario', compact('roles'));
     }
 
     public function store(Request $request)
@@ -41,13 +46,13 @@ class usuarios extends Controller
 
         if ($user || $email) {
             if ($user && $email) {
-                return redirect()->route('post_reg_usuario')->with('error', 'El usuario ya existe');
+                return redirect()->route('usuarios.create')->with('error', 'El usuario ya existe');
             }
             if ($user) {
-                return redirect()->route('post_reg_usuario')->with('error', 'El id ' . $request->id . ' ya existe');
+                return redirect()->route('usuarios.create')->with('error', 'El id ' . $request->id . ' ya existe');
             }
             if ($email) {
-                return redirect()->route('post_reg_usuario')->with('error', 'El email ' . $request->email . ' ya existe');
+                return redirect()->route('usuarios.create')->with('error', 'El email ' . $request->email . ' ya existe');
             }
         } else {
 
@@ -76,24 +81,16 @@ class usuarios extends Controller
             $usuarios->direccion_user = $request->direccion;
             $usuarios->cod_rol = $request->rol;
             $usuarios->save();
-            return redirect()->route('post_reg_usuario')->with('guardado', 'Tarea creada correctamente');
+            return redirect()->route('usuarios.create')->with('guardado', 'Tarea creada correctamente');
         }
     }
     public function index()
     {
-
-        $usuarios = tbl_usuarios::leftJoin('tbl_roles as r', 'users.cod_rol', '=', 'r.cod_rol')
-            ->select('users.*', 'r.nom_rol')->orderBy('id', 'asc')
+        $usuarios = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')
+            ->select('users.*', 'r.name')->orderBy('id', 'asc')
             ->get();
         return view('usuarios.usuarios', compact('usuarios'));
     }
-    public function index2()
-    {
-        $roles = tbl_roles::all();
-        return view('usuarios.registrar_usuario', compact('roles'));
-    }
-
-
 
     public function edit(tbl_usuarios $usuario)
     {
@@ -163,8 +160,11 @@ class usuarios extends Controller
         $usuario->direccion_user = $request->direccion;
         $usuario->cod_rol = $request->rol;
         $usuario->save();
+
+        $message = $user[0]->cedula;
+
         session()->flash('actualizado', 'El usuario a sido editado con exito');
-        return redirect()->route('ver_usuario')->with('actualizado', $user[0]->cedula);
+        return redirect()->route('usuarios.index')->with('actualizado', "El usuario $message sido actualizado");
         return view('usuarios.editar_usuario', compact('usuario'));
     }
 

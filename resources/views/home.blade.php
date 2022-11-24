@@ -17,38 +17,38 @@
     <div class="usuario">
         <div class="containers">
             <div class="usuarios">
-                <a href="{{ route('ver_usuario')}}"><img class="img_top" src="img/icons8-persona-de-sexo-masculino-64.png" alt="usuarios"></a>
+                <a href="{{ route('usuarios.index')}}"><img class="img_top" src="img/icons8-persona-de-sexo-masculino-64.png" alt="usuarios"></a>
                 <h2 class="titulo_usuarios">Usuarios</h2>
             </div>
             <div class="usuarios">
-                <a href="{{ route('Empresas.index')}}"><img class="img_top" src="img/icons8-cliente-de-empresa-60.png" alt=""></a>
+                <a href="{{ route('empresas.index')}}"><img class="img_top" src="img/icons8-cliente-de-empresa-60.png" alt=""></a>
                 <h2 class="titulo_usuarios">Empresas</h2>
             </div>
             <div class="usuarios">
-                <a href="{{ route('ver_factura')}}"><img class="img_top" src="img/icons8-invoices-60.png" alt=""></a>
+                <a href="{{ route('facturas.index')}}"><img class="img_top" src="img/icons8-invoices-60.png" alt=""></a>
                 <h2 class="titulo_usuarios">Facturas</h2>
             </div>
             <div class="usuarios">
-                <a href="#"><img class="img_top" src="img/icons8-script-de-informes-de-gráficos.png" alt="usuarios"></a>
+                <a href="#.index"><img class="img_top" src="img/icons8-script-de-informes-de-gráficos.png" alt="usuarios"></a>
                 <h2 class="titulo_usuarios">Reportes</h2>
             </div>
         </div>
         <div class="containers">
 
             <div class="usuarios">
-                <a href="{{ route('ver_inventario')}}"><img class="img_top" src="img/icons8-producto-nuevo.png" alt="usuarios"></a>
+                <a href="{{ route('inventario.index')}}"><img class="img_top" src="img/icons8-producto-nuevo.png" alt="usuarios"></a>
                 <h2 class="titulo_usuarios">Inventario</h2>
             </div>
             <div class="usuarios">
-                <a href="{{ route('ver_articulo')}}"><img class="img_top" src="img/icons8-suéter.png" alt=""></a>
+                <a href="{{ route('articulos.index')}}"><img class="img_top" src="img/icons8-suéter.png" alt=""></a>
                 <h2 class="titulo_usuarios">Artículos</h2>
             </div>
             <div class="usuarios">
-                <a href="{{ route('ver_entrada')}}"><img class="img_top" src="img/mas2.png" alt="" height="65px"></a>
+                <a href="{{ route('entradas.index')}}"><img class="img_top" src="img/mas2.png" alt="" height="65px"></a>
                 <h2 class="titulo_usuarios">Entradas</h2>
             </div>
             <div class="usuarios">
-                <a href="{{ route('ver_salida')}}"><img class="img_top" src="img/menos.png" alt="" height="65px"></a>
+                <a href="{{ route('salidas.index')}}"><img class="img_top" src="img/menos.png" alt="" height="65px"></a>
                 <h2 class="titulo_usuarios">Salidas</h2>
             </div>
         </div>

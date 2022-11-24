@@ -8,30 +8,31 @@ use Illuminate\Http\Request;
 
 class roles extends Controller
 {
+
     public function store(Request $request)
-    {   
-       /* El validate funciona, pero los datos que se estan enviando no cumplen    */
+    {
+        /* El validate funciona, pero los datos que se estan enviando no cumplen    */
         $request->validate([
             'codigo' => 'max:10',
             'nombre' => 'max:30',
         ]);
-     
+
         $roles = new tbl_roles();
         $roles->cod_rol = $request->codigo;
         $roles->nom_rol = $request->nombre;
         $roles->save();
-        return redirect()->route('post_crear_rol') -> with('guardado', 'Tarea creada correctamente');
+        return redirect()->route('post_crear_rol')->with('guardado', 'Tarea creada correctamente');
     }
 
-    public function index() {
-
+    public function create()
+    {
         $roles = tbl_roles::all();
         return view('usuarios.roles', compact('roles'));
     }
 
     public function edit(tbl_roles $roles)
     {
-        
+
         return view('usuarios.roles', compact('rol'));
     }
 
@@ -42,14 +43,14 @@ class roles extends Controller
             'nombre' => 'required|max:30',
 
         ]);
-     
+
         $rol->cod_rol = $request->codigo;
         $rol->nom_rol = $request->nombre;
         $rol->save();
         session()->flash('actualizado', 'El usuario a sido editado con exito');
         $roles = tbl_roles::all();
-        return redirect()->route('post_crear_rol') -> with('guardado', 'Rol Actualizado');
-        return view('usuarios.roles', compact('rol','roles'));
+        return redirect()->route('post_crear_rol')->with('guardado', 'Rol Actualizado');
+        return view('usuarios.roles', compact('rol', 'roles'));
     }
 
     public function destroy(tbl_roles $rol)
@@ -58,5 +59,4 @@ class roles extends Controller
 
         return back()->with('destroy', 'El rol a sido eliminado correctamente');
     }
-
 }

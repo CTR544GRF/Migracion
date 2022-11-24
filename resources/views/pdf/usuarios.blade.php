@@ -130,12 +130,12 @@
         <tbody id="myTable">
             @foreach ($usuarios as $usuario)
             <tr>
-                <td data-label="Id">{{$usuario->id_user}}</td>
+                <td data-label="Id">{{$usuario->id}}</td>
                 <td data-label="Nombre">{{$usuario->nom_user}}</td>
                 <td data-label="Apellido">{{$usuario->apellidos_user}}</td>
                 <td data-label="Telefono">{{$usuario->telefono_user}}</td>
                 <td data-label="Direccion">{{$usuario->direccion_user}}</td>
-                <td data-label="E-mail">{{$usuario->email_user}}</td>
+                <td data-label="E-mail">{{$usuario->email}}</td>
                 <td data-label="Rol">{{$usuario->cod_rol}}</td>
 
                 </form>

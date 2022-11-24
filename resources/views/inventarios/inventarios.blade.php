@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('layouts.plantilla')
 
 <!--estilo css -->
 @section('estilos')
@@ -25,7 +25,7 @@
     <tbody id="myTable">
         @foreach ($inventario as $inventario)
         <tr>
-    
+
             <td data-label="codA">
                 {{$inventario->cod_articulo}}
             </td>

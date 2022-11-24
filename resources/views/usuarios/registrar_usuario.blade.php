@@ -17,7 +17,7 @@
 
 <!--link nav2 -->
 @section('link2')
-{{ route('ver_usuario')}}
+{{ route('usuarios.index')}}
 @stop
 
 <!-- palabra nav2 -->
@@ -35,7 +35,7 @@
 
 
 @section('seccion')
-<form class="registrar_usuario" action="{{route('post_reg_usuario')}}" method="POST" enctype="multipart/form-data">
+<form class="registrar_usuario" action="{{route('usuarios.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <h2 class="form_titulo">Registrar Usuarios</h2>
     <div class="form_container">
@@ -81,14 +81,15 @@
             <select name="rol" id="rol" required>
                 <option value="">Seleccione rol</option>
                 @foreach ($roles as $rol)
-                <option value="{{$rol->cod_rol}}">{{$rol->cod_rol }} - {{$rol->nom_rol}}</option>
+                <option value="{{$rol->id}}">{{$rol->id }} - {{$rol->name}}</option>
                 @endforeach
             </select>
         </div>
         <button class="form_submit" type='submit'> Registrar </button>
-        <button class="form_submit"><a href="{{ route('crear_rol')}}"> Crear rol </a></button>
+        <button class="form_submit"><a href="{{ route('roles.create')}}"> Crear rol </a></button>
     </div>
 </form>
+
 @if (session('guardado'))
 <script>
     guardado('Registro Exitoso', '<?php echo session('guardado') ?>');

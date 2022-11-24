@@ -7,7 +7,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('reg_usuario')}}
+{{ route('usuarios.create')}}
 @stop
 
 <!-- palabra nav -->
@@ -26,22 +26,22 @@
     <div class="alingdownload">
         <div class="downloads">
             <button class="btn_download">
-                <a href="{{route('csv_user')}}">
+                <a href="{{route('usuarios.csv')}}">
                     <span>CSV</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('excel_user')}}">
+                <a href="{{route('usuarios.xlsx')}}">
                     <span>EXCEL</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('pdf_user')}}">
+                <a href="{{route('usuarios.pdf')}}">
                     <span>PDF</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('print_user')}}" target="_blank"><span>IMPRIMIR</span>
+                <a href="{{route('usuarios.print')}}" target="_blank"><span>IMPRIMIR</span>
                 </a>
             </button>
         </div>
@@ -71,9 +71,9 @@
                 <td data-label="Telefono">{{$usuario->telefono_user}}</td>
                 <td data-label="Direccion">{{$usuario->direccion_user}}</td>
                 <td data-label="E-mail">{{$usuario->email}}</td>
-                <td data-label="Rol">{{$usuario->nom_rol}}</td>
-                <td data-label="Editar"><a href="{{ route('update_usuario',$usuario) }}"><i class="bi bi-pencil-square"></i></a></td>
-                <form action="{{route('delete_usuario',$usuario)}}" method="post" class="eliminar_datos">
+                <td data-label="Rol">{{$usuario->name}}</td>
+                <td data-label="Editar"><a href="{{ route('usuarios.edit',$usuario) }}"><i class="bi bi-pencil-square"></i></a></td>
+                <form action="{{route('usuarios.destroy',$usuario)}}" method="post" class="eliminar_datos">
                     @csrf
                     @method('delete')
                     <td class="eliminartd" data-label="">
@@ -96,25 +96,7 @@
             });
         });
     </script>
-    <!-- <script>
-        $(function() {
-            $("#tableUsers").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#tableUsers_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script> -->
+
 </div>
 
 <!-- Script js -->

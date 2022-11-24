@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class tbl_roleseedr extends Seeder
 {
@@ -15,23 +17,18 @@ class tbl_roleseedr extends Seeder
      */
     public function run()
     {
-        DB::table('tbl_roles')->insert([
-            'nom_rol'=>'Administrador'
-        ]);
-        
-        DB::table('tbl_roles')->insert([
-            'nom_rol'=>'Almacenista'
-        ]);
-        
-        DB::table('tbl_roles')->insert([
-            'nom_rol'=>'Contador'
-        ]);
-        
-        DB::table('tbl_roles')->insert([
-            'nom_rol'=>'Cliente'
-        ]);
-        DB::table('tbl_roles')->insert([
-            'nom_rol'=>'Representante'
-        ]);
+        //Roles funcionales
+        $admin = Role::create(['name' => 'Administrador']);
+        $almacenista = Role::create(['name' => 'Almacenista']);
+        $contador = Role::create(['name' => 'Contador']);
+        $contador = Role::create(['name' => 'Cliente']);
+        $contador = Role::create(['name' => 'Representante']);
+
+        //Asignacion de Permisos
+        // ,$almacenista,$contador]
+        Permission::create(['name' => 'admin.home'])->syncRoles([$admin]);
+
+        //usuarios
+        // Permission::create(['name' => 'admin.home'])->syncRoles([$admin]);
     }
 }

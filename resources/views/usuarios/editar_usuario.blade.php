@@ -7,7 +7,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('reg_usuario')}}
+{{ route('usuarios.create')}}
 @stop
 
 <!-- palabra nav -->
@@ -17,7 +17,7 @@
 
 <!--link nav2 -->
 @section('link2')
-{{ route('ver_usuario')}}
+{{ route('usuarios.index')}}
 @stop
 
 <!-- palabra nav2 -->
@@ -32,7 +32,7 @@
 @stop
 
 @section('seccion')
-<form class="registrar_usuario" action="{{route('update_usuario',$usuario)}}" method="POST">
+<form class="registrar_usuario" action="{{route('usuarios.update',$usuario)}}" method="POST">
     @csrf
     @method('PATCH')
     <h2 class="form_titulo">Editar usuario</h2>
@@ -62,11 +62,11 @@
             <label for="tipo" class="from_label">Dirección</label>
         </div>
         <div class="from_group">
-            <input type="password" id="Contraseña" class="from_input" placeholder=" " name="contraseña" required minlength="6" value="{{$usuario->contraseña_user}}">
+            <input type="password" id="Contraseña" class="from_input" placeholder=" " name="contraseña" required minlength="6" value="{{$usuario->p}}">
             <label for="tipo" class="from_label">Contraseña</label>
         </div>
         <div class="from_group">
-            <input type="email" id="e_mail" class="from_input" placeholder=" " name="email" required value="{{$usuario->email_user}}">
+            <input type="email" id="e_mail" class="from_input" placeholder=" " name="email" required value="{{$usuario->email}}">
             <label for="tipo" class="from_label">E-mail</label>
         </div>
         <div class="from_group">
@@ -76,7 +76,7 @@
             <select name="rol" id="rol" required>
                 <option selected value="{{$usuario->cod_rol}}">{{$usuario->cod_rol}} </option>
                 @foreach ($roles as $rol)
-                <option value="{{$rol->cod_rol}}">{{$rol->cod_rol }} - {{$rol->nom_rol}}</option>
+                <option value="{{$rol->id}}">{{$rol->id}} - {{$rol->name}}</option>
                 @endforeach
             </select>
         </div>

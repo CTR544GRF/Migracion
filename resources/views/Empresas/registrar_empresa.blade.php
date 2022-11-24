@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('layouts.plantilla')
 
 <!--estilo css -->
 @section('estilos')
@@ -7,7 +7,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('Empresas.index')}}
+{{ route('empresas.index')}}
 @stop
 
 <!-- palabra nav -->
@@ -21,41 +21,40 @@
 @stop
 
 @section('seccion')
-<form class="registrar_usuario" action="{{route('Empresas.store')}}" method="POST" enctype="multipart/form-data">
+<form class="registrar_usuario" action="{{route('empresas.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="form_container">
         <h2 class="form_titulo">Registrar empresa</h2>
         <div class="from_group">
-            <input type="text" id="nit" class="from_input" placeholder="    " name="nit" 
-            required maxlength="10">
-            <label for="tipo" class="from_label" >Nit empresa</label>
+            <input type="text" id="nit" class="from_input" placeholder="    " name="nit" required maxlength="10">
+            <label for="tipo" class="from_label">Nit empresa</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
             <input type="text" name="nombre" class="from_input" placeholder=" " required>
-            <label for="tipo" class="from_label" >Razón social</label>
+            <label for="tipo" class="from_label">Razón social</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
             <input type="text" name="telefono" class="from_input" placeholder=" " required>
-            <label for="tipo" class="from_label" >Teléfono</label>
+            <label for="tipo" class="from_label">Teléfono</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
             <input type="text" name="direccion" class="from_input" placeholder=" " required>
-            <label for="tipo" class="from_label" >Dirección</label>
+            <label for="tipo" class="from_label">Dirección</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
             <input type="email" name="e_mail" class="from_input" placeholder=" " required>
-            <label for="tipo" class="from_label" >E-mail</label>
+            <label for="tipo" class="from_label">E-mail</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
             <select name="id_user" class="from_group">
-                <option value=""><button href="{{route('reg_usuario')}}" ><a >Seleccione un representante</a></button></option>
-                @foreach ($usuarios_view as $user)
-                <option value="{{$user->id_user}}">{{$user->id_user }} - {{$user->nom_user}} {{$user->apellidos_user}} - {{$user->nom_rol}}</option>
+                <option value=""><button href=""><a>Seleccione un representante</a></button></option>
+                @foreach ($usuarios as $user)
+                <option value="{{$user->id}}">{{$user->id }} - {{$user->nom_user}} {{$user->apellidos_user}} - {{$user->name}}</option>
                 @endforeach
             </select>
         </div>

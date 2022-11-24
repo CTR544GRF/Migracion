@@ -142,7 +142,7 @@
                     {{$empresa->email_empresa}}
                 </td>
                 <td data-label="Id User">
-                    {{$empresa->id_user}}
+                    {{$empresa->id}}
                 </td>
             </tr>
             @endforeach

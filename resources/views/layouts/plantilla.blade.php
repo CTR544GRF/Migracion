@@ -23,7 +23,7 @@
 
     <header>
         <button class="logo">
-            <a href="{{ route('main')}}"><img height="70vw" src="{{ asset('img\Logo letra blanca.png')}}" alt="logo"></a>
+            <a href="{{ route('home')}}"><img height="70vw" src="{{ asset('img\Logo letra blanca.png')}}" alt="logo"></a>
         </button>
         <button class="btn_menu">
             <div class="btn_first"></div>
@@ -32,7 +32,7 @@
         </button>
         <nav class="nav">
             <ul class="lista">
-                <li><a href="{{ route('main')}}" class="active">Menú</a></li>
+                <li><a href="{{ route('home')}}" class="active">Menú</a></li>
                 <li><a href="@yield('link')">@yield('palabra-accion')</a></li>
                 <li><a href="@yield('link2')">@yield('palabra-accion2')</a></li>
             </ul>

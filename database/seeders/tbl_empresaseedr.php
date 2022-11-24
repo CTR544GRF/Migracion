@@ -21,7 +21,7 @@ class tbl_empresaseedr extends Seeder
             'tel_empresa' => '3126184366',
             'direccion_empresa' => 'cll 25# 14-32',
             'email_empresa' => 'cortespepito@gmail.com',
-            'id' => '4'
+            'id_user' => '4'
         ]);
 
         DB::table('tbl_empresas')->insert([
@@ -30,7 +30,7 @@ class tbl_empresaseedr extends Seeder
             'tel_empresa' => '3142659879',
             'direccion_empresa' => 'cll 185# 22-12',
             'email_empresa' => 'comfexltda@gmail.com',
-            'id' => '4'
+            'id_user' => '4'
         ]);
 
         DB::table('tbl_empresas')->insert([
@@ -39,7 +39,7 @@ class tbl_empresaseedr extends Seeder
             'tel_empresa' => '5185555698',
             'direccion_empresa' => 'cra 68# 54-33',
             'email_empresa' => 'facoltelas@gmail.com',
-            'id' => '4'
+            'id_user' => '4'
         ]);
 
         DB::table('tbl_empresas')->insert([
@@ -48,7 +48,7 @@ class tbl_empresaseedr extends Seeder
             'tel_empresa' => '3114455661',
             'direccion_empresa' => 'cra 15# 34-11',
             'email_empresa' => 'eltelar@gmail.com',
-            'id' => '5'
+            'id_user' => '5'
         ]);
 
         DB::table('tbl_empresas')->insert([
@@ -57,7 +57,7 @@ class tbl_empresaseedr extends Seeder
             'tel_empresa' => '3154685791',
             'direccion_empresa' => 'cll 155# 88-55',
             'email_empresa' => 'hilosyagujas@gmail.com',
-            'id' => '5'
+            'id_user' => '5'
         ]);
     }
 }

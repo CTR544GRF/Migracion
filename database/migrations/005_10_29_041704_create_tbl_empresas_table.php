@@ -21,8 +21,8 @@ return new class extends Migration
             $table->String('tel_empresa', 15);
             $table->String('direccion_empresa', 30);
             $table->String('email_empresa', 30);
-            $table->foreignId('id')->nullable();
-            $table->foreign('id')->references('id')->on('users')->onDelete('set null');
+            $table->foreignId('id_user')->nullable();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -9,6 +9,11 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class articulos extends Controller
 {
+    public function create()
+    {
+        return view('Articulos.registrar_articulo');
+    }
+
     public function exportPdf()
     {
         $articulos = tbl_articulos::get();
@@ -44,7 +49,7 @@ class articulos extends Controller
         $articulos->descripcion_articulo = $request->descripcion;
         $articulos->save();
 
-        return redirect()->route('reg_articulo')->with('guardado', 'El Articulo a sido guardado con exito');
+        return redirect()->route('articulos.create')->with('guardado', 'El Articulo a sido guardado con exito');
     }
     public function index()
     {
@@ -54,20 +59,19 @@ class articulos extends Controller
 
     public function edit(tbl_articulos $articulo)
     {
-
         return view('Articulos.editar_articulo', compact('articulo'));
     }
     public function update(Request $request, tbl_articulos $articulo)
     {
         $request->validate([
-            'tipo' => 'required|max:10|alpha',
-            'nombre' => 'required|max:20|alpha',
-            'material' => 'required|max:20|alpha',
-            'talla' => 'required|max:10',
-            'linea' => 'required|max:10|string',
-            'uMedida' => 'required|max:10|alpha',
-            'color' => 'required|max:10|alpha',
-            'descripcion' => 'max:150|string'
+            'tipo' => 'required|min:4|max:20|string',
+            'nombre' => 'required|min:4|max:20|string',
+            'material' => 'required|min:4|max:20|alpha',
+            'talla' => 'required|max:20',
+            'linea' => 'required|min:1|max:10|string',
+            'uMedida' => 'required|min:4|max:10|alpha',
+            'color' => 'required|min:4|max:10|alpha',
+            'descripcion' => 'max:150|string|required'
         ]);
 
         $articulo->tipo_articulo = $request->tipo;

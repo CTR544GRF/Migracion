@@ -1,5 +1,4 @@
-@extends('plantilla')
-
+@extends('layouts.plantilla')
 <!--estilo css -->
 @section('estilos')
 {{asset('css/factura.css')}}
@@ -7,7 +6,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('ver_factura')}}
+{{ route('facturas.index')}}
 @stop
 
 <!-- palabra nav -->
@@ -17,7 +16,7 @@
 
 <!--link nav2 -->
 @section('link2')
-{{ route('reg_factura')}}
+{{ route('facturas.create')}}
 @stop
 
 <!-- palabra nav2 -->
@@ -75,23 +74,23 @@
                     <option value='compra'>Factura de Compra</option>
                 </select>
                 <h4>Nit de Empresa</h4>
-                    <select name="nit_empresa" id="" required>
-                        <option value="{{$factura->nit_empresa}}">{{$factura->nit_empresa}}</option>
-                        @foreach ($empresas_view as $empresa )                            
-                            <option value="{{$empresa->nit_empresa}}"> {{$empresa->nit_empresa}} - {{$empresa->nom_empresa}} </option>
-                        @endforeach
-                    </select>
+                <select name="nit_empresa" id="" required>
+                    <option value="{{$factura->nit_empresa}}">{{$factura->nit_empresa}}</option>
+                    @foreach ($empresas_view as $empresa )
+                    <option value="{{$empresa->nit_empresa}}"> {{$empresa->nit_empresa}} - {{$empresa->nom_empresa}} </option>
+                    @endforeach
+                </select>
             </div>
             <div id="seccion_two_rigth">
                 <h4>Fecha</h4>
                 <input type="date" name="fecha" id="fecha_factura" placeholder="Fecha" value="{{$factura->fecha}}" required>
                 <h4>Id Usuario</h4>
-                    <select name="id_user" id="id_user" required>
-                        <option value="{{$factura->id_user}}">{{$factura->id_user}}</option>
-                        @foreach ($usuarios_view as $usuario)
-                            <option value="{{$usuario->id_user}}">{{$usuario->id_user}} - {{$usuario->nom_user}}</option>
-                        @endforeach
-                    </select>
+                <select name="id_user" id="id_user" required>
+                    <option value="{{$factura->id_user}}">{{$factura->id_user}}</option>
+                    @foreach ($usuarios_view as $usuario)
+                    <option value="{{$usuario->id_user}}">{{$usuario->id_user}} - {{$usuario->nom_user}}</option>
+                    @endforeach
+                </select>
             </div>
         </section>
         <section class="seccion_tres">
@@ -104,12 +103,12 @@
             <div class="cajas">
                 <h3>Cod Articulo</h3>
                 <div class="tbl_abajo">
-                        <select name="cod_articulo" id="cod_articulo" required>
-                            <option value="0">{{$factura->cod_articulo}}</option>
-                            @foreach ($articulos_view as $articulo)
-                                <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->nom_articulo}}</option>
-                            @endforeach
-                        </select>
+                    <select name="cod_articulo" id="cod_articulo" required>
+                        <option value="0">{{$factura->cod_articulo}}</option>
+                        @foreach ($articulos_view as $articulo)
+                        <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->nom_articulo}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <!-- Fin del codigo PHP -->

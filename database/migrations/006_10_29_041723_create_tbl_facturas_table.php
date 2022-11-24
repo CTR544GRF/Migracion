@@ -27,8 +27,8 @@ return new class extends Migration
             $table->foreign('cod_articulo')->references('cod_articulo')->on('tbl_articulos')->onDelete('cascade');
             $table->foreignId('id_empresa')->nullable();
             $table->foreign('id_empresa')->references('id_empresa')->on('tbl_empresas')->onDelete('cascade');
-            $table->foreignId('id')->nullable();
-            $table->foreign('id')->references('id')->on('users')->onDelete('set null');
+            $table->foreignId('id_user')->nullable();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }

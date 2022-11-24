@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('layouts.plantilla')
 
 <!--estilo css -->
 @section('estilos')
@@ -7,7 +7,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('ver_factura') }}
+{{ route('facturas.index') }}
 @stop
 <!-- palabra nav -->
 @section('palabra-accion')
@@ -24,7 +24,7 @@
 
 @section('seccion')
 <main class="formularios">
-    <form action="{{ route('post_reg_factura') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('facturas.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <section class="seccion_uno">
             <button class="crear_factura" type="reset">
@@ -61,9 +61,8 @@
                 <h4>Nit de Empresa</h4>
                 <select name="nit_empresa" id="">
                     <option value="">Selecione una Empresa</option>
-                    <option value="">Registrar una Empresa</option>
-                    @foreach ($empresas_view as $empresa )
-                    <option value="{{$empresa->nit_empresa}}"> {{$empresa->nit_empresa}} - {{$empresa->nom_empresa}} </option>
+                    @foreach ($empresas as $empresa )
+                    <option value="{{$empresa->id_empresa}}"> {{$empresa->nit_empresa}} - {{$empresa->nom_empresa}} </option>
                     @endforeach
                 </select>
             </div>
@@ -73,9 +72,8 @@
                 <h4>Id Usuario</h4>
                 <select name="id_user" id="id_user">
                     <option value="">Seleccione un Usuario</option>
-                    <option value="">Registrar Usuario</option>
-                    @foreach ($usuarios_view as $usuario)
-                    <option value="{{$usuario->id_user}}">{{$usuario->id_user}} - {{$usuario->nom_user}}</option>
+                    @foreach ($usuarios as $usuario)
+                    <option value="{{$usuario->id}}">{{$usuario->id}} - {{$usuario->nom_user}}</option>
                     @endforeach
                 </select>
             </div>
@@ -93,7 +91,7 @@
                     <select name="cod_articulo" id="cod_articulo" required>
                         <option value="0">Articulos</option>
                         <option value="0">Registar Articulos</option>
-                        @foreach ($articulos_view as $articulo)
+                        @foreach ($articulos as $articulo)
                         <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->nom_articulo}}</option>
                         @endforeach
                     </select>

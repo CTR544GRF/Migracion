@@ -13,11 +13,9 @@ class inventario extends Controller
 
     public function index()
     {
-
-        $inventario = tbl_inventarios::leftJoin('tbl_articulos as a','tbl_inventarios.cod_articulo','=','a.cod_articulo')
-        ->select('tbl_inventarios.*','a.tipo_articulo','a.descripcion_articulo')
-        ->get();    
+        $inventario = tbl_inventarios::leftJoin('tbl_articulos as a', 'tbl_inventarios.cod_articulo', '=', 'a.cod_articulo')
+            ->select('tbl_inventarios.*', 'a.tipo_articulo', 'a.descripcion_articulo')
+            ->get();
         return view('inventarios.inventarios', compact('inventario'));
     }
-
-   }
+}

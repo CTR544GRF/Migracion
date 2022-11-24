@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('layouts.plantilla')
 
 <!--estilo css -->
 @section('estilos')
@@ -7,7 +7,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('Empresas.create')}}
+{{ route('empresas.create')}}
 @stop
 
 <!-- palabra nav -->
@@ -25,22 +25,22 @@
     <div class="alingdownload">
         <div class="downloads">
             <button class="btn_download">
-                <a href="{{route('csv_empresa')}}">
+                <a href="{{route('empresas.csv')}}">
                     <span>CSV</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('excel_empresa')}}">
+                <a href="{{route('empresas.xlsx')}}">
                     <span>EXCEL</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('pdf_empresa')}}">
+                <a href="{{route('empresas.pdf')}}">
                     <span>PDF</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('print_empresa')}}" target="_blank"><span>IMPRIMIR</span>
+                <a href="{{route('empresas.print')}}" target="_blank"><span>IMPRIMIR</span>
                 </a>
             </button>
         </div>
@@ -63,7 +63,7 @@
             </tr>
         </thead>
         <tbody id="myTable">
-            @foreach ($empresas_view as $empresa)
+            @foreach ($empresas as $empresa)
             <tr>
                 <td data-label="Nit">
                     {{$empresa->nit_empresa}}
@@ -83,19 +83,19 @@
                 <td data-label="Id User">
                     {{$empresa->id_user}}
                 </td>
-                <td data-label="Id User">
-                    {{$empresa->nom_user}}  {{$empresa->apellidos_user}}
+                <td data-label="Nombre user">
+                    {{$empresa->nom_user}} {{$empresa->apellidos_user}}
                 </td>
-                <td data-label="Id User">
-                    {{$empresa->nom_rol}}
+                <td data-label="rol ">
+                    {{$empresa->name}}
                 </td>
-                <td data-label="Editar"><a href="{{ route('Empresas.edit', $empresa->id) }}"><i class="bi bi-pencil-square"></i></a> </td>
-                <form action="{{route('Empresas.destroy',$empresa->id)}}" method="POST" class="eliminar_datos">
+                <td data-label="Editar"><a href="{{ route('empresas.edit', $empresa) }}"><i class="bi bi-pencil-square"></i></a> </td>
+                <form action="{{route('empresas.destroy',$empresa)}}" method="POST" class="eliminar_datos">
                     @csrf
                     @method('DELETE')
                     <td class="eliminartd" data-label="">
                         <button class="btn_eliminar" type="submit">
-                        <i class="bi bi-archive-fill"></i>
+                            <i class="bi bi-archive-fill"></i>
                         </button>
                     </td>
                 </form>

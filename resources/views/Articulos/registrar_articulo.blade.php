@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('layouts.plantilla')
 
 <!--estilo css -->
 @section('estilos')
@@ -7,7 +7,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('ver_articulo')}}
+{{ route('articulos.index')}}
 @stop
 <!-- palabra nav -->
 @section('palabra-accion')
@@ -20,7 +20,7 @@
 
 @section('seccion')
 
-<form class="registrar_usuario" action="{{route('post_reg_articulos')}}" method="POST" enctype="multipart/form-data">
+<form class="registrar_usuario" action="{{route('articulos.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="form_container">
@@ -31,16 +31,16 @@
                 <option value="Producto terminado">Producto terminado</option>
                 <option value="Materia prima">Materia prima</option>
                 <option value="Insumo">Insumo</option>
-            </select> 
+            </select>
         </div>
         <div class="from_group">
             <input type="text" id="Nombre" class="from_input" placeholder=" " name="nombre">
-            <label for="tipo" class="from_label" >Nombre</label>
+            <label for="tipo" class="from_label">Nombre</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
             <input type="text" id="material" class="from_input" placeholder=" " name="material">
-            <label for="tipo" class="from_label" >Material</label>
+            <label for="tipo" class="from_label">Material</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
@@ -49,7 +49,7 @@
                 <option value="No">No aplica</option>
                 <option value="Adulto">Adulto</option>
                 <option value="Niño">Niño</option>
-            </select> 
+            </select>
         </div>
         <div class="from_group">
             <select name="talla" id="talla">
@@ -67,7 +67,7 @@
                 <option value="12">12</option>
                 <option value="14">14</option>
                 <option value="16">16</option>
-            </select> 
+            </select>
         </div>
         <div class="from_group">
             <select name="uMedida" id="uMedida">
@@ -75,16 +75,16 @@
                 <option value="Unidad">Unidad</option>
                 <option value="Centímetros">Centímetros</option>
                 <option value="Metros">Metros</option>
-            </select> 
+            </select>
         </div>
         <div class="from_group">
             <input type="text" id="Color" class="from_input" placeholder=" " name="color">
-            <label for="tipo" class="from_label" >Color</label>
+            <label for="tipo" class="from_label">Color</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
             <input type="text" id="descripción" class="from_input" placeholder=" " name="descripcion">
-            <label for="tipo" class="from_label" >Descripción</label>
+            <label for="tipo" class="from_label">Descripción</label>
             <span class="from_line"></span>
         </div>
         <button type="submit" class="form_submit" name="registrarArt">Registrar Articulo</button>

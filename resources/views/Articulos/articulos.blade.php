@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('layouts.plantilla')
 
 <!--estilo css -->
 @section('estilos')
@@ -7,7 +7,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('reg_articulo')}}
+{{ route('articulos.create')}}
 @stop
 <!-- palabra nav -->
 @section('palabra-accion')
@@ -25,22 +25,22 @@
     <div class="alingdownload">
         <div class="downloads">
             <button class="btn_download">
-                <a href="{{route('csv_articulo')}}">
+                <a href="{{route('articulos.csv')}}">
                     <span>CSV</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('excel_articulo')}}">
+                <a href="{{route('articulos.xlsx')}}">
                     <span>EXCEL</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('pdf_articulo')}}">
+                <a href="{{route('articulos.pdf')}}">
                     <span>PDF</span>
                 </a>
             </button>
             <button class="btn_download">
-                <a href="{{route('print_articulo')}}" target="_blank"><span>IMPRIMIR</span>
+                <a href="{{route('articulos.print')}}" target="_blank"><span>IMPRIMIR</span>
                 </a>
             </button>
         </div>
@@ -92,13 +92,13 @@
                 <td data-label="Descripcion">
                     {{$articulo->descripcion_articulo}}
                 </td>
-                <td data-label="Editar"><a href="{{ route('edit_articulo', $articulo ) }}"><i class="bi bi-pencil-square"></i></a> </td>
-                <form action="{{route('delete_articulo',$articulo)}}" method="post" class="eliminar_datos">
+                <td data-label="Editar"><a href="{{ route('articulos.edit', $articulo ) }}"><i class="bi bi-pencil-square"></i></a> </td>
+                <form action="{{route('articulos.destroy',$articulo)}}" method="post" class="eliminar_datos">
                     @csrf
                     @method('delete')
                     <td class="eliminartd" data-label="">
                         <button class="btn_eliminar" type="submit">
-                        <i class="bi bi-archive-fill"></i>
+                            <i class="bi bi-archive-fill"></i>
                         </button>
                     </td>
                 </form>

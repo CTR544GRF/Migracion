@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->truncateTables([
             'tbl_articulos',
             'tbl_ciudades',
-            'tbl_roles',
+            // 'tbl_roles',
             'users',
             'tbl_empresas'
             // 'tbl_facturas',

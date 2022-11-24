@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tbl_articulos', function (Blueprint $table) {
-            $table->integer('cod_articulo',10);
+            $table->integer('cod_articulo', 10);
             $table->String('tipo_articulo', 20);
             $table->String('nom_articulo', 20);
             $table->String('material_articulo', 20);
