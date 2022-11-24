@@ -23,8 +23,8 @@ return new class extends Migration
             $table->date('fecha_ingreso', 20);
             $table->String('telefono_user', 10);
             $table->String('direccion_user', 30);
-            // $table->foreignId('cod_rol');
-            // $table->foreign('cod_rol')->references('id')->on('roles');
+            $table->foreignId('cod_rol');
+            $table->foreign('cod_rol')->references('id')->on('roles');
             // ->onDelete('set null')
             $table->rememberToken();
             $table->timestamps();

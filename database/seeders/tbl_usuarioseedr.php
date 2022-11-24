@@ -24,7 +24,8 @@ class tbl_usuarioseedr extends Seeder
             'apellidos_user' => 'Diaz Florez',
             'fecha_ingreso' => '2022-11-02',
             'telefono_user' => '1234567891',
-            'direccion_user' => 'calle 23'
+            'direccion_user' => 'calle 23',
+            'cod_rol' => '1'
         ])->assignRole('Administrador');
 
         User::create([
@@ -35,7 +36,8 @@ class tbl_usuarioseedr extends Seeder
             'apellidos_user' => 'Castro Carvajal',
             'fecha_ingreso' => '2022-11-02',
             'telefono_user' => '1234567891',
-            'direccion_user' => 'calle 24'
+            'direccion_user' => 'calle 24',
+            'cod_rol' => '2'
         ])->assignRole('Almacenista');
 
         User::create([
@@ -46,7 +48,8 @@ class tbl_usuarioseedr extends Seeder
             'apellidos_user' => 'Gutierrez Hernandez',
             'fecha_ingreso' => '2022-11-03',
             'telefono_user' => '1234567891',
-            'direccion_user' => 'calle 25'
+            'direccion_user' => 'calle 25',
+            'cod_rol' => '3'
         ])->assignRole('Contador');
 
         User::create([
@@ -57,7 +60,8 @@ class tbl_usuarioseedr extends Seeder
             'apellidos_user' => 'Suescun',
             'fecha_ingreso' => '2022-11-04',
             'telefono_user' => '1234567891',
-            'direccion_user' => 'calle 26'
+            'direccion_user' => 'calle 26',
+            'cod_rol' => '4'
         ])->assignRole('Cliente');
 
         User::create([
@@ -68,7 +72,8 @@ class tbl_usuarioseedr extends Seeder
             'apellidos_user' => 'Ramos Quiñones',
             'fecha_ingreso' => '2022-11-05',
             'telefono_user' => '1234567891',
-            'direccion_user' => 'calle 27'
+            'direccion_user' => 'calle 27',
+            'cod_rol' => '5'
         ])->assignRole('Representante');
     }
 }
