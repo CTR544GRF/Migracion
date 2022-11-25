@@ -37,6 +37,9 @@ class empresas extends Controller
         $email = tbl_empresas::select('email_empresa')
             ->where('email_empresa', '=', $request->e_mail)
             ->exists();
+        $email = tbl_empresas::select('email_empresa')
+        ->where('email_empresa', '=', $request->e_mail)
+        ->exists();
 
         if ($nit || $email) {
             if ($nit && $email) {
