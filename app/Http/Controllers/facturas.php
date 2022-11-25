@@ -10,6 +10,7 @@ use App\Models\tbl_articulos;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -27,26 +28,25 @@ class facturas extends Controller
         $pdf = PDF::loadView('pdf.facturas', compact('facturas'))->setPaper('a4', 'landscape');
         return $pdf->stream('facturas.pdf');
     }
-
-    public function printFactura(tbl_facturas $factura)
-    {
+    
+    public function printFactura(){
         $facturas = tbl_empresas::all();
         $pdf = PDF::loadView('pdf.facturas', compact('facturas'))->setPaper('a4', 'landscape');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+         var_dump($_POST);
+/*         $request->validate([
             'valor_unitario' => 'required|digits_between:1,20|integer',
             'cantidad' => 'required|digits_between:1,20|integer',
             'iva' => 'required|digits_between:1,3|integer',
             'descripcion' => 'required|max:150|string',
-            'id_user' => 'required_if:nit_empresa,null',
-            'cod_articulo' => 'required'
+            'id_user' => 'required_if:nit_empresa,null'
         ]);
 
         $subtotal = ($request->cantidad) * ($request->valor_unitario);
-        $iva = ($subtotal * ($request->iva)) / 100;
+        $iva = ($subtotal * ($request->iva))/100;
         $total = $subtotal + $iva;
 
         $facturas = new tbl_facturas();
@@ -59,16 +59,21 @@ class facturas extends Controller
         $facturas->total = $total;
         $facturas->descripcion = $request->descripcion;
         $facturas->cod_articulo = $request->cod_articulo;
-        $facturas->id_empresa = $request->nit_empresa;
+        $facturas->nit_empresa = $request->nit_empresa;
         $facturas->id_user = $request->id_user;
         $facturas->save();
-        session()->flash('guardado', 'La Factura a sido Registrada con exito');
-        return redirect()->route('facturas.create');
+        session()->flash('guardado', 'La Factura a sido Registrada con exito'); */
+        
     }
 
     public function index()
     {
-        $facturas = tbl_facturas::all();
+        $facturas = tbl_facturas::join('tbl_articulos as art', 'tbl_facturas.cod_articulo', '=', 'art.cod_articulo')
+        ->join('tbl_usuarios as user', 'tbl_facturas.id_user', '=', 'user.id_user')
+        // ->join('tbl_empresas as emp', 'tbl_facturas.nit_empresa', '=', 'emp.nit_empresa')
+        ->select('tbl_facturas.*','art.nom_articulo','user.nom_user')
+        ->get();
+        // $facturas = tbl_facturas::join();
         return view('Facturas.facturas', compact('facturas'));
     }
     public function create()
