@@ -23,15 +23,15 @@ return new class extends Migration
             $table->double('cantidad');
             $table->String('descripcion', 150);
             $table->integer('cod_articulo');
-            $table->integer('nit_empresa')->nullable();
-            $table->integer('id_user')->nullable();
+            $table->unsignedBigInteger('id_empresa')->nullable();
+            $table->unsignedBigInteger('id_user')->nullable();
             $table->timestamps();
         });
         Schema::table('tbl_facturas', function (Blueprint $table) {
             $table->foreign('id_total')->references('id')->on('tbl_totalfactura')->onDelete('cascade');
             $table->foreign('cod_articulo')->references('cod_articulo')->on('tbl_articulos')->onDelete('cascade');
-            $table->foreign('nit_empresa')->references('nit_empresa')->on('tbl_empresas')->onDelete('cascade');
-            $table->foreign('id_user')->references('id_user')->on('tbl_usuarios')->onDelete('set null');
+            $table->foreign('id_empresa')->references('id')->on('tbl_empresas')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('set null');
         });
     }
 
