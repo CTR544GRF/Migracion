@@ -55,3 +55,33 @@ cod_articulo.oninput = function () {
     resultado_num_factura.innerHTML = num_articulo;
 
 }
+
+
+
+/* function itemCreate()
+{   
+    console.log(true)
+   $('.form_factura_prueba:first').clone().appendTo('.container_section_three');
+} */
+
+function itemCreate() {
+    let article = document.querySelector('.form_factura_prueba');
+    let articleChield = article.cloneNode(true)
+    let container_article = document.querySelector('.container_section_three')
+    container_article.appendChild(articleChield);
+
+    let ca = document.querySelectorAll('.ca');
+    let pu = document.querySelectorAll('.pu');
+    let vc = document.querySelectorAll('.vc');
+    let vi = document.querySelectorAll('.vi');
+
+    /* cod_articulo precio_unitario valor_cantidad valor_iva*/
+    for (let index = 0; index < ca.length; index++) {
+        ca[index].setAttribute('name', 'ca[]');
+        pu[index].setAttribute('name', 'pu[]');
+        vc[index].setAttribute('name', 'vc[]');
+        vi[index].setAttribute('name', 'vi[]');
+    }
+    
+
+}

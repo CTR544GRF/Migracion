@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('plantilla')
 
 <!--estilo css -->
 @section('estilos')
@@ -7,16 +7,14 @@
 
 <!--link nav -->
 @section('link')
-{{ route('facturas.index') }}
+{{ route('ver_factura') }}
 @stop
 <!-- palabra nav -->
 @section('palabra-accion')
 {{ 'Ver' }}
 @stop
 <!-- Script js -->
-@section('script')
-{{ asset('js/registro_factura.js') }}
-@stop
+
 <!-- Titulo -->
 @section('titulo')
 {{ 'Registrar Factura' }}
@@ -24,7 +22,7 @@
 
 @section('seccion')
 <main class="formularios">
-    <form action="{{ route('facturas.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('post_reg_factura') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <section class="seccion_uno">
             <button class="crear_factura" type="reset">
@@ -61,8 +59,9 @@
                 <h4>Nit de Empresa</h4>
                 <select name="nit_empresa" id="">
                     <option value="">Selecione una Empresa</option>
-                    @foreach ($empresas as $empresa )
-                    <option value="{{$empresa->id_empresa}}"> {{$empresa->nit_empresa}} - {{$empresa->nom_empresa}} </option>
+                    <option value="">Registrar una Empresa</option>
+                    @foreach ($empresas_view as $empresa )
+                    <option value="{{$empresa->nit_empresa}}"> {{$empresa->nit_empresa}} - {{$empresa->nom_empresa}} </option>
                     @endforeach
                 </select>
             </div>
@@ -72,52 +71,61 @@
                 <h4>Id Usuario</h4>
                 <select name="id_user" id="id_user">
                     <option value="">Seleccione un Usuario</option>
-                    @foreach ($usuarios as $usuario)
-                    <option value="{{$usuario->id}}">{{$usuario->id}} - {{$usuario->nom_user}}</option>
+                    <option value="">Registrar Usuario</option>
+                    @foreach ($usuarios_view as $usuario)
+                    <option value="{{$usuario->id_user}}">{{$usuario->id_user}} - {{$usuario->nom_user}}</option>
                     @endforeach
                 </select>
             </div>
         </section>
-        <section class="seccion_tres">
-            <div class="cajas">
-                <h3>#</h3>
-                <div class="tbl_abajo">
-                    <span id="resultado_num_factura"></span>
-                </div>
-            </div>
-            <div class="cajas">
-                <h3>Cod Articulo</h3>
-                <div class="tbl_abajo">
-                    <select name="cod_articulo" id="cod_articulo" required>
-                        <option value="0">Registar Articulos</option>
-                        @foreach ($articulos as $articulo)
-                        <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->nom_articulo}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="cajas">
-                <h3>Precio Unitario</h3>
-                <div class="tbl_abajo">
-                    <span>$</span>
-                    <input type="number" name="valor_unitario" min="1" id="precio_unitario" required>
-                </div>
-            </div>
-            <div class="cajas">
-                <h3>Cantidad</h3>
-                <div class="tbl_abajo">
-                    <input type="number" name="cantidad" min="1" id="valor_cantidad" required>
-                </div>
-            </div>
-            <div class="cajas" id="iva">
-                <h3>Iva</h3>
-                <div class="tbl_abajo">
-                    <input type="number" name="iva" id="valor_iva" min="1" max="100" required>
-                    <span>%</span>
-                </div>
-            </div>
-        </section>
-
+                <div class="container_section_three">
+                    <section class=" form_factura_prueba seccion_tres">
+                        <div class="cajas">
+                            <h3>#</h3>
+                            <div class="tbl_abajo">
+                                <span id="resultado_num_factura"></span>
+                            </div>
+                        </div>
+                        <div class="cajas">
+                            <h3>Cod Articulo</h3>
+                            <div class="tbl_abajo">
+                                <select class="ca"  id="cod_articulo" required>
+                                    <option value="0">Articulos</option>
+                                    <option value="0">Registar Articulos</option>
+                                    @foreach ($articulos_view as $articulo)
+                                    <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->nom_articulo}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="cajas">
+                            <h3>Precio Unitario</h3>
+                            <div class="tbl_abajo">
+                                <span>$</span>
+                                <input type="number" class="pu"  min="1" id="precio_unitario" required>
+                            </div>
+                        </div>
+                        <div class="cajas">
+                            <h3>Cantidad</h3>
+                            <div class="tbl_abajo">
+                                <input type="number" class="vc"  min="1" id="valor_cantidad" required>
+                            </div>
+                        </div>
+                        <div class="cajas" id="iva">
+                            <h3>Iva</h3>
+                            <div class="tbl_abajo">
+                                <input type="number" class="vi"  id="valor_iva" min="1" max="100" required>
+                                <span>%</span>
+                            </div>
+                        </div>
+                        <div onclick="itemCreate()" class="cajas">
+                            <h3>Agregar</h3>
+                            <div class="tbl_abajo">
+                                <i class="bi bi-plus-circle-fill"></i>
+                            </div>
+                        </div>
+                    </section>
+                </div>  
         <section class="seccion_cuatro">
             <div class="scs_cuatro_arriba">
                 <input type="text" id="Descripcion" name="descripcion" placeholder="Descripcion...">
@@ -153,4 +161,7 @@
 @endforeach
 @endif
 
+@stop
+@section('script')
+{{ asset('js/registro_factura.js') }}
 @stop
