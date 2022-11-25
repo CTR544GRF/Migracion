@@ -30,7 +30,6 @@
 <form class="registrar_usuario" action="{{route('empresas.update',$empresa->id_empresa)}}" method="POST">
     @csrf
     @method('PATCH')
-    @dump($errors)
     <div class="form_container">
         <h2 class="form_titulo">Editar empresa</h2>
         <div class="from_group" style="display:none">
@@ -64,11 +63,21 @@
             <span class="from_line"></span>
         </div>
         <div class="from_group">
-            <select name="id_user" class="from_group">
-                <option value="{{$empresa->id_usuer}}">{{$empresa->id_user}}</option>
-                @foreach ($usuarios as $user)
-                <option value="{{$user->id}}">{{$user->id }} - {{$user->nom_user}} {{$user->apellidos_user}} - {{$user->name}}</option>
-                @endforeach
+            <input type="text" name="nombre" class="from_input" placeholder=" " value="{{$empresa->nombre}}">
+            <label for="tipo" class="from_label">Nombre representante</label>
+            <span class="from_line"></span>
+        </div>
+        <div class="from_group">
+            <input type="text" name="id" class="from_input" placeholder=" " value="{{$empresa->id}}">
+            <label for="tipo" class="from_label">N° de identificación</label>
+            <span class="from_line"></span>
+        </div>
+        <div class="from_group">
+            <select name="rol" class="from_group">
+                <option value="{{$empresa->rol}}">{{$empresa->rol}}</option>
+                <option selected>Seleccione tipo de empresa</option>
+                <option value="Cliente">Cliente</option>
+                <option value="Proveedor">Proveedor</option>
             </select>
         </div>
         <button name="registrar" type="submit" class="form_submit">Editar empresa</button>

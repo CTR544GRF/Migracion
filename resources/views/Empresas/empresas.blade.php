@@ -49,13 +49,13 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Nit</th>
+                <th>NIT</th>
                 <th>Nombre</th>
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>E-mail</th>
-                <th>Id User</th>
-                <th>Usuario</th>
+                <th>Nombre representante</th>
+                <th>ID</th>
                 <th>Rol</th>
                 <!-- <th>Ciudad</th> -->
                 <th>Editar</th>
@@ -81,13 +81,13 @@
                     {{$empresa->email_empresa}}
                 </td>
                 <td data-label="Id User">
-                    {{$empresa->id_user}}
+                    {{$empresa->nombre}}
                 </td>
                 <td data-label="Nombre user">
-                    {{$empresa->nom_user}} {{$empresa->apellidos_user}}
+                    {{$empresa->id}} 
                 </td>
                 <td data-label="rol ">
-                    {{$empresa->name}}
+                    {{$empresa->rol}}
                 </td>
                 <td data-label="Editar"><a href="{{ route('empresas.edit', $empresa) }}"><i class="bi bi-pencil-square"></i></a> </td>
                 <form action="{{route('empresas.destroy',$empresa)}}" method="POST" class="eliminar_datos">
