@@ -52,11 +52,7 @@ function itemCreate() {
             vi[index].value = 0;
         }
         
-        ca[index].setAttribute('name', 'ca[]');
-        pu[index].setAttribute('name', 'pu[]');
-        vc[index].setAttribute('name', 'vc[]');
-        vi[index].setAttribute('name', 'vi[]');
-        console.log("contador: "+ contador+ " index :" + index)   
+  
     }
     contador++
 }
