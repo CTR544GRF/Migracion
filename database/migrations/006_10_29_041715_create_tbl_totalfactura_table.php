@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {   
-        Schema::create('tbl_totalfactura', function (Blueprint $table) {
+        Schema::create('tbl_totalfacturas', function (Blueprint $table) {
             $table->integer('id', 10);
+            $table->string('num_factura');
             $table->double('iva');
-            $table->integer('sub_total');
+            $table->unsignedBigInteger('sub_total');
             $table->double('total');
             $table->timestamps();
+
         });
     }
 

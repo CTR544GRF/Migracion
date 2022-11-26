@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('layouts.plantilla')
 
 <!--estilo css -->
 @section('estilos')
@@ -7,7 +7,7 @@
 
 <!--link nav -->
 @section('link')
-{{ route('ver_factura') }}
+{{ route('facturas.index') }}
 @stop
 <!-- palabra nav -->
 @section('palabra-accion')
@@ -22,16 +22,11 @@
 
 @section('seccion')
 <main class="formularios">
-    <form action="{{ route('post_reg_factura') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('facturas.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <section class="seccion_uno">
-            <button class="crear_factura" type="reset">
-                <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
-                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
-                    <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z" />
-                </svg>
-                <h3>Crear Nueva Factura</h3>
-            </button>
+            <h2>Numéro de factura: <input type='text'  name ='num_factura' id="num_factura"></span></h2>
+
 
             <div class="imprimir">
                 <button>
@@ -61,7 +56,7 @@
                     <option value="">Selecione una Empresa</option>
                     <option value="">Registrar una Empresa</option>
                     @foreach ($empresas_view as $empresa )
-                    <option value="{{$empresa->nit_empresa}}"> {{$empresa->nit_empresa}} - {{$empresa->nom_empresa}} </option>
+                    <option value="{{$empresa->id}}"> {{$empresa->id}} - {{$empresa->nom_empresa}} </option>
                     @endforeach
                 </select>
             </div>
@@ -73,7 +68,7 @@
                     <option value="">Seleccione un Usuario</option>
                     <option value="">Registrar Usuario</option>
                     @foreach ($usuarios_view as $usuario)
-                    <option value="{{$usuario->id_user}}">{{$usuario->id_user}} - {{$usuario->nom_user}}</option>
+                    <option value="{{$usuario->id}}">{{$usuario->id}} - {{$usuario->nom_user}}</option>
                     @endforeach
                 </select>
             </div>
@@ -102,19 +97,19 @@
                             <h3>Precio Unitario</h3>
                             <div class="tbl_abajo">
                                 <span>$</span>
-                                <input type="number" class="pu"  min="1" id="precio_unitario" required>
+                                <input type="number" onkeyup="totalArticulos()" class="pu"  min="1" value="0" id="precio_unitario" required>
                             </div>
                         </div>
                         <div class="cajas">
                             <h3>Cantidad</h3>
                             <div class="tbl_abajo">
-                                <input type="number" class="vc"  min="1" id="valor_cantidad" required>
+                                <input type="number" onkeyup="totalArticulos()" class="vc"  min="1" value="0" id="valor_cantidad" required>
                             </div>
                         </div>
                         <div class="cajas" id="iva">
                             <h3>Iva</h3>
                             <div class="tbl_abajo">
-                                <input type="number" class="vi"  id="valor_iva" min="1" max="100" required>
+                                <input type="number" onkeyup="totalArticulos()" class="vi"  id="valor_iva" min="1" value="0" max="100" required>
                                 <span>%</span>
                             </div>
                         </div>
@@ -130,9 +125,9 @@
             <div class="scs_cuatro_arriba">
                 <input type="text" id="Descripcion" name="descripcion" placeholder="Descripcion...">
                 <div class="total">
-                    <h3>Sub Total: <span id="resultado_sub_total"></span></h3>
-                    <h3>iva: <span id="resultado_iva"></span></h3>
-                    <h2>Total: <span id="resultado_total"></span></h2>
+                    <h3>Sub Total: <input type='text' readonly name="resultado_sub_total" id="resultado_sub_total"></span></h3>
+                    <h3>iva: <input type='text' readonly name ='resultado_iva' id="resultado_iva"></span></h3>
+                    <h2>Total: <input type='text' readonly name ='resultado_total' id="resultado_total"></span></h2>
                 </div>
             </div>
             <div class="scs_cuatro_abajo">
@@ -161,7 +156,8 @@
 @endforeach
 @endif
 
-@stop
+
 @section('script')
 {{ asset('js/registro_factura.js') }}
+@stop
 @stop

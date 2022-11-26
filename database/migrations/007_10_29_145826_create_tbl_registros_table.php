@@ -18,8 +18,8 @@ return new class extends Migration
             $table->String('tipo', 20);
             $table->Integer('cantidad');
             $table->String('causal', 100);
-            $table->integer('num_factura')->nullable();
-            $table->foreign('num_factura')->references('id')->on('tbl_facturas')->nullable();
+            $table->unsignedBigInteger('id_factura')->nullable();
+            $table->foreign('id_factura')->references('id')->on('tbl_facturas')->nullable();
             $table->integer('cod_articulo')->nullable();
             $table->foreign('cod_articulo')->references('cod_articulo')->on('tbl_articulos')->onDelete('set null');
             $table->timestamps();

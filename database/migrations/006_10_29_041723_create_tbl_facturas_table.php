@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tbl_facturas', function (Blueprint $table) {
-            $table->integer('id',10);
-            $table->integer('num_factura');
-            $table->integer('id_total')->nullable();
+            $table->bigIncrements('id');
+            $table->string('num_factura');
             $table->date('fecha');
             $table->String('tipo_factura', 20);
             $table->double('valor_unitario');
@@ -28,7 +27,6 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::table('tbl_facturas', function (Blueprint $table) {
-            $table->foreign('id_total')->references('id')->on('tbl_totalfactura')->onDelete('cascade');
             $table->foreign('cod_articulo')->references('cod_articulo')->on('tbl_articulos')->onDelete('cascade');
             $table->foreign('id_empresa')->references('id')->on('tbl_empresas')->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('set null');
