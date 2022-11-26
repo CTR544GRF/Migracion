@@ -60,7 +60,7 @@ class empresas extends Controller
                 'direccion' => 'required|max:30',
                 'e_mail' => 'required|max:30|email',
                 'nombre' => 'required|max:50',
-                'id' => 'required|max:10',
+                'id' => 'max:10',
                 'rol' => 'required|max:10',
             ]);
             $empresas = new tbl_empresas();

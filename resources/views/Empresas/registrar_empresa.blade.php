@@ -56,11 +56,6 @@
             <span class="from_line"></span>
         </div>
         <div class="from_group">
-            <input type="text" name="id" class="from_input" placeholder=" " required>
-            <label for="tipo" class="from_label">N° de identificación</label>
-            <span class="from_line"></span>
-        </div>
-        <div class="from_group">
             <select name="rol" class="from_group">
                 <option selected>Seleccione tipo de empresa</option>
                 <option value="Cliente">Cliente</option>

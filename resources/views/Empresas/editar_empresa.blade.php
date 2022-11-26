@@ -27,7 +27,7 @@
 @stop
 
 @section('seccion')
-<form class="registrar_usuario" action="{{route('empresas.update',$empresa->id_empresa)}}" method="POST">
+<form class="registrar_usuario" action="{{route('empresas.update',$empresa->id)}}" method="POST">
     @csrf
     @method('PATCH')
     <div class="form_container">
@@ -65,11 +65,6 @@
         <div class="from_group">
             <input type="text" name="nombre" class="from_input" placeholder=" " value="{{$empresa->nombre}}">
             <label for="tipo" class="from_label">Nombre representante</label>
-            <span class="from_line"></span>
-        </div>
-        <div class="from_group">
-            <input type="text" name="id" class="from_input" placeholder=" " value="{{$empresa->id}}">
-            <label for="tipo" class="from_label">N° de identificación</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">

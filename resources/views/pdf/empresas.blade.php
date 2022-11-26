@@ -115,13 +115,11 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Nit</th>
+                <th>NIT</th>
                 <th>Nombre</th>
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>E-mail</th>
-                <th>ID</th>
                 <th>Nombre representante</th>
                 <th>Rol</th>
             </tr>
@@ -129,9 +127,6 @@
         <tbody id="myTable">
             @foreach ($empresas as $empresa)
             <tr>
-                <td data-label="Nit">
-                    {{$empresa->id_empresa}}
-                </td>
                 <td data-label="Nit">
                     {{$empresa->nit_empresa}}
                 </td>
@@ -146,9 +141,6 @@
                 </td>
                 <td data-label="E-mail">
                     {{$empresa->email_empresa}}
-                </td>
-                <td data-label="ID">
-                    {{$empresa->id}} 
                 </td>
                 <td data-label="Id User">
                     {{$empresa->nombre}}
