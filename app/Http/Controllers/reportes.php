@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\tbl_usuarios;
 use App\Models\tbl_empresas;
 use App\Models\tbl_articulos;
+use App\Models\tbl_facturas;
 use App\Models\tbl_inventarios;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -152,6 +153,19 @@ class reportes extends Controller
         $inventarios = tbl_inventarios::get();
         $pdf = PDF::loadView('reportes.rinventarios', compact('inventarios'))->setPaper('a4', 'landscape');
         return $pdf->stream('rinventarios.pdf');
+    }
+
+
+
+
+
+
+
+    public function printPdffactura()
+    {
+        $facturas = tbl_facturas::get();
+        $pdf = PDF::loadView('Facturas.facturaPDF', compact('facturas'))->setPaper('a4', 'landscape');
+        return $pdf->stream('facturaPDF.pdf');
     }
 }
     
