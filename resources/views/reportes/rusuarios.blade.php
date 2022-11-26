@@ -56,6 +56,7 @@
             min-width: 80%;
             max-width: 870px;
             margin-top: 3vh;
+            margin-bottom: 20px;
         }
 
         th,
@@ -87,35 +88,68 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 70px;
+            height: 40px;
         }
 
-        .space {
-            background: #278787;
-            padding: 20px;
-            color: #ced4da;
-            display: flex;
-            width: 100%;
-            text-align: end;
+        header {
+        width: 100%;
+        background: #278787;
+        padding: 1rem;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
         }
+
+        li {
+        list-style-type: none;
+        color: #fff;
+        }
+
+        button {
+        hyphens: auto;
+        background-color: transparent;
+        color: inherit;
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        vertical-align: baseline;
+        }
+
+        p {
+            color: #278787;
+        }
+        footer {
+            background: #278787;
+        }
+
     </style>
     <title>Usuarios</title>
 </head>
 
 <body>
-    <div class="space">
-        <img src="img/Logo letra blanca.png" height="70vw" alt="">
-        <h2>Usuarios Registrados</h2>
-    </div>
-    
-    <div class="logo">
-
-    </div>
-
+    <header>
+        <button class="logo">
+            <a><img height="70vw" src="img/Logo letra blanca.png" alt="logo"></a>
+        </button>
+        <h1 style="color:#ffffffff">Reporte Usuarios</h1>
+        <nav class="nav">
+            <ul class="lista">
+                <p class="numero">{{$date = date_default_timezone_set("America/Bogota") }}</p>
+                <li>Fecha: {{$date = date("Y-m-d") }}</li>
+                <li>Hora: {{$date = date("H:i:s") }} </li
+                
+            </ul>
+        </nav>
+    </header>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>N°</th>
                 <th>Cédula</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
@@ -128,7 +162,7 @@
         <tbody id="myTable">
             @foreach ($usuarios as $usuario)
             <tr>
-                <td data-label="Id">{{$usuario->id}}</td>
+                <td data-label="Item"></td>
                 <td data-label="Cedula">{{$usuario->cedula}}</td>
                 <td data-label="Nombre">{{$usuario->nom_user}}</td>
                 <td data-label="Apellido">{{$usuario->apellidos_user}}</td>
@@ -136,9 +170,20 @@
                 <td data-label="Direccion">{{$usuario->direccion_user}}</td>
                 <td data-label="E-mail">{{$usuario->email}}</td>
                 <td data-label="Rol">{{$usuario->name}}</td>
-
             </tr>
             @endforeach
+        </tbody>
+    </table>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Total usuarios según selección</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            <tr>
+                <td data-label="totalUsuarios">20</td>
+            </tr>
         </tbody>
     </table>
 </body>

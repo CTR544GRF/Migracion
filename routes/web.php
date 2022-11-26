@@ -123,9 +123,27 @@ Route::get('inventarios.xlsx', function (UsersExport $usersExport) {
 
 //reportes pruebaaa
 Route::view('/Reportes/Ver', 'reportes.reportes')->name('ver_reportes');
-Route::view('/Reportes/Ver/UsuariosPDF', 'reportes.pdf_usuarios')->name('pdf_usuarios');
-Route::view('/Reportes/Ver/EmpresasPDF', 'reportes.pdf_empresas')->name('pdf_empresas');
+Route::view('/Reportes/Ver/UsuariosPDF', 'reportes.reportes_usuarios')->name('reportes_usuarios');
+Route::view('/Reportes/Ver/EmpresasPDF', 'reportes.reportes_empresas')->name('reportes_empresas');
+Route::view('/Reportes/Ver/articulosPDF', 'reportes.reportes_articulos')->name('reportes_articulos');
 Route::view('/Reportes/Ver/facturasPDF', 'reportes.pdf_facturas')->name('pdf_facturas');
-Route::view('/Reportes/Ver/articulosPDF', 'reportes.pdf_articulos')->name('pdf_articulos');
-Route::view('/Reportes/Ver/stockPDF', 'reportes.pdf_stock')->name('pdf_stock');
-Route::get('reportes.pdf', [reportes::class, 'printPdf'])->name('reportes.print');
+Route::view('/Reportes/Ver/stockPDF', 'reportes.reportes_inventarios')->name('reportes_inventarios');
+
+Route::get('rusuarios.print1', [reportes::class, 'printPdf1'])->name('rusuarios.print1');
+Route::get('rusuarios.print2', [reportes::class, 'printPdf2'])->name('rusuarios.print2');
+Route::get('rusuarios.print3', [reportes::class, 'printPdf3'])->name('rusuarios.print3');
+Route::get('rusuarios.print4', [reportes::class, 'printPdf4'])->name('rusuarios.print4');
+
+Route::get('rempresas.print1', [reportes::class, 'printPdfEmpresas1'])->name('rempresas.print1');
+Route::get('rempresas.print2', [reportes::class, 'printPdfEmpresas2'])->name('rempresas.print2');
+Route::get('rempresas.print3', [reportes::class, 'printPdfEmpresas3'])->name('rempresas.print3');
+
+Route::get('rarticulos.print1', [reportes::class, 'printPdfArticulos1'])->name('rarticulos.print1');
+Route::get('rarticulos.print2', [reportes::class, 'printPdfArticulos2'])->name('rarticulos.print2');
+Route::get('rarticulos.print3', [reportes::class, 'printPdfArticulos3'])->name('rarticulos.print3');
+Route::get('rarticulos.print4', [reportes::class, 'printPdfArticulos4'])->name('rarticulos.print4');
+
+Route::get('rinventarios.print1', [reportes::class, 'printPdfinventarios1'])->name('rinventarios.print1');
+Route::get('rinventarios.print2', [reportes::class, 'printPdfinventarios2'])->name('rinventarios.print2');
+Route::get('rinventarios.print3', [reportes::class, 'printPdfinventarios3'])->name('rinventarios.print3');
+Route::get('rinventarios.print4', [reportes::class, 'printPdfinventarios4'])->name('rinventarios.print4');

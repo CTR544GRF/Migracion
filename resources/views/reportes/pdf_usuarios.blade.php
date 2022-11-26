@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte Usuarios</title>
-    <link rel="stylesheet" href="{{asset('css/reset.css')}}">
+    <link rel="stylesheet" href="{{asset('css/reset2.css')}}">
     <link rel="stylesheet" href="{{asset('css/pdf.css')}}">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -36,12 +36,6 @@
         </nav>
     </header>
     <main class="">
-            <div class="downloads">
-                <button class="btn_download">
-                    <a href="{{route('reportes.print')}}" target="_blank"><span>IMPRIMIR</span>
-                    </a>
-                </button>
-            </div>
         <div class="tabla">
             <table class="table table-bordered">
                 <thead>
@@ -59,14 +53,16 @@
                 </thead>
                 <tbody id="myTable">
                     <tr>
+                        @foreach ($usuarios as $usuario)
                         <td data-label="Item"></td>
-                        <td data-label="Cedula"></td>
-                        <td data-label="Nombre"></td>
-                        <td data-label="Apellido"></td>
-                        <td data-label="Telefono"></td>
-                        <td data-label="Direccion"></td>
-                        <td data-label="E-mail"></td>
-                        <td data-label="Rol"></td>
+                        <td data-label="Cedula">{{$usuario->cedula}}</td>
+                        <td data-label="Nombre">{{$usuario->nom_user}}</td>
+                        <td data-label="Apellido">{{$usuario->apellidos_user}}</td>
+                        <td data-label="Telefono">{{$usuario->telefono_user}}</td>
+                        <td data-label="Direccion">{{$usuario->direccion_user}}</td>
+                        <td data-label="E-mail">{{$usuario->email}}</td>
+                        <td data-label="Rol">{{$usuario->name}}</td>
+                        @endforeach
                     </tr>
                 </tbody>
             </table>
