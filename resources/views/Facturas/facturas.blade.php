@@ -61,8 +61,8 @@
                 <th>Codigo articulo</th>
                 <th>Nit</th>
                 <th>Id usuario</th>
-                <th></th>
-                <th></th>
+                <th>Editar</th>
+                <th>PDF</th>
             </tr>
         </thead>
         <tbody id="myTable">
@@ -80,9 +80,8 @@
                 <td data-label="Codigo articulo">{{ $factura->cod_articulo }}</td>
                 <td data-label="Nit">{{$factura->id_empresa }}</td>
                 <td data-label="Id usuario">{{ $factura->id_user}}</td>
-                <td data-label="Editar"><a href="{{ route('facturas.edit', $factura) }}">Editar</a> </td>
+                <td data-label="Editar"><a href="{{ route('facturas.edit', $factura) }}"><i class="bi bi-pencil-square"></i></a></td>
                 <td>
-                    //decarga de facturas oendeiete
                     <a href="#">
                         <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
                             <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
