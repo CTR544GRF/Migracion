@@ -147,3 +147,5 @@ Route::get('rinventarios.print1', [reportes::class, 'printPdfinventarios1'])->na
 Route::get('rinventarios.print2', [reportes::class, 'printPdfinventarios2'])->name('rinventarios.print2');
 Route::get('rinventarios.print3', [reportes::class, 'printPdfinventarios3'])->name('rinventarios.print3');
 Route::get('rinventarios.print4', [reportes::class, 'printPdfinventarios4'])->name('rinventarios.print4');
+
+Route::get('facturaPDF.print', [reportes::class, 'printPdffactura'])->name('facturaPDF.print');
