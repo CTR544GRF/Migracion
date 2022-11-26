@@ -85,7 +85,6 @@
                 <td data-label="Fecha">{{ $factura->fecha }}</td>
                 <td data-label="Editar"><a href="{{ route('facturas.edit', $factura->num_factura) }}">Editar</a> </td>
                 <td>
-                    //decarga de facturas oendeiete
                     <a href="#">
                         <svg class="svg" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
                             <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
