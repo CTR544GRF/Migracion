@@ -93,6 +93,7 @@
         <h5>N° de factura: <span>103</span></h5>
         <h5>Tipo factura: <span>Arian Manuel Garcia Reynoso</span></h5> 
         <h5>Enviar a/ o enviado por: <span>Cotui, Sanchez Ramirez Santa Fe, #19, arianmanuel75@gmail.com </span></h5>
+        <h5>Descripción: <span>Cotui, Sanchez Ramirez Santa Fe, #19, arianmanuel75@gmail.com </span></h5>
         <h5>Fecha: <span>09/05/2019</span></h5>
         <h5>Usuario quien realiza:<span> 1235435 - Esteban Hernandez</span></h5>
       </div>
