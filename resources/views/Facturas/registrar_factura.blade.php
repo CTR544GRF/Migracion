@@ -84,7 +84,7 @@
                         <div class="cajas">
                             <h3>Cod Articulo</h3>
                             <div class="tbl_abajo">
-                                <select class="ca"  id="cod_articulo" required>
+                                <select class="ca"  name="ca[]" id="cod_articulo" required>
                                     <option value="0">Articulos</option>
                                     <option value="0">Registar Articulos</option>
                                     @foreach ($articulos_view as $articulo)
@@ -97,19 +97,19 @@
                             <h3>Precio Unitario</h3>
                             <div class="tbl_abajo">
                                 <span>$</span>
-                                <input type="number" onkeyup="totalArticulos()" class="pu"  min="1" value="0" id="precio_unitario" required>
+                                <input type="number" name="pu[]" onkeyup="totalArticulos()" class="pu"  min="1" value="0" id="precio_unitario" required>
                             </div>
                         </div>
                         <div class="cajas">
                             <h3>Cantidad</h3>
                             <div class="tbl_abajo">
-                                <input type="number" onkeyup="totalArticulos()" class="vc"  min="1" value="0" id="valor_cantidad" required>
+                                <input type="number" name="vc[]" onkeyup="totalArticulos()" class="vc"  min="1" value="0" id="valor_cantidad" required>
                             </div>
                         </div>
                         <div class="cajas" id="iva">
                             <h3>Iva</h3>
                             <div class="tbl_abajo">
-                                <input type="number" onkeyup="totalArticulos()" class="vi"  id="valor_iva" min="1" value="0" max="100" required>
+                                <input type="number"  onkeyup="totalArticulos()" class="vi"  id="valor_iva" min="1" value="0" max="100" required>
                                 <span>%</span>
                             </div>
                         </div>
