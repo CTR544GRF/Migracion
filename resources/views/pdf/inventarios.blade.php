@@ -99,15 +99,15 @@
             text-align: end;
         }
     </style>
-    <title>Articulos</title>
+    <title>Usuarios</title>
 </head>
 
 <body>
     <div class="space">
         <img src="img/Logo letra blanca.png" height="70vw" alt="">
-        <h2>Articulos Registrados</h2>
+        <h2>Stock del inventario</h2>
     </div>
-
+    
     <div class="logo">
 
     </div>
@@ -118,46 +118,26 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Codigo artículo</th>
-                <th>Categoría articulo</th>
-                <th>Nombre</th>
-                <th>Material</th>
-                <th>Talla</th>
-                <th>Linea</th>
-                <th>Unidad de medida</th>
-                <th>Color</th>
-                <th>Descripción</th>
+                <th>Codigo articulo</th>
+                <th>Categoria articulo</th>
+                <th>Descripcion articulo</th>
+                <th>Stock</th>
             </tr>
         </thead>
         <tbody id="myTable">
-            @foreach ($articulos as $articulo )
+            @foreach ($inventarios as $inventario)
             <tr>
-                <td data-label="Codigo articulo">
-                    {{$articulo->cod_articulo}}
+                <td data-label="codA">
+                    {{$inventario->cod_articulo}}
                 </td>
-                <td data-label="Tipo articulo">
-                    {{$articulo->tipo_articulo}}
+                <td data-label="tipo">
+                    {{$inventario->tipo_articulo}}
                 </td>
-                <td data-label="Nombre">
-                    {{$articulo->nom_articulo}}
+                <td data-label="descripcionA">
+                    {{$inventario->descripcion_articulo}}
                 </td>
-                <td data-label="Material">
-                    {{$articulo->material_articulo}}
-                </td>
-                <td data-label="Talla">
-                    {{$articulo->talla_articulo}}
-                </td>
-                <td data-label="Linea">
-                    {{$articulo->linea}}
-                </td>
-                <td data-label="Unidad de medida">
-                    {{$articulo->unidad_medida}}
-                </td>
-                <td data-label="Color">
-                    {{$articulo->color_articulo}}
-                </td>
-                <td data-label="Descripcion">
-                    {{$articulo->descripcion_articulo}}
+                <td data-label="existencias">
+                    {{$inventario->existencias}}
                 </td>
             </tr>
             @endforeach

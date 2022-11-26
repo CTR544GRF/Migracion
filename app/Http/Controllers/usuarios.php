@@ -23,13 +23,17 @@ class usuarios extends Controller
 
     public function exportPdf()
     {
-        $usuarios = tbl_usuarios::get();
+        $usuarios = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')
+            ->select('users.*', 'r.name')->orderBy('id', 'asc')
+            ->get();
         $pdf = PDF::loadView('pdf.usuarios', compact('usuarios'))->setPaper('a4', 'landscape');
         return $pdf->download('usuarios.pdf');
     }
     public function printPdf()
     {
-        $usuarios = tbl_usuarios::get();
+        $usuarios = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')
+            ->select('users.*', 'r.name')->orderBy('id', 'asc')
+            ->get();
         $pdf = PDF::loadView('pdf.usuarios', compact('usuarios'))->setPaper('a4', 'landscape');
         return $pdf->stream('usuarios.pdf');
     }

@@ -15,13 +15,17 @@ class salidas extends Controller
 {
     public function exportPdf()
     {
-        $salidas = tbl_registros::get();
+        $salidas = tbl_registros::leftJoin('tbl_articulos as a', 'tbl_registros.cod_articulo', '=', 'a.cod_articulo')
+            ->select('tbl_registros.*', 'descripcion_articulo')
+            ->where('tipo', '=', 'Salida')->get();
         $pdf = PDF::loadView('pdf.salidas', compact('salidas'))->setPaper('a4', 'landscape');
         return $pdf->download('salidas.pdf');
     }
     public function printPdf()
     {
-        $salidas = tbl_registros::get();
+        $salidas = tbl_registros::leftJoin('tbl_articulos as a', 'tbl_registros.cod_articulo', '=', 'a.cod_articulo')
+            ->select('tbl_registros.*', 'descripcion_articulo')
+            ->where('tipo', '=', 'Salida')->get();
         $pdf = PDF::loadView('pdf.salidas', compact('salidas'))->setPaper('a4', 'landscape');
         return $pdf->stream('salidas.pdf');
     }

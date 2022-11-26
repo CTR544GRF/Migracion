@@ -105,7 +105,7 @@
 <body>
     <div class="space">
         <img src="img/Logo letra blanca.png" height="70vw" alt="">
-        <h2>Empresas Registrados</h2>
+        <h2>Empresas Registradas</h2>
     </div>
 
     <div class="logo">
@@ -115,17 +115,23 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Nit</th>
                 <th>Nombre</th>
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>E-mail</th>
-                <th>Id User</th>
+                <th>ID</th>
+                <th>Nombre representante</th>
+                <th>Rol</th>
             </tr>
         </thead>
         <tbody id="myTable">
             @foreach ($empresas as $empresa)
             <tr>
+                <td data-label="Nit">
+                    {{$empresa->id_empresa}}
+                </td>
                 <td data-label="Nit">
                     {{$empresa->nit_empresa}}
                 </td>
@@ -141,8 +147,14 @@
                 <td data-label="E-mail">
                     {{$empresa->email_empresa}}
                 </td>
+                <td data-label="ID">
+                    {{$empresa->id}} 
+                </td>
                 <td data-label="Id User">
-                    {{$empresa->id}}
+                    {{$empresa->nombre}}
+                </td>
+                <td data-label="rol ">
+                    {{$empresa->rol}}
                 </td>
             </tr>
             @endforeach

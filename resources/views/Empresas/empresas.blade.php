@@ -54,8 +54,8 @@
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>E-mail</th>
-                <th>Nombre representante</th>
                 <th>ID</th>
+                <th>Nombre representante</th>
                 <th>Rol</th>
                 <!-- <th>Ciudad</th> -->
                 <th>Editar</th>
@@ -80,11 +80,11 @@
                 <td data-label="E-mail">
                     {{$empresa->email_empresa}}
                 </td>
-                <td data-label="Id User">
-                    {{$empresa->nombre}}
-                </td>
                 <td data-label="Nombre user">
                     {{$empresa->id}} 
+                </td>
+                <td data-label="Id User">
+                    {{$empresa->nombre}}
                 </td>
                 <td data-label="rol ">
                     {{$empresa->rol}}

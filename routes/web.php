@@ -11,6 +11,7 @@ use App\Http\Controllers\roles;
 use App\Http\Controllers\salidas;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\inventario;
+use App\Http\Controllers\reportes;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 /*
@@ -32,14 +33,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::view('/', 'welcome')->name('onepage');
 
 //Resourses views
-Route::resource('articulos', articulos::class)->middleware('can');
-Route::resource('facturas', facturas::class)->middleware('can');
-Route::resource('empresas', empresas::class)->middleware('can');
-Route::resource('usuarios', usuarios::class)->middleware('can');
-Route::resource('entradas', entradas::class)->middleware('can');
-Route::resource('salidas', salidas::class)->middleware('can');
-Route::resource('inventario', inventario::class)->middleware('can');
-Route::resource('roles', roles::class)->middleware('can');
+Route::resource('articulos', articulos::class);
+Route::resource('facturas', facturas::class);
+Route::resource('empresas', empresas::class);
+Route::resource('usuarios', usuarios::class);
+Route::resource('entradas', entradas::class);
+Route::resource('salidas', salidas::class);
+Route::resource('inventario', inventario::class);
+Route::resource('roles', roles::class);
 
 //Downloads
 
@@ -108,3 +109,23 @@ Route::get('entradas.csv', function (UsersExport $usersExport) {
 Route::get('entradas.xlsx', function (UsersExport $usersExport) {
     return $usersExport->download('entradas.xlsx');
 })->name('entradas.xlsx');
+
+//vistas inventarios
+Route::get('inventarios.pdf', [inventario::class, 'exportPdf'])->name('inventarios.pdf');
+Route::get('inventarios.print', [inventario::class, 'printPdf'])->name('inventarios.print');
+Route::get('inventarios.csv', function (UsersExport $usersExport) {
+    return $usersExport->download('inventarios.csv');
+})->name('inventarios.csv');
+Route::get('inventarios.xlsx', function (UsersExport $usersExport) {
+    return $usersExport->download('inventarios.xlsx');
+})->name('inventarios.xlsx');
+
+
+//reportes pruebaaa
+Route::view('/Reportes/Ver', 'reportes.reportes')->name('ver_reportes');
+Route::view('/Reportes/Ver/UsuariosPDF', 'reportes.pdf_usuarios')->name('pdf_usuarios');
+Route::view('/Reportes/Ver/EmpresasPDF', 'reportes.pdf_empresas')->name('pdf_empresas');
+Route::view('/Reportes/Ver/facturasPDF', 'reportes.pdf_facturas')->name('pdf_facturas');
+Route::view('/Reportes/Ver/articulosPDF', 'reportes.pdf_articulos')->name('pdf_articulos');
+Route::view('/Reportes/Ver/stockPDF', 'reportes.pdf_stock')->name('pdf_stock');
+Route::get('reportes.pdf', [reportes::class, 'printPdf'])->name('reportes.print');
