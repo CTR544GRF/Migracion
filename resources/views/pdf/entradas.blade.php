@@ -118,21 +118,24 @@
                 <th>Codigo registro</th>
                 <th>Tipo registro</th>
                 <th>Codigo articulo</th>
+                <th>Descripcion articulo</th>
                 <th>Casual de salida</th>
                 <th>Numero de factura</th>
                 <th>Cantidad</th>
+                <th>Fecha Ingreso</th>
             </tr>
         </thead>
         <tbody id="myTable">
             @foreach ($entradas as $entrada)
             <tr>
-                <td data-label="codigoR">{{$entrada->cod_registro}}</td>
+                <td data-label="codigo">{{$entrada->cod_registro}}</td>
                 <td data-label="tipo">{{$entrada->tipo}}</td>
                 <td data-label="codigoA">{{$entrada->cod_articulo}}</td>
+                <td data-label="descripcionA">{{$entrada->descripcion_articulo}}</td>
                 <td data-label="causal">{{$entrada->causal}}</td>
                 <td data-label="numeroF">{{$entrada->num_factura}}</td>
                 <td data-label="cantidad">{{$entrada->cantidad}}</td>
-
+                <td data-label="fecha">{{$entrada->created_at}}</td>
             </tr>
             @endforeach
         </tbody>

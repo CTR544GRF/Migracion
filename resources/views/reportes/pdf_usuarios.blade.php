@@ -36,6 +36,12 @@
         </nav>
     </header>
     <main class="">
+            <div class="downloads">
+                <button class="btn_download">
+                    <a href="{{route('reportes.print')}}" target="_blank"><span>IMPRIMIR</span>
+                    </a>
+                </button>
+            </div>
         <div class="tabla">
             <table class="table table-bordered">
                 <thead>
@@ -52,8 +58,8 @@
                     </tr>
                 </thead>
                 <tbody id="myTable">
-                
                     <tr>
+                        <td data-label="Item"></td>
                         <td data-label="Cedula"></td>
                         <td data-label="Nombre"></td>
                         <td data-label="Apellido"></td>
@@ -61,9 +67,7 @@
                         <td data-label="Direccion"></td>
                         <td data-label="E-mail"></td>
                         <td data-label="Rol"></td>
-                        <td data-label="Item"></td>
                     </tr>
-        
                 </tbody>
             </table>
         </div>

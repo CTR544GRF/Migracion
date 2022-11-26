@@ -57,6 +57,7 @@
                 <th>Casual de entrada</th>
                 <th>Numero de factura</th>
                 <th>Cantidad</th>
+                <th>Fecha Salida</th>
             </tr>
         </thead>
         <tbody id="myTable">
@@ -69,6 +70,7 @@
                 <td data-label="causal">{{$salida->causal}}</td>
                 <td data-label="numeroF">{{$salida->num_factura}}</td>
                 <td data-label="cantidad">{{$salida->cantidad}}</td>
+                <td data-label="cantidad">{{$salida->created_at}}</td>
             </tr>
             @endforeach
         </tbody>
