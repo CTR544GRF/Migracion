@@ -74,7 +74,7 @@
                     <option value='compra'>Factura de Compra</option>
                 </select>
                 <h4>Nit de Empresa</h4>
-                <select name="nit_empresa" id="">
+                <select disabled name="id_empresa" id="">
                     <option value="{{$factura[0]->id_empresa}}">{{$factura[0]->id_empresa}}</option>
                     @foreach ($empresas as $empresa )
                     <option value="{{$empresa->nit_empresa}}"> {{$empresa->nit_empresa}} - {{$empresa->nom_empresa}} </option>
@@ -97,8 +97,7 @@
         @foreach ($factura as $item)
         <section class=" form_factura_prueba seccion_tres">
             <div class="cajas">
-                <h3>Id</h3>
-                <p name="id[]">{{$item->id}}</p>
+                <h3>ID:</h3> <input class="input_id"type='text' name="id[]" readonly value="{{$item->id}}">
                 <div class="tbl_abajo">
                     <span id="resultado_num_factura"></span>
                 </div>
@@ -106,7 +105,7 @@
             <div class="cajas">
                 <h3>Cod Articulo</h3>
                 <div class="tbl_abajo">
-                    <select class="ca"  id="cod_articulo" required>
+                    <select class="ca" name="ca[]"  id="cod_articulo" required>
                         <option value="{{$item->cod_articulo}}">{{$item->cod_articulo}}</option>
                         @foreach ($articulos_view as $articulo)
                         <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->nom_articulo}}</option>
