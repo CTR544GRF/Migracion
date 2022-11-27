@@ -36,7 +36,7 @@
             @endcan
             @can('admin.reportes.index')
             <div class="usuarios">
-                <a href="#.index"><img class="img_top" src="img/icons8-script-de-informes-de-gráficos.png" alt="usuarios"></a>
+                <a href="{{route('reportes')}}"><img class="img_top" src="img/icons8-script-de-informes-de-gráficos.png" alt="usuarios"></a>
                 <h2 class="titulo_usuarios">Reportes</h2>
             </div>
             @endcan

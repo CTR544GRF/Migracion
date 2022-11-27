@@ -36,6 +36,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // /*Pagina comercial*/
 Route::view('/', 'welcome')->name('onepage');
 Route::view('/login', 'auth.login')->name('login');
+Route::view('/reportes', 'reportes')->name('reportes');
 
 //Resourses views
 Route::resource('articulos', articulos::class)->middleware('auth');
