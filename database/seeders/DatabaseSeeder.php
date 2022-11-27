@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->truncateTables([
             'tbl_articulos',
-            'tbl_ciudades',
+
             // 'tbl_roles',
             'users',
             'tbl_empresas'
@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(tbl_articuloseedr::class);
-        $this->call(tbl_ciudadeseedr::class);
         $this->call(tbl_roleseedr::class);
         $this->call(tbl_usuarioseedr::class);
         $this->call(tbl_empresaseedr::class);
