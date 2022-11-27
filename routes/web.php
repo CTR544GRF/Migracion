@@ -126,7 +126,7 @@ Route::view('/Reportes/Ver', 'reportes.reportes')->name('ver_reportes');
 Route::view('/Reportes/Ver/UsuariosPDF', 'reportes.reportes_usuarios')->name('reportes_usuarios');
 Route::view('/Reportes/Ver/EmpresasPDF', 'reportes.reportes_empresas')->name('reportes_empresas');
 Route::view('/Reportes/Ver/articulosPDF', 'reportes.reportes_articulos')->name('reportes_articulos');
-Route::view('/Reportes/Ver/facturasPDF', 'reportes.pdf_facturas')->name('pdf_facturas');
+Route::view('/Reportes/Ver/facturasPDF', 'reportes.reportes_facturas')->name('reportes_facturas');
 Route::view('/Reportes/Ver/stockPDF', 'reportes.reportes_inventarios')->name('reportes_inventarios');
 
 Route::get('/usuarios/reporte/{id}', [reportes::class, 'printPdf'])->name('rusuarios');

@@ -14,6 +14,10 @@
             border: 0;
         }
 
+        body {
+            background: #495057;
+        }
+
         tr td .a {
             vertical-align: top;
             color: white;

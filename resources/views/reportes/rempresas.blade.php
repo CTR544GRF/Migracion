@@ -19,6 +19,10 @@
             color: white;
         }
 
+        body{
+            background: #495057;
+        }
+
         a {
             color: white;
         }

@@ -19,6 +19,10 @@
             color: white;
         }
 
+        body{
+            background: #495057;
+        }
+
         a {
             color: white;
         }
@@ -149,7 +153,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>N°</th>
+           
                 <th>Codigo artículo</th>
                 <th>Categoria Artículo</th>
                 <th>Nombre</th>
@@ -164,9 +168,7 @@
         <tbody id="myTable">
             @foreach ($articulos as $articulo)
             <tr>
-                <td data-label="N°">
 
-                </td>
                 <td data-label="Codigo articulo">
                     {{$articulo->cod_articulo}}
                 </td>
@@ -206,7 +208,7 @@
         </thead>
         <tbody id="myTable">
             <tr>
-                <td data-label="totalUsuarios">20</td>
+                <td data-label="totalUsuarios">{{$count}}</td>
             </tr>
         </tbody>
     </table>

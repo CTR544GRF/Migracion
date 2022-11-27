@@ -75,7 +75,7 @@
             <span class="from_line"></span>
         </div>
         <div class="from_group">
-            <input type="date" id="fecha" class="from_input" placeholder="Fecha de ingreso" name="fecha" required>
+            <input type="date" id="fecha" class="from_input" placeholder="Fecha de ingreso" name="fechaDesde" required>
         </div>
         <div class="from_group">
             <select name="rol" id="rol" required>
