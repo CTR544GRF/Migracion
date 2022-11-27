@@ -14,6 +14,10 @@
             border: 0;
         }
 
+        body {
+            background: #495057;
+        }
+
         tr td .a {
             vertical-align: top;
             color: white;
@@ -105,7 +109,7 @@
 <body>
     <div class="space">
         <img src="img/Logo letra blanca.png" height="70vw" alt="">
-        <h2>Empresas Registrados</h2>
+        <h2>Empresas Registradas</h2>
     </div>
 
     <div class="logo">
@@ -115,12 +119,13 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Nit</th>
-                <th>Nombre</th>
+                <th>NIT</th>
+                <th>Razón social</th>
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>E-mail</th>
-                <th>Id User</th>
+                <th>Nombre representante</th>
+                <th>Rol</th>
             </tr>
         </thead>
         <tbody id="myTable">
@@ -142,7 +147,10 @@
                     {{$empresa->email_empresa}}
                 </td>
                 <td data-label="Id User">
-                    {{$empresa->id}}
+                    {{$empresa->nombre}}
+                </td>
+                <td data-label="rol ">
+                    {{$empresa->rol}}
                 </td>
             </tr>
             @endforeach

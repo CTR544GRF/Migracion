@@ -14,22 +14,23 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tbl_facturas', function (Blueprint $table) {
-            $table->integer('num_factura', 10);
+            $table->bigIncrements('id');
+            $table->string('num_factura');
             $table->date('fecha');
             $table->String('tipo_factura', 20);
-            $table->double('valor_unitario');
-            $table->double('cantidad');
-            $table->integer('sub_total');
-            $table->double('iva');
-            $table->double('total');
+            $table->integer('valor_unitario');
+            $table->integer('cantidad');
+            $table->integer('iva_producto');
             $table->String('descripcion', 150);
             $table->integer('cod_articulo');
-            $table->foreign('cod_articulo')->references('cod_articulo')->on('tbl_articulos')->onDelete('cascade');
-            $table->foreignId('id_empresa')->nullable();
-            $table->foreign('id_empresa')->references('id_empresa')->on('tbl_empresas')->onDelete('cascade');
-            $table->foreignId('id_user')->nullable();
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('set null');
+            $table->unsignedBigInteger('id_empresa')->nullable();
+            $table->unsignedBigInteger('id_user')->nullable();
             $table->timestamps();
+        });
+        Schema::table('tbl_facturas', function (Blueprint $table) {
+            $table->foreign('cod_articulo')->references('cod_articulo')->on('tbl_articulos')->onDelete('cascade');
+            $table->foreign('id_empresa')->references('id')->on('tbl_empresas')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('set null');
         });
     }
 

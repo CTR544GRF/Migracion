@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('tbl_inventarios', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cod_articulo');
-            $table->string('nom_articulo', 100);
+            $table->string('tipo_articulo', 100);
+            $table->string('descripcion_articulo')->nullable();
             $table->float('existencias');
         });
     }

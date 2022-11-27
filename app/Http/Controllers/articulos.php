@@ -34,7 +34,7 @@ class articulos extends Controller
             'material' => 'required|min:4|max:20|alpha',
             'talla' => 'required|max:20',
             'linea' => 'required|min:1|max:10|string',
-            'uMedida' => 'required|min:4|max:10|alpha',
+            'uMedida' => 'required|min:4|max:15|alpha',
             'color' => 'required|min:4|max:10|alpha',
             'descripcion' => 'max:150|string|required'
         ]);
@@ -49,7 +49,7 @@ class articulos extends Controller
         $articulos->descripcion_articulo = $request->descripcion;
         $articulos->save();
 
-        return redirect()->route('articulos.create')->with('guardado', 'El Articulo a sido guardado con exito');
+        return redirect()->route('articulos.create')->with('guardado', 'El Artículo ha sido guardado con exito');
     }
     public function index()
     {
@@ -69,7 +69,7 @@ class articulos extends Controller
             'material' => 'required|min:4|max:20|alpha',
             'talla' => 'required|max:20',
             'linea' => 'required|min:1|max:10|string',
-            'uMedida' => 'required|min:4|max:10|alpha',
+            'uMedida' => 'required|min:4|max:15|alpha',
             'color' => 'required|min:4|max:10|alpha',
             'descripcion' => 'max:150|string|required'
         ]);
@@ -83,13 +83,13 @@ class articulos extends Controller
         $articulo->color_articulo = $request->color;
         $articulo->descripcion_articulo = $request->descripcion;
         $articulo->save();
-        session()->flash('actualizado', 'El Articulo a sido editado con exito');
+        session()->flash('actualizado', 'El Artículo ha sido editado con exito');
         return view('Articulos.editar_articulo', compact('articulo'));
     }
     public function destroy(tbl_articulos $articulo)
     {
         $articulo->delete();
 
-        return back()->with('destroy', 'El Articulo a sido eliminado correctamente');
+        return back()->with('destroy', 'El Artículo ha sido eliminado correctamente');
     }
 }

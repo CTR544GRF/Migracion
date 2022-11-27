@@ -30,7 +30,7 @@
 <form class="registrar_usuario" action="{{route('articulos.update', $articulo)}}" method="POST">
     @csrf @method('PATCH')
     <div class="form_container">
-        <h2 class="form_titulo">Editar articulo</h2>
+        <h2 class="form_titulo">Editar artículo</h2>
         <div class="from_group">
             <select name="tipo" id="tipo">
                 <option value="{{$articulo->tipo_articulo}}">{{$articulo->tipo_articulo}}</option>
@@ -96,14 +96,14 @@
 
 @if (session('actualizado'))
 <script>
-    guardado('Actualizacion Exitosa', '<?php echo session('actualizado') ?>');
+    guardado('Actualización Exitosa', '<?php echo session('actualizado') ?>');
 </script>
 @endif
 
 @if ($errors->any())
 @foreach ($errors->all() as $message)
 <script>
-    error('Dato Errado', '<?php echo $message ?>')
+    error('Dato Erróneo', '<?php echo $message ?>')
 </script>
 @endforeach
 @endif

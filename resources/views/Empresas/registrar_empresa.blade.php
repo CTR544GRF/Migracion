@@ -26,12 +26,12 @@
     <div class="form_container">
         <h2 class="form_titulo">Registrar empresa</h2>
         <div class="from_group">
-            <input type="text" id="nit" class="from_input" placeholder="    " name="nit" required maxlength="10">
-            <label for="tipo" class="from_label">Nit empresa</label>
+            <input type="text" id="nit" class="from_input" placeholder=" " name="nit" required maxlength="10">
+            <label for="tipo" class="from_label">NIT empresa</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
-            <input type="text" name="nombre" class="from_input" placeholder=" " required>
+            <input type="text" name="nom_empresa" class="from_input" placeholder=" " required>
             <label for="tipo" class="from_label">Razón social</label>
             <span class="from_line"></span>
         </div>
@@ -51,14 +51,18 @@
             <span class="from_line"></span>
         </div>
         <div class="from_group">
-            <select name="id_user" class="from_group">
-                <option value=""><button href=""><a>Seleccione un representante</a></button></option>
-                @foreach ($usuarios as $user)
-                <option value="{{$user->id}}">{{$user->id }} - {{$user->nom_user}} {{$user->apellidos_user}} - {{$user->name}}</option>
-                @endforeach
+            <input type="text" name="nombre" class="from_input" placeholder=" " required>
+            <label for="tipo" class="from_label">Nombre representante</label>
+            <span class="from_line"></span>
+        </div>
+        <div class="from_group">
+            <select name="rol" class="from_group">
+                <option selected>Seleccione tipo de empresa</option>
+                <option value="Cliente">Cliente</option>
+                <option value="Proveedor">Proveedor</option>
             </select>
         </div>
-        <button name="registrar" type="submit" class="form_submit"><strong>Registrar empresa</strong></button>
+        <button name="registrar" type="submit" class="form_submit"><strong>Registrar</strong></button>
     </div>
 </form>
 
@@ -76,7 +80,7 @@
 @if ($errors->any())
 @foreach ($errors->all() as $message)
 <script>
-    error('Dato Errado', '<?php echo $message ?>')
+    error('Dato Erróneo', '<?php echo $message ?>')
 </script>
 @endforeach
 @endif

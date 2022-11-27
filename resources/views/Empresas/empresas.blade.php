@@ -49,13 +49,12 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Nit</th>
-                <th>Nombre</th>
+                <th>NIT</th>
+                <th>Razón social</th>
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>E-mail</th>
-                <th>Id User</th>
-                <th>Usuario</th>
+                <th>Nombre representante</th>
                 <th>Rol</th>
                 <!-- <th>Ciudad</th> -->
                 <th>Editar</th>
@@ -83,13 +82,10 @@
                     {{$empresa->email_empresa}}
                 </td>
                 <td data-label="Id User">
-                    {{$empresa->id_user}}
-                </td>
-                <td data-label="Nombre user">
-                    {{$empresa->nom_user}} {{$empresa->apellidos_user}}
+                    {{$empresa->nombre}}
                 </td>
                 <td data-label="rol ">
-                    {{$empresa->name}}
+                    {{$empresa->rol}}
                 </td>
                 <td data-label="Editar"><a href="{{ route('empresas.edit', $empresa) }}"><i class="bi bi-pencil-square"></i></a> </td>
                 @can('admin.empresas.destroy')
@@ -122,7 +118,7 @@
 <!-- Script js -->
 @if (session('actualizado'))
 <script>
-    guardado('Actualizacion Exitosa', '<?php echo session('actualizado') ?>');
+    guardado('Actualización Exitosa', '<?php echo session('actualizado') ?>');
 </script>
 @endif
 
@@ -139,14 +135,14 @@
 <!-- Mesajes de confirmacion y error -->
 @if (session('destroy'))
 <script>
-    guardado('Eliminacion Exitosa', '<?php echo session('destroy') ?>');
+    guardado('Eliminación Exitosa', '<?php echo session('destroy') ?>');
 </script>
 @endif
 
 @if ($errors->any())
 @foreach ($errors->all() as $message)
 <script>
-    error('Dato Errado', '<?php echo $message ?>')
+    error('Dato Erróneo', '<?php echo $message ?>')
 </script>
 @endforeach
 @endif

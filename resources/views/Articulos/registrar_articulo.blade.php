@@ -87,7 +87,7 @@
             <label for="tipo" class="from_label">Descripción</label>
             <span class="from_line"></span>
         </div>
-        <button type="submit" class="form_submit" name="registrarArt">Registrar Articulo</button>
+        <button type="submit" class="form_submit" name="registrarArt">Registrar</button>
     </div>
 </form>
 @if (session('guardado'))
@@ -99,7 +99,7 @@
 @if ($errors->any())
 @foreach ($errors->all() as $message)
 <script>
-    error('Dato Errado', '<?php echo $message ?>')
+    error('Dato Erróneo', '<?php echo $message ?>')
 </script>
 @endforeach
 @endif

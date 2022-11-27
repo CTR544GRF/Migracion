@@ -14,6 +14,10 @@
             border: 0;
         }
 
+        body {
+            background: #495057;
+        }
+
         tr td .a {
             vertical-align: top;
             color: white;
@@ -119,14 +123,14 @@
                 <th>Fecha</th>
                 <th>Tipo de factura</th>
                 <th>Valor unitario</th>
-                <th>cantidad</th>
+                <th>Cantidad</th>
                 <th>iva</th>
                 <th>Sub total</th>
                 <th>Total</th>
                 <th>Descripción</th>
-                <th>Codigo articulo</th>
-                <th>Nit</th>
-                <th>Id usuario</th>
+                <th>Código artículo</th>
+                <th>NIT</th>
+                <th>ID usuario</th>
             </tr>
         </thead>
         <tbody id="myTable">

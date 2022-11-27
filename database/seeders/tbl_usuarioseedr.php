@@ -66,7 +66,7 @@ class tbl_usuarioseedr extends Seeder
 
         User::create([
             'cedula' => '10035414',
-            'email' => 'waramos176@misena.edu.co',
+            'email' => 'warasdamos176@misena.edu.co',
             'password' => bcrypt('william'),
             'nom_user' => 'William Andres',
             'apellidos_user' => 'Ramos Quiñones',
@@ -75,5 +75,41 @@ class tbl_usuarioseedr extends Seeder
             'direccion_user' => 'calle 27',
             'cod_rol' => '3'
         ])->assignRole('Contador');
+
+        User::create([
+            'cedula' => '10035419',
+            'email' => 'camiasdaslo1003diaz@gmail.com',
+            'password' => bcrypt('camilo'),
+            'nom_user' => 'Juan Camilo',
+            'apellidos_user' => 'Diaz Florez',
+            'fecha_ingreso' => '2022-11-02',
+            'telefono_user' => '1234567891',
+            'direccion_user' => 'calle 23',
+            'cod_rol' => '1'
+        ])->assignRole('Administrador');
+
+        User::create([
+            'cedula' => '10035418',
+            'email' => 'camilo1003aadiaz@gmail.com',
+            'password' => bcrypt('camilo'),
+            'nom_user' => 'Juan Camilo',
+            'apellidos_user' => 'Diaz Florez',
+            'fecha_ingreso' => '2022-11-02',
+            'telefono_user' => '1234567891',
+            'direccion_user' => 'calle 23',
+            'cod_rol' => '1'
+        ])->assignRole('Administrador');
+
+        User::create([
+            'cedula' => '10035415',
+            'email' => 'camilo1003diaasdz@gmail.com',
+            'password' => bcrypt('camilo'),
+            'nom_user' => 'Juan Camilo',
+            'apellidos_user' => 'Diaz Florez',
+            'fecha_ingreso' => '2022-11-02',
+            'telefono_user' => '1234567891',
+            'direccion_user' => 'calle 23',
+            'cod_rol' => '1'
+        ])->assignRole('Administrador');
     }
 }

@@ -12,11 +12,15 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('tbl_ciudades', function (Blueprint $table) {
-            $table->integer('cod_ciudad',10);
-            $table->String('nom_ciudad', 20);
+    {   
+        Schema::create('tbl_totalfacturas', function (Blueprint $table) {
+            $table->integer('id', 10);
+            $table->string('num_factura');
+            $table->double('iva');
+            $table->unsignedBigInteger('sub_total');
+            $table->double('total');
             $table->timestamps();
+
         });
     }
 
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_ciudades');
+        //
     }
 };

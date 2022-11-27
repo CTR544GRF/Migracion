@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('tbl_empresas', function (Blueprint $table) {
 
-            $table->id('id_empresa');
-            $table->integer('nit_empresa');
+            $table->bigIncrements('id');
+            $table->integer('nit_empresa')->unique();
             $table->String('nom_empresa', 30);
             $table->String('tel_empresa', 15);
             $table->String('direccion_empresa', 30);
             $table->String('email_empresa', 30);
-            $table->foreignId('id_user')->nullable();
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('set null');
+            $table->String('nombre', 50);
+           
+            $table->String('rol', 10);
             $table->timestamps();
         });
     }

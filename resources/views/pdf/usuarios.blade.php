@@ -14,6 +14,10 @@
             border: 0;
         }
 
+        body {
+            background: #495057;
+        }
+
         tr td .a {
             vertical-align: top;
             color: white;
@@ -107,18 +111,16 @@
         <img src="img/Logo letra blanca.png" height="70vw" alt="">
         <h2>Usuarios Registrados</h2>
     </div>
-
+    
     <div class="logo">
 
     </div>
 
-    <div>
-
-    </div>
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Cédula</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Teléfono</th>
@@ -131,14 +133,14 @@
             @foreach ($usuarios as $usuario)
             <tr>
                 <td data-label="Id">{{$usuario->id}}</td>
+                <td data-label="Cedula">{{$usuario->cedula}}</td>
                 <td data-label="Nombre">{{$usuario->nom_user}}</td>
                 <td data-label="Apellido">{{$usuario->apellidos_user}}</td>
                 <td data-label="Telefono">{{$usuario->telefono_user}}</td>
                 <td data-label="Direccion">{{$usuario->direccion_user}}</td>
                 <td data-label="E-mail">{{$usuario->email}}</td>
-                <td data-label="Rol">{{$usuario->cod_rol}}</td>
+                <td data-label="Rol">{{$usuario->name}}</td>
 
-                </form>
             </tr>
             @endforeach
         </tbody>

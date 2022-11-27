@@ -86,7 +86,7 @@
             </select>
         </div>
         <button class="form_submit" type='submit'> Registrar </button>
-        <button class="form_submit"><a href="{{ route('roles.create')}}"> Crear rol </a></button>
+        
     </div>
 </form>
 

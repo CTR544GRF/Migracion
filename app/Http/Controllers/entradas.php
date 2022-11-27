@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\tbl_registros;
-use App\Models\tbl_facturas;
+use App\Models\tbl_totalfactura;
 use App\Models\tbl_articulos;
 use App\Models\tbl_inventarios;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -16,13 +16,17 @@ class entradas extends Controller
 {
     public function exportPdf()
     {
-        $entradas = tbl_registros::get();
+        $entradas = tbl_registros::leftJoin('tbl_articulos as a', 'tbl_registros.cod_articulo', '=', 'a.cod_articulo')
+            ->select('tbl_registros.*', 'descripcion_articulo')
+            ->where('tipo', '=', 'Entrada')->get();
         $pdf = PDF::loadView('pdf.entradas', compact('entradas'))->setPaper('a4', 'landscape');
         return $pdf->download('entradas.pdf');
     }
     public function printPdf()
     {
-        $entradas = tbl_registros::get();
+        $entradas = tbl_registros::leftJoin('tbl_articulos as a', 'tbl_registros.cod_articulo', '=', 'a.cod_articulo')
+            ->select('tbl_registros.*', 'descripcion_articulo')
+            ->where('tipo', '=', 'Entrada')->get();
         $pdf = PDF::loadView('pdf.entradas', compact('entradas'))->setPaper('a4', 'landscape');
         return $pdf->stream('entradas.pdf');
     }
@@ -42,7 +46,7 @@ class entradas extends Controller
         if ($request->causal == "Factura de compra - Materia prima o insumos" && $request->num_factura == "Seleccione una factura") {
             return redirect()->route('entradas.create')->with('error', 'Debe seleccionar un numero de factura');
         } elseif ($request->causal == "Factura de compra - Materia prima o insumos" && is_null($request->num_factura)) {
-            return redirect()->route('entradas.create')->with('error', 'Debe seleccionar un numero de factura');
+            return redirect()->route('entradas.create')->with('error', 'Debe seleccionar un número de factura');
         }
 
         if ($request->num_factura == "Seleccione una factura") {
@@ -57,7 +61,7 @@ class entradas extends Controller
         $entradas->num_factura = $request->num_factura;
         if ($entradas->save()) :
             $this->updateOrInsertInventory($request->cod_articulo, $request->cantidad);
-            return redirect()->route('entradas.create')->with('guardado', 'El registro de entrada se realizo con exito');
+            return redirect()->route('entradas.create')->with('guardado', 'El registro de entrada se realizó con exito');
         endif;
     }
 
@@ -72,7 +76,7 @@ class entradas extends Controller
     public function create()
     {
         $articulos = tbl_articulos::all();
-        $facturas = tbl_facturas::all();
+        $facturas = tbl_totalfactura::all();
         return view('entradas.registrar_entrada', compact('articulos', 'facturas'));
     }
 
@@ -93,11 +97,11 @@ class entradas extends Controller
                 ->update(['existencias' => $total]);
         //si no existe el registro del articulo en el inventario lo crea
         else :
-            $nomnbreArticulo = tbl_articulos::select('nom_articulo')
+            $nomnbreArticulo = tbl_articulos::select('tipo_articulo','descripcion_articulo')
                 ->where('cod_articulo', '=', $id)->get();
             DB::table('tbl_inventarios')->upsert(
                 [
-                    ['cod_articulo' => $id, 'nom_articulo' => $nomnbreArticulo[0]->nom_articulo, 'existencias' => $cantidadEntrada],
+                    ['cod_articulo' => $id, 'tipo_articulo' => $nomnbreArticulo[0]->tipo_articulo,  'descripcion_articulo' => $nomnbreArticulo[0]->descripcion_articulo,'existencias' => $cantidadEntrada],
                 ],
                 ['cod_articulo'],
                 ['existencias']

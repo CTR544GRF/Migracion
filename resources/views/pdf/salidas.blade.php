@@ -14,6 +14,10 @@
             border: 0;
         }
 
+        body {
+            background: #495057;
+        }
+
         tr td .a {
             vertical-align: top;
             color: white;
@@ -105,7 +109,7 @@
 <body>
     <div class="space">
         <img src="img/Logo letra blanca.png" height="70vw" alt="">
-        <h2>Salidas Registrados</h2>
+        <h2>Salidas Registradas</h2>
     </div>
 
     <div class="logo">
@@ -114,12 +118,14 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Codigo registro</th>
+                <th>Código registro</th>
                 <th>Tipo registro</th>
-                <th>Codigo articulo</th>
+                <th>Código artículo</th>
+                <th>Descripción artículo</th>
                 <th>Casual de entrada</th>
-                <th>Numero de factura</th>
+                <th>Número de factura</th>
                 <th>Cantidad</th>
+                <th>Fecha Ingreso</th>
             </tr>
         </thead>
         <tbody id="myTable">
@@ -128,9 +134,11 @@
                 <td data-label="codigoE">{{$salida->cod_registro}}</td>
                 <td data-label="tipo">{{$salida->tipo}}</td>
                 <td data-label="codigoA">{{$salida->cod_articulo}}</td>
+                <td data-label="descripcionA">{{$salida->descripcion_articulo}}</td>
                 <td data-label="causal">{{$salida->causal}}</td>
                 <td data-label="numeroF">{{$salida->num_factura}}</td>
                 <td data-label="cantidad">{{$salida->cantidad}}</td>
+                <td data-label="fecha">{{$salida->created_at}}</td>
             </tr>
             @endforeach
         </tbody>

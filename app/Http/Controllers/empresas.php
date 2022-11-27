@@ -26,17 +26,16 @@ class empresas extends Controller
 
     public function create()
     {
-        $usuarios = tbl_usuarios::join('roles as r', 'users.cod_rol', '=', 'r.id')
-            ->select('users.id', 'users.nom_user', 'users.apellidos_user', 'r.name')
-            ->where('r.name', '=', 'Cliente')
-            ->orWhere('r.name', '=', 'Proveedor')
-            ->get();
-        return view('Empresas.registrar_empresa', compact('usuarios'));
+        $empresas = tbl_empresas::all();
+        return view('Empresas.registrar_empresa', compact('empresas'));
     }
     public function store(Request $request)
     {
         $nit = tbl_empresas::select('nit_empresa')
             ->where('nit_empresa', '=', $request->nit)
+            ->exists();
+        $email = tbl_empresas::select('email_empresa')
+            ->where('email_empresa', '=', $request->e_mail)
             ->exists();
         $email = tbl_empresas::select('email_empresa')
             ->where('email_empresa', '=', $request->e_mail)
@@ -56,34 +55,31 @@ class empresas extends Controller
 
             $request->validate([
                 'nit' => 'required|max:10',
-                'nombre' => 'required|max:20',
+                'nom_empresa' => 'required|max:20',
                 'telefono' => 'required|digits_between:5,10|integer',
                 'direccion' => 'required|max:30',
                 'e_mail' => 'required|max:30|email',
+                'nombre' => 'required|max:50',
+                'id' => 'max:10',
+                'rol' => 'required|max:10',
             ]);
             $empresas = new tbl_empresas();
             $empresas->nit_empresa = $request->nit;
-            $empresas->nom_empresa = $request->nombre;
+            $empresas->nom_empresa = $request->nom_empresa;
             $empresas->tel_empresa = $request->telefono;
             $empresas->direccion_empresa = $request->direccion;
             $empresas->email_empresa = $request->e_mail;
-            $empresas->id_user = $request->id_user;
+            $empresas->nombre = $request->nombre;
+            $empresas->id = $request->id;
+            $empresas->rol = $request->rol;
             $empresas->save();
-            return redirect()->route('empresas.index')->with('guardado', 'La Empresa a sido guardada con exito');;
+            return redirect()->route('empresas.create')->with('guardado', 'La Empresa ha sido guardada con exito');;
         }
     }
     // Retorno de tablas y selact
     public function index()
     {
-        $empresas = tbl_empresas::leftJoin('users as u', 'tbl_empresas.id_user', '=', 'u.id')
-            ->leftJoin('roles as r', 'u.cod_rol', '=', 'r.id')
-            ->select(
-                'tbl_empresas.*',
-                'u.nom_user',
-                'u.apellidos_user',
-                'r.name'
-            )->orderBy('nit_empresa', 'asc')
-            ->get();
+        $empresas = tbl_empresas::all();
 
         return view('Empresas.empresas', compact('empresas'));
     }
@@ -99,57 +95,58 @@ class empresas extends Controller
 
     public function update(Request $request, tbl_empresas $empresas)
     {
-        $empre = tbl_empresas::select('nit_empresa', 'email_empresa')
-            ->where('id_empresa', '!=', $request->id_empresa)
+
+    $empre = tbl_empresas::select('nit_empresa', 'email_empresa')
+            ->where('id', '!=', $request->empresa)
             ->get();
         // 987456321 jecatro648@misena.edu.co
-        $cont = 0;
-        for ($i = 0; $i < count($empre); $i++) {
-            if ($request->nit == $empre[$i]->nit_empresa || $request->e_mail == $empre[$i]->email_empresa) {
+        $nit_empresa = $empresas::select('nit_empresa')
+            ->where('id', '!=',$request->empresa)
+            ->where('nit_empresa','=', $request->nit)
+            ->count();
 
-                if ($request->nit == $empre[$i]->nit_empresa && $request->e_mail == $empre[$i]->email_empresa) {
-                    $info =  'El nit y el email ya estan en uso.';
-                    return redirect()->route('empresas.index')->with('error', $info);
-                    break;
-                    exit();
-                }
-                if ($request->nit == $empre[$i]->nit_empresa) {
-                    $cont++;
-                }
-                if ($request->e_mail == $empre[$i]->email_empresa) {
-                    $info = 'El email ' . $request->e_mail . 'ya está en uso.';
-                    return redirect()->route('empresas.index')->with('error', $info);
-                    break;
-                    exit();
-                }
+        $email = $empresas::select('email_empresa')
+            ->where('id', '!=', $request->empresa)
+            ->where('email_empresa', '=', $request->e_mail)
+            ->count();
+        if ($nit_empresa > 0 || $email > 0) {
+            if ($nit_empresa > 0 && $email) {
+                $info = 'El nit y el email, ya está en uso.';
+                return redirect()->route('empresas.index')->with('error', $info);
+                die();
+            }
+            if ($nit_empresa > 0) {
+                $info = 'El nit ' . $request->nit . ' ya está en uso.';
+                return redirect()->route('empresas.index')->with('error', $info);
+                die();
+            }
+
+            if ($email > 0) {
+                $info = 'El email ' . $request->email . ' ya está en uso.';
+                return redirect()->route('empresas.index')->with('error', $info);
+                die();
             }
         }
 
-        if ($cont > 0) {
-            $info = 'El nit ' . $request->nit . ' ya está en uso.';
-            return redirect()->route('empresas.index')->with('error', $info);
-            exit();
-        } else {
-
-            $empresas = tbl_empresas::find($request->id_empresa);
-            $request->validate([
-                'nit' => 'required|max:10',
-                'nombre' => 'required|max:20',
-                'telefono' => 'required|digits_between:5,10|integer',
-                'direccion' => 'required|max:30',
-                'e_mail' => 'required|max:30|email',
-            ]);
-            $empresas->nit_empresa = $request->nit;
-            $empresas->nom_empresa = $request->nombre;
-            $empresas->tel_empresa = $request->telefono;
-            $empresas->direccion_empresa = $request->direccion;
-            $empresas->email_empresa = $request->e_mail;
-            $empresas->id_user = $request->id_user;
-            $empresas->save();
-            return redirect()->route('empresas.index')->with('actualizado', 'Usuario actualizado');
-            return view('Articulos.editar_articulo', compact('articulo'));
-        }
+        $request->validate([
+            'nit' => 'required|max:10',
+            'nombre' => 'required|max:20',
+            'telefono' => 'required|digits_between:5,10|integer',
+            'direccion' => 'required|max:30',
+            'e_mail' => 'required|max:30|email',
+        ]);
+        $empresas->nit_empresa = $request->nit;
+        $empresas->nom_empresa = $request->nombre;
+        $empresas->tel_empresa = $request->telefono;
+        $empresas->direccion_empresa = $request->direccion;
+        $empresas->email_empresa = $request->e_mail;
+        $empresas->rol = $request->rol;
+        $empresas->nombre = $request->representante;
+        $empresas->save();
+        return redirect()->route('empresas.index')->with('actualizado', 'Usuario actualizado');
+        return view('Articulos.editar_articulo', compact('articulo')); 
     }
+
     public function destroy(tbl_empresas $empresa)
     {
         $empresa->delete();
