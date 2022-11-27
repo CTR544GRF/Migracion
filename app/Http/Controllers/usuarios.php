@@ -118,62 +118,37 @@ class usuarios extends Controller
     public function update(Request $request, tbl_usuarios $usuario)
     {
 
-        $user = $usuario::select('cedula', 'email')
-            ->where('id', '!=', $request->id_user)
-            ->exists();
+        
 
         $cedula = $usuario::select('cedula')
-            ->where('id', '!=', $request->id_user)
-            ->exists();
+            ->where('id', '!=',$request->usuario->id)
+            ->where('cedula','=', $request->cedula)
+            ->count();
 
         $email = $usuario::select('email')
-            ->where('id', '!=', $request->id_user)
-            ->exists();
-
-        if ($user || $cedula || $email) {
-
-            if ($user) {
-                $info =  'La cedúla y el email ya estan en uso.';
+            ->where('id', '!=', $request->usuario->id)
+            ->where('email', '=', $request->email)
+            ->count();
+        
+        if ( $cedula >0 || $email > 0) {     
+            if ($cedula > 0 && $email) {
+                $info = 'La cédula  y el email, ya está en uso.';
                 return redirect()->route('usuarios.index')->with('error', $info);
                 die();
-            }
-            if ($cedula) {
+            }   
+            if ($cedula > 0) {
                 $info = 'La cédula ' . $request->cedula . ' ya está en uso.';
                 return redirect()->route('usuarios.index')->with('error', $info);
                 die();
             }
-            if ($email) {
-                $info = 'El email ' . $request->email . 'ya está en uso.';
+                
+            if ($email > 0) {
+                $info = 'El email ' . $request->email . ' ya está en uso.';
                 return redirect()->route('usuarios.index')->with('error', $info);
                 die();
             }
-        }
-        // 987456321 jecatro648@misena.edu.coi
-
-        /*  for ($i = 0; $i < count(array($user)); $i++) {
-            if ($request->cedula == $user[$i]->cedula || $request->email == $user[$i]->email_user) {
-                $info =  'La cedúla y el email ya estan en uso.';
-                if ($request->cedula == $user[$i]->cedula && $request->email == $user[$i]->email_user) {
-                    $info =  'La cedúla y el email ya estan en uso.';
-                    return redirect()->route('usuarios.index')->with('error', $info);
-                    break;
-                    die();
-                }
-                if ($request->cedula == $user[$i]->cedula) {
-                    $info = 'La cédula ' . $request->cedula . ' ya está en uso.';
-                    return redirect()->route('usuarios.index')->with('error', $info);
-                    break;
-                    die();
-                }
-                if ($request->email == $user[$i]->email_user) {
-                    
-                }
-                return redirect()->route('usuarios.index')->with('error', $info);
-                break;
-                die();
-            }
-        }
- */
+        } 
+         /// 987456321 jecatro648@misena.edu.coi 
         $request->validate([
             'email' => 'required|max:30|email',
             'cedula' => 'required|max:10',
@@ -199,7 +174,7 @@ class usuarios extends Controller
         $usuario->cod_rol = $request->rol;
         $usuario->save();
 
-        $message = $user[0]->cedula;
+        $message = $request->cedula;
 
         session()->flash('actualizado', 'El usuario a sido editado con exito');
         return redirect()->route('usuarios.index')->with('actualizado', "El usuario $message sido actualizado");
@@ -209,7 +184,6 @@ class usuarios extends Controller
     public function destroy(tbl_usuarios $usuario)
     {
         $usuario->delete();
-
         return back()->with('destroy', 'El usuario a sido eliminado correctamente');
     }
 }
