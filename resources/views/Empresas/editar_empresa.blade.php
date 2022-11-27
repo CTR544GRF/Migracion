@@ -70,7 +70,6 @@
         <div class="from_group">
             <select name="rol" class="from_group">
                 <option value="{{$empresa->rol}}">{{$empresa->rol}}</option>
-                <option selected>Seleccione tipo de empresa</option>
                 <option value="Cliente">Cliente</option>
                 <option value="Proveedor">Proveedor</option>
             </select>
