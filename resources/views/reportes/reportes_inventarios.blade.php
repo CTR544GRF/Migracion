@@ -15,10 +15,10 @@
 @csrf
     <h2 class="form_titulo"><img class="mo" src="{{asset('img/icons8-producto-nuevo.png')}}" alt="inventarios">Reporte de inventario</h2>
 
-    <a class="form_submit" href="{{route('rinventarios.print1')}}"><strong>Producto terminado</strong></a>
-    <a class="form_submit" href="{{route('rinventarios.print2')}}"><strong>Materia prima</strong></a>
-    <a class="form_submit" href="{{route('rinventarios.print3')}}"><strong>Insumos</strong></a>
-    <a class="form_submit" href="{{route('rinventarios.print4')}}"><strong>Todos</strong></a>
+    <a class="form_submit" href="{{route('rinventarios.print1')}}" target="_blank"><strong>Producto terminado</strong></a>
+    <a class="form_submit" href="{{route('rinventarios.print2')}}" target="_blank"><strong>Materia prima</strong></a>
+    <a class="form_submit" href="{{route('rinventarios.print3')}}" target="_blank"><strong>Insumos</strong></a>
+    <a class="form_submit" href="{{route('rinventarios.print4')}}" target="_blank"><strong>Todos</strong></a>
 
    
 

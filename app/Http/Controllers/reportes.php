@@ -37,58 +37,66 @@ class reportes extends Controller
 
     //Empresas
     public function printPdfEmpresas1()
-    {
-        $empresas = tbl_empresas::where('rol', '=', 'Cliente')
-            ->get();
-        $pdf = PDF::loadView('reportes.rempresas', compact('empresas'))->setPaper('a4', 'landscape');
+    {   
+        $count = tbl_empresas::where('rol', '=', 'Cliente')->count();
+        $empresas = tbl_empresas::where('rol', '=', 'Cliente')->get();
+        $pdf = PDF::loadView('reportes.rempresas', compact('empresas','count'))->setPaper('a4', 'landscape');
         return $pdf->stream('rempresas.pdf');
     }
 
     public function printPdfEmpresas2()
-    {
-        $empresas = tbl_empresas::where('rol', '=', 'Proveedor')
-            ->get();
-        $pdf = PDF::loadView('reportes.rempresas', compact('empresas'))->setPaper('a4', 'landscape');
+    {   
+        $count = tbl_empresas::where('rol', '=', 'Proveedor')->count();
+        $empresas = tbl_empresas::where('rol', '=', 'Proveedor')->get();
+        $pdf = PDF::loadView('reportes.rempresas', compact('empresas','count'))->setPaper('a4', 'landscape');
         return $pdf->stream('rempresas.pdf');
     }
 
     public function printPdfEmpresas3()
-    {
+    {   
+        $count = tbl_empresas::count();
         $empresas = tbl_empresas::get();
-        $pdf = PDF::loadView('reportes.rempresas', compact('empresas'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('reportes.rempresas', compact('empresas','count'))->setPaper('a4', 'landscape');
         return $pdf->stream('rempresas.pdf');
     }
 
     //articulos
 
     public function printPdfArticulos1()
-    {
+    {   
+        $count = tbl_articulos::where('tipo_articulo', '=', 'Producto terminado')
+            ->count();
         $articulos = tbl_articulos::where('tipo_articulo', '=', 'Producto terminado')
             ->get();
-        $pdf = PDF::loadView('reportes.rarticulos', compact('articulos'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('reportes.rarticulos', compact('articulos','count'))->setPaper('a4', 'landscape');
         return $pdf->stream('rarticulos.pdf');
     }
 
     public function printPdfArticulos2()
-    {
+    {   
+        $count = tbl_articulos::where('tipo_articulo', '=', 'Materia prima')
+            ->count();
         $articulos = tbl_articulos::where('tipo_articulo', '=', 'Materia prima')
             ->get();
-        $pdf = PDF::loadView('reportes.rarticulos', compact('articulos'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('reportes.rarticulos', compact('articulos','count'))->setPaper('a4', 'landscape');
         return $pdf->stream('rarticulos.pdf');
     }
 
     public function printPdfArticulos3()
-    {
+    {   
+        $count = tbl_articulos::where('tipo_articulo', '=', 'Insumo')
+            ->count();
         $articulos = tbl_articulos::where('tipo_articulo', '=', 'Insumo')
             ->get();
-        $pdf = PDF::loadView('reportes.rarticulos', compact('articulos'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('reportes.rarticulos', compact('articulos','count'))->setPaper('a4', 'landscape');
         return $pdf->stream('rarticulos.pdf');
     }
 
     public function printPdfArticulos4()
-    {
+    {   
+        $count = tbl_articulos::count();
         $articulos = tbl_articulos::get();
-        $pdf = PDF::loadView('reportes.rarticulos', compact('articulos'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('reportes.rarticulos', compact('articulos','count'))->setPaper('a4', 'landscape');
         return $pdf->stream('rarticulos.pdf');
     }
 
@@ -96,33 +104,48 @@ class reportes extends Controller
     //stock
 
     public function printPdfInventarios1()
-    {
+    {   
+
+        $sum = tbl_inventarios::where('tipo_articulo', '=', 'Producto terminado')
+            ->sum('existencias');
+        $count = tbl_inventarios::where('tipo_articulo', '=', 'Producto terminado')
+            ->count();
         $inventarios = tbl_inventarios::where('tipo_articulo', '=', 'Producto terminado')
             ->get();
-        $pdf = PDF::loadView('reportes.rinventarios', compact('inventarios'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('reportes.rinventarios', compact('inventarios','count','sum'))->setPaper('a4', 'landscape');
         return $pdf->stream('rinventarios.pdf');
     }
 
     public function printPdfInventarios2()
-    {
+    {   
+        $sum = tbl_inventarios::where('tipo_articulo', '=', 'Materia prima')
+            ->sum('existencias');
+        $count = tbl_inventarios::where('tipo_articulo', '=', 'Materia prima')
+            ->count();
         $inventarios = tbl_inventarios::where('tipo_articulo', '=', 'Materia prima')
             ->get();
-        $pdf = PDF::loadView('reportes.rinventarios', compact('inventarios'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('reportes.rinventarios', compact('inventarios','count','sum'))->setPaper('a4', 'landscape');
         return $pdf->stream('rinventarios.pdf');
     }
 
     public function printPdfInventarios3()
-    {
+    {   
+        $sum = tbl_inventarios::where('tipo_articulo', '=', 'Insumo')
+            ->sum('existencias');
+        $count = tbl_inventarios::where('tipo_articulo', '=', 'Insumo')
+            ->count();
         $inventarios = tbl_inventarios::where('tipo_articulo', '=', 'Insumo')
             ->get();
-        $pdf = PDF::loadView('reportes.rinventarios', compact('inventarios'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('reportes.rinventarios', compact('inventarios','count','sum'))->setPaper('a4', 'landscape');
         return $pdf->stream('rinventarios.pdf');
     }
 
     public function printPdfInventarios4()
-    {
+    {   
+        $sum = tbl_inventarios::sum('existencias');
+        $count = tbl_inventarios::count();
         $inventarios = tbl_inventarios::get();
-        $pdf = PDF::loadView('reportes.rinventarios', compact('inventarios'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('reportes.rinventarios', compact('inventarios','count','sum'))->setPaper('a4', 'landscape');
         return $pdf->stream('rinventarios.pdf');
     }
 

@@ -153,7 +153,6 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>N°</th>
                 <th>NIT</th>
                 <th>Nombre</th>
                 <th>Teléfono</th>
@@ -167,9 +166,7 @@
         <tbody id="myTable">
             @foreach ($empresas as $empresa)
             <tr>
-                <td data-label="N°">
 
-                </td>
                 <td data-label="Nit">
                     {{$empresa->nit_empresa}}
                 </td>
@@ -206,7 +203,7 @@
         </thead>
         <tbody id="myTable">
             <tr>
-                <td data-label="totalUsuarios">20</td>
+                <td data-label="totalUsuarios">{{$count}}</td>
             </tr>
         </tbody>
     </table>

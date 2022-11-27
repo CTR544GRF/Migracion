@@ -15,9 +15,9 @@
 @csrf
     <h2 class="form_titulo"><img class="mo" src="{{asset('img/icons8-cliente-de-empresa-60.png')}}" alt="usuarios">Reporte Empresas</h2>
 
-    <a class="form_submit" href="{{route('rempresas.print1')}}"><strong> Clientes</strong></a>
-    <a class="form_submit" href="{{route('rempresas.print2')}}"><strong> Proveedores</strong></a>
-    <a class="form_submit" href="{{route('rempresas.print3')}}"><strong> Todos</strong></a>
+    <a class="form_submit" href="{{route('rempresas.print1')}}" target="_blank"><strong> Clientes</strong></a>
+    <a class="form_submit" href="{{route('rempresas.print2')}}" target="_blank"><strong> Proveedores</strong></a>
+    <a class="form_submit" href="{{route('rempresas.print3')}}" target="_blank"><strong> Todos</strong></a>
 
    
 
