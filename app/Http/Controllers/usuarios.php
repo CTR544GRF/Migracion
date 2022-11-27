@@ -47,9 +47,10 @@ class usuarios extends Controller
     public function store(Request $request)
     {
         $user = DB::table('users')
-            ->select('id')
-            ->where('id', '=', $request->id)
+            ->select('cedula')
+            ->where('cedula', '=', $request->cedula)
             ->exists();
+
         $email = DB::table('users')
             ->select('email')
             ->where('email', '=', $request->email)
@@ -60,7 +61,7 @@ class usuarios extends Controller
                 return redirect()->route('usuarios.create')->with('error', 'El usuario ya existe');
             }
             if ($user) {
-                return redirect()->route('usuarios.create')->with('error', 'El id ' . $request->id . ' ya existe');
+                return redirect()->route('usuarios.create')->with('error', 'La cédula ' . $request->id . ' ya existe');
             }
             if ($email) {
                 return redirect()->route('usuarios.create')->with('error', 'El email ' . $request->email . ' ya existe');
@@ -118,36 +119,60 @@ class usuarios extends Controller
 
         $user = $usuario::select('cedula', 'email')
             ->where('id', '!=', $request->id_user)
-            ->get();
-        // 987456321 jecatro648@misena.edu.co
+            ->exists();
 
-        for ($i = 0; $i < count(array($user)); $i++) {
+        $cedula = $usuario::select('cedula')
+            ->where('id', '!=', $request->id_user)
+            ->exists();
+
+        $email = $usuario::select('email')
+            ->where('id', '!=', $request->id_user)
+            ->exists();
+
+        if ($user || $cedula || $email) {
+
+            if ($user) {
+                $info =  'La cedúla y el email ya estan en uso.';
+                return redirect()->route('usuarios.index')->with('error', $info);
+                die();
+            }
+            if ($cedula) {
+                $info = 'La cédula ' . $request->cedula . ' ya está en uso.';
+                return redirect()->route('usuarios.index')->with('error', $info);
+                die();
+            }
+            if ($email) {
+                $info = 'El email ' . $request->email . 'ya está en uso.';
+                return redirect()->route('usuarios.index')->with('error', $info);
+                die();
+            }
+        }
+        // 987456321 jecatro648@misena.edu.coi
+
+        /*  for ($i = 0; $i < count(array($user)); $i++) {
             if ($request->cedula == $user[$i]->cedula || $request->email == $user[$i]->email_user) {
                 $info =  'La cedúla y el email ya estan en uso.';
                 if ($request->cedula == $user[$i]->cedula && $request->email == $user[$i]->email_user) {
                     $info =  'La cedúla y el email ya estan en uso.';
-                    return redirect()->route('ver_usuario')->with('error', $info);
+                    return redirect()->route('usuarios.index')->with('error', $info);
                     break;
                     die();
                 }
                 if ($request->cedula == $user[$i]->cedula) {
                     $info = 'La cédula ' . $request->cedula . ' ya está en uso.';
-                    return redirect()->route('ver_usuario')->with('error', $info);
+                    return redirect()->route('usuarios.index')->with('error', $info);
                     break;
                     die();
                 }
                 if ($request->email == $user[$i]->email_user) {
-                    $info = 'El email ' . $request->email . 'ya está en uso.';
-                    return redirect()->route('ver_usuario')->with('error', $info);
-                    break;
-                    die();
+                    
                 }
-                return redirect()->route('ver_usuario')->with('error', $info);
+                return redirect()->route('usuarios.index')->with('error', $info);
                 break;
                 die();
             }
         }
-
+ */
         $request->validate([
             'email' => 'required|max:30|email',
             'cedula' => 'required|max:10',

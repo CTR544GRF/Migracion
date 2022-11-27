@@ -32,15 +32,12 @@
 @stop
 
 @section('seccion')
-<form class="registrar_usuario" action="{{route('usuarios.update',$usuario)}}" method="POST">
+<form class="registrar_usuario" action="{{route('usuarios.update',$usuario->id)}}" method="POST">
     @csrf
     @method('PATCH')
     <h2 class="form_titulo">Editar usuario</h2>
     <div class="form_container">
-        <div class="from_group" style="display:none">
-            <input type="text" id="ID" class="from_input" placeholder=" " name="id_user" readonly maxlength="10" value="{{$usuario->id_user}}">
-            <label for="tipo" class="from_label">ID</label>
-        </div>
+       
         <div class="from_group">
             <input type="text" id="cedula" class="from_input" placeholder=" " name="cedula" required pattern="^[0-9]+" maxlength="10" value="{{$usuario->cedula}}">
             <label for="tipo" class="from_label">Cédula</label>

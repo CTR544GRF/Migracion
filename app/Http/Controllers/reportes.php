@@ -18,18 +18,12 @@ class reportes extends Controller
     public function printPdf($id)
     {   
         if ($id == 0 ){
-            $count = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')
-            ->select('users.*', 'r.name')->orderBy('id', 'asc')
-            ->count();
-    
+            $count = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')->count();
             $usuarios = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')
                 ->select('users.*', 'r.name')->orderBy('id', 'asc')->get();
         }else{
-            $count = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')
-        ->select('users.*', 'r.name')->orderBy('id', 'asc')
-        ->where('cod_rol', '=', $id)->count();
-
-        $usuarios = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')
+            $count = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')->where('cod_rol', '=', $id)->count();
+            $usuarios = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')
             ->select('users.*', 'r.name')->orderBy('id', 'asc')
             ->where('cod_rol', '=', $id)
             ->get();
@@ -39,15 +33,7 @@ class reportes extends Controller
         return $pdf->stream('rusuarios.pdf');
     }
 
-    public function printPdf5()
-    {
-        $usuarios = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')
-            ->select('users.*', 'r.name')->orderBy('id', 'asc')
-            ->where('cod_rol', '=', '3')
-            ->get();
-        $pdf = PDF::loadView('reportes.rusuarios', compact('usuarios'))->setPaper('a4', 'landscape');
-        return $pdf->stream('rusuarios.pdf');
-    }
+   
 
     //Empresas
     public function printPdfEmpresas1()
