@@ -53,7 +53,7 @@ Route::get('factura.csv', function (UsersExport $usersExport) {
 Route::get('factura.xlsx', function (UsersExport $usersExport) {
     return $usersExport->download('facturas.xlsx');
 })->name('facturas.xlsx');
-
+Route::get('/facturas/reporte/{num_factura}', [reportes::class, 'printPdffactura'])->name('factura_reporte');
 // //vistas Empresas
 Route::get('empresas.pdf', [empresas::class, 'exportPdf'])->name('empresas.pdf');
 Route::get('empresas.print', [empresas::class, 'printPdf'])->name('empresas.print');
@@ -129,10 +129,8 @@ Route::view('/Reportes/Ver/articulosPDF', 'reportes.reportes_articulos')->name('
 Route::view('/Reportes/Ver/facturasPDF', 'reportes.pdf_facturas')->name('pdf_facturas');
 Route::view('/Reportes/Ver/stockPDF', 'reportes.reportes_inventarios')->name('reportes_inventarios');
 
-Route::get('rusuarios.print1', [reportes::class, 'printPdf1'])->name('rusuarios.print1');
-Route::get('rusuarios.print2', [reportes::class, 'printPdf2'])->name('rusuarios.print2');
-Route::get('rusuarios.print3', [reportes::class, 'printPdf3'])->name('rusuarios.print3');
-Route::get('rusuarios.print4', [reportes::class, 'printPdf4'])->name('rusuarios.print4');
+Route::get('/usuarios/reporte/{id}', [reportes::class, 'printPdf'])->name('rusuarios');
+
 
 Route::get('rempresas.print1', [reportes::class, 'printPdfEmpresas1'])->name('rempresas.print1');
 Route::get('rempresas.print2', [reportes::class, 'printPdfEmpresas2'])->name('rempresas.print2');
@@ -147,5 +145,3 @@ Route::get('rinventarios.print1', [reportes::class, 'printPdfinventarios1'])->na
 Route::get('rinventarios.print2', [reportes::class, 'printPdfinventarios2'])->name('rinventarios.print2');
 Route::get('rinventarios.print3', [reportes::class, 'printPdfinventarios3'])->name('rinventarios.print3');
 Route::get('rinventarios.print4', [reportes::class, 'printPdfinventarios4'])->name('rinventarios.print4');
-
-Route::get('facturaPDF.print', [reportes::class, 'printPdffactura'])->name('facturaPDF.print');

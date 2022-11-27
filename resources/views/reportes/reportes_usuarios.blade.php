@@ -15,10 +15,10 @@
 @csrf
     <h2 class="form_titulo"><img class="mo" src="{{asset('img/icons8-persona-de-sexo-masculino-64.png')}}" alt="usuarios">Reporte Usuarios</h2>
 
-    <a class="form_submit" href="{{route('rusuarios.print1')}}" target="_blank"><strong> Administradores</strong></a>
-    <a class="form_submit" href="{{route('rusuarios.print2')}}" target="_blank"><strong> Almacenistas</strong></a>
-    <a class="form_submit" href="{{route('rusuarios.print3')}}" target="_blank"><strong> Contadores</strong></a>
-    <a class="form_submit" href="{{route('rusuarios.print4')}}" target="_blank"><strong> Todos</strong></a>
+    <a class="form_submit" href="{{route('rusuarios',1)}}" target="_blank"><strong> Administradores</strong></a>
+    <a class="form_submit" href="{{route('rusuarios',2)}}" target="_blank"><strong> Almacenistas</strong></a>
+    <a class="form_submit" href="{{route('rusuarios',3)}}" target="_blank"><strong> Contadores</strong></a>
+    <a class="form_submit" href="{{route('rusuarios',0)}}" target="_blank"><strong> Todos</strong></a>
    
 
 </form>

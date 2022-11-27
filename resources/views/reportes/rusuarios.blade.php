@@ -12,6 +12,11 @@
             margin: 0;
             padding: 0;
             border: 0;
+            
+        }
+
+        body{
+            background: #495057;
         }
 
         tr td .a {
@@ -149,7 +154,6 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>N°</th>
                 <th>Cédula</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
@@ -162,7 +166,6 @@
         <tbody id="myTable">
             @foreach ($usuarios as $usuario)
             <tr>
-                <td data-label="Item"></td>
                 <td data-label="Cedula">{{$usuario->cedula}}</td>
                 <td data-label="Nombre">{{$usuario->nom_user}}</td>
                 <td data-label="Apellido">{{$usuario->apellidos_user}}</td>
@@ -182,7 +185,7 @@
         </thead>
         <tbody id="myTable">
             <tr>
-                <td data-label="totalUsuarios">20</td>
+                <td data-label="totalUsuarios">{{$count}}</td>
             </tr>
         </tbody>
     </table>
