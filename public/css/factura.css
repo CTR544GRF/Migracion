@@ -126,6 +126,9 @@ textarea {
     color: black;
     border: 1px solid #000;
     resize: none;
+    height: 100px;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 h1 {
@@ -166,4 +169,26 @@ h1 {
         display: contents;
     }
 
+}
+
+.container_section_three {
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+}
+
+.results {
+    display: flex;
+    align-items: center;
+    flex-flow: row;
+    font-size: large;
+    justify-content: space-around;
+}
+
+.results input {
+    border: none;
+    font-size: larger;
+    margin: 0;
+    padding: 0;
+    width: 40%;
 }

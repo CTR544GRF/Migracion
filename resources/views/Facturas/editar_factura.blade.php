@@ -36,8 +36,8 @@
 
 @section('seccion')
 <main class="formularios">
-     <form action="{{route('facturas.update',$factura[0]->num_factura)}}" method="POST" enctype="multipart/form-data">
-       @csrf
+    <form action="{{route('facturas.update',$factura[0]->num_factura)}}" method="POST" enctype="multipart/form-data">
+        @csrf
         @method('PATCH')
         <section class="seccion_uno">
             <button class="crear_factura" type="reset">
@@ -79,72 +79,82 @@
             </div>
         </section>
         <div class="container_section_three">
-        @foreach ($factura as $item)
-        <section class=" form_factura_prueba seccion_tres">
-            <div class="cajas">
-                <h3>ID:</h3> <input class="input_id"type='text' name="id[]" readonly value="{{$item->id}}">
-                <div class="tbl_abajo">
-                    <span id="resultado_num_factura"></span>
+            @foreach ($factura as $item)
+            <section class=" form_factura_prueba seccion_tres">
+                <div class="cajas">
+                    <h3>ID:</h3> <input class="input_id" type='text' name="id[]" readonly value="{{$item->id}}">
+                    <div class="tbl_abajo">
+                        <span id="resultado_num_factura"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="cajas">
-                <h3>Cod Artículo</h3>
-                <div class="tbl_abajo">
-                    <select class="ca" name="ca[]"  id="cod_articulo" required>
-                        <option value="{{$item->cod_articulo}}">{{$item->cod_articulo}}</option>
-                        @foreach ($articulos_view as $articulo)
-                        <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->nom_articulo}}</option>
-                        @endforeach
-                    </select>
+                <div class="cajas">
+                    <h3>Cod Artículo</h3>
+                    <div class="tbl_abajo">
+                        <select class="ca" name="ca[]" id="cod_articulo" required>
+                            <option value="{{$item->cod_articulo}}">{{$item->cod_articulo}}</option>
+                            @foreach ($articulos_view as $articulo)
+                            <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->nom_articulo}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="cajas">
-                <h3>Precio Unitario</h3>
-                <div class="tbl_abajo">
-                    <span>$</span>
-                    <input type="number" name="pu[]" onkeyup="totalArticulos()" class="pu"  min="1" value="{{$item->valor_unitario}}" id="precio_unitario" required>
+                <div class="cajas">
+                    <h3>Precio Unitario</h3>
+                    <div class="tbl_abajo">
+                        <span>$</span>
+                        <input type="number" name="pu[]" onkeyup="totalArticulos()" class="pu" min="1" value="{{$item->valor_unitario}}" id="precio_unitario" required>
+                    </div>
                 </div>
-            </div>
-            <div class="cajas">
-                <h3>Cantidad</h3>
-                <div class="tbl_abajo">
-                    <input type="number" name="vc[]" onkeyup="totalArticulos()" class="vc"  min="1" value="{{$item->cantidad}}" id="valor_cantidad" required>
+                <div class="cajas">
+                    <h3>Cantidad</h3>
+                    <div class="tbl_abajo">
+                        <input type="number" name="vc[]" onkeyup="totalArticulos()" class="vc" min="1" value="{{$item->cantidad}}" id="valor_cantidad" required>
+                    </div>
                 </div>
-            </div>
-            <div class="cajas" id="iva">
-                <h3>Iva</h3>
-                <div class="tbl_abajo">
-                    <input type="number" name="vi[]" onkeyup="totalArticulos()" class="vi"  id="valor_iva" min="1" value="{{$item->iva_producto}}" max="100" required>
-                    <span>%</span>
+                <div class="cajas" id="iva">
+                    <h3>Iva</h3>
+                    <div class="tbl_abajo">
+                        <input type="number" name="vi[]" onkeyup="totalArticulos()" class="vi" id="valor_iva" min="1" value="{{$item->iva_producto}}" max="100" required>
+                        <span>%</span>
+                    </div>
                 </div>
-            </div>
-        </section>
-        @endforeach           
+            </section>
+            @endforeach
         </div>
-        
+
         <section class="seccion_cuatro">
             <div class="scs_cuatro_arriba">
                 <div>
-                <textarea required name="descripcion" id="" cols="30" rows="10" placeholder="Dirección ...">{{$item->descripcion}}</textarea>
+                    <textarea required name="descripcion" id="" cols="30" rows="10" placeholder="Dirección ...">{{$item->descripcion}}</textarea>
                 </div>
                 @foreach ($total_factura as $item)
                 <div class="total">
-                    <h3>Sub Total: <input type='text' readonly value="{{$item->sub_total}}"name="resultado_sub_total" id="resultado_sub_total"></span></h3>
-                    <h3>iva: <input type='text' readonly value="{{$item->iva}}"name ='resultado_iva' id="resultado_iva"></span></h3>
-                    <h2>Total: <input type='text' readonly value="{{$item->total}}"name ='resultado_total' id="resultado_total"></span></h2>
-                </div>
-                @endforeach
-            </div>
-            <div class="scs_cuatro_abajo">
-                <button class="button" type="reset">
-                    <h3>Limpiar</h3>
-                </button>
-                <button class="button" type="submit" name="registrar">
-                    <h3>Editar</h3>
-                </button>
-            </div>
+                    <div class="results">
+                        <h3>Sub Total:</h3>
+                        <input type='text' readonly value="{{$item->sub_total}}" name="resultado_sub_total" id="resultado_sub_total">
+                    </div>
+                    <div class="results">
+                        <h3>iva:</h3>
+                        <input type='text' readonly value="{{$item->iva}}" name='resultado_iva' id="resultado_iva">
+                    </div>
+                    <div class="results">
+                        <h2>Total:</h2>
+                        <input type='text' readonly value="{{$item->total}}" name='resultado_total' id="resultado_total">
+                    </div>
+
+                    @endforeach
+
+
         </section>
-        </form>
+        <div class="scs_cuatro_abajo">
+            <button class="button" type="reset">
+                <h3>Limpiar</h3>
+            </button>
+            <button class="button" type="submit" name="registrar">
+                <h3>Editar</h3>
+            </button>
+        </div>
+    </form>
 </main>
 
 @if (session('actualizado'))
