@@ -1,5 +1,10 @@
 <?php
 
+use App\Exports\ArticulosExport;
+use App\Exports\EmpresasExport;
+use App\Exports\EntradasExport;
+use App\Exports\FacturasExport;
+use App\Exports\SalidasExport;
 use App\Exports\UsersExport;
 
 use App\Http\Controllers\articulos;
@@ -30,39 +35,40 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // /*Pagina comercial*/
 Route::view('/', 'welcome')->name('onepage');
+Route::view('/login', 'auth.login')->name('login');
 
 //Resourses views
-Route::resource('articulos', articulos::class)->middleware('can');
-Route::resource('facturas', facturas::class)->middleware('can');
-Route::resource('empresas', empresas::class)->middleware('can');
-Route::resource('usuarios', usuarios::class)->middleware('can');
-Route::resource('entradas', entradas::class)->middleware('can');
-Route::resource('salidas', salidas::class)->middleware('can');
-Route::resource('inventario', inventario::class)->middleware('can');
-Route::resource('roles', roles::class)->middleware('can');
+Route::resource('articulos', articulos::class)->middleware('auth');
+Route::resource('facturas', facturas::class)->middleware('auth');
+Route::resource('empresas', empresas::class)->middleware('auth');
+Route::resource('usuarios', usuarios::class)->middleware('auth');
+Route::resource('entradas', entradas::class)->middleware('auth');
+Route::resource('salidas', salidas::class)->middleware('auth');
+Route::resource('inventario', inventario::class)->middleware('auth');
+Route::resource('roles', roles::class)->middleware('auth');
 
 //Downloads
 
 //vistas Facturas
 Route::get('facturas.pdf', [facturas::class, 'exportPdf'])->name('facturas.pdf');
 Route::get('facturas.print', [facturas::class, 'printPdf'])->name('facturas.print');
-Route::get('factura.csv', function (UsersExport $usersExport) {
-    return $usersExport->download('facturas.csv');
+Route::get('factura.csv', function (FacturasExport $facturasExport) {
+    return $facturasExport->download('facturas.csv');
 })->name('facturas.csv');
-Route::get('factura.xlsx', function (UsersExport $usersExport) {
-    return $usersExport->download('facturas.xlsx');
+Route::get('factura.xlsx', function (FacturasExport $facturasExport) {
+    return $facturasExport->download('facturas.xlsx');
 })->name('facturas.xlsx');
 
 // //vistas Empresas
 Route::get('empresas.pdf', [empresas::class, 'exportPdf'])->name('empresas.pdf');
 Route::get('empresas.print', [empresas::class, 'printPdf'])->name('empresas.print');
 
-Route::get('empresa.csv', function (UsersExport $usersExport) {
-    return $usersExport->download('empresas.csv');
+Route::get('empresa.csv', function (EmpresasExport $empresasExport) {
+    return $empresasExport->download('empresas.csv');
 })->name('empresas.csv');
 
-Route::get('empresa.xlsx', function (UsersExport $usersExport) {
-    return $usersExport->download('empresas.xlsx');
+Route::get('empresa.xlsx', function (EmpresasExport $empresasExport) {
+    return $empresasExport->download('empresas.xlsx');
 })->name('empresas.xlsx');
 
 
@@ -70,12 +76,12 @@ Route::get('empresa.xlsx', function (UsersExport $usersExport) {
 Route::get('articulos.pdf', [articulos::class, 'exportPdf'])->name('articulos.pdf');
 Route::get('articulos.print', [articulos::class, 'printPdf'])->name('articulos.print');
 
-Route::get('articulos.csv', function (UsersExport $usersExport) {
-    return $usersExport->download('articulos.csv');
+Route::get('articulos.csv', function (ArticulosExport $articulosExport) {
+    return $articulosExport->download('articulos.csv');
 })->name('articulos.csv');
 
-Route::get('articulos.xlsx', function (UsersExport $usersExport) {
-    return $usersExport->download('articulos.xlsx');
+Route::get('articulos.xlsx', function (ArticulosExport $articulosExport) {
+    return $articulosExport->download('articulos.xlsx');
 })->name('articulos.xlsx');
 
 // //vistas Usuarios
@@ -91,20 +97,20 @@ Route::get('usuarios.xlsx', function (UsersExport $usersExport) {
 // //vistas Salidas
 Route::get('salidas.pdf', [salidas::class, 'exportPdf'])->name('salidas.pdf');
 Route::get('salidas.print', [salidas::class, 'printPdf'])->name('salidas.print');
-Route::get('salidas.csv', function (UsersExport $usersExport) {
-    return $usersExport->download('salidas.csv');
+Route::get('salidas.csv', function (SalidasExport $salidasExport) {
+    return $salidasExport->download('salidas.csv');
 })->name('salidas.csv');
-Route::get('salidas.xlsx', function (UsersExport $usersExport) {
-    return $usersExport->download('salidas.xlsx');
+Route::get('salidas.xlsx', function (SalidasExport $salidasExport) {
+    return $salidasExport->download('salidas.xlsx');
 })->name('salidas.xlsx');
 
 //vistas Entradas
 
 Route::get('entradas.pdf', [entradas::class, 'exportPdf'])->name('entradas.pdf');
 Route::get('entradas.print', [entradas::class, 'printPdf'])->name('entradas.print');
-Route::get('entradas.csv', function (UsersExport $usersExport) {
-    return $usersExport->download('entradas.csv');
+Route::get('entradas.csv', function (EntradasExport $entradasExport) {
+    return $entradasExport->download('entradas.csv');
 })->name('entradas.csv');
-Route::get('entradas.xlsx', function (UsersExport $usersExport) {
-    return $usersExport->download('entradas.xlsx');
+Route::get('entradas.xlsx', function (EntradasExport $entradasExport) {
+    return $entradasExport->download('entradas.xlsx');
 })->name('entradas.xlsx');

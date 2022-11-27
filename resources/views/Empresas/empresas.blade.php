@@ -59,7 +59,9 @@
                 <th>Rol</th>
                 <!-- <th>Ciudad</th> -->
                 <th>Editar</th>
+                @can('admin.empresas.destroy')
                 <th>Eliminar</th>
+                @endcan
             </tr>
         </thead>
         <tbody id="myTable">
@@ -90,6 +92,7 @@
                     {{$empresa->name}}
                 </td>
                 <td data-label="Editar"><a href="{{ route('empresas.edit', $empresa) }}"><i class="bi bi-pencil-square"></i></a> </td>
+                @can('admin.empresas.destroy')
                 <form action="{{route('empresas.destroy',$empresa)}}" method="POST" class="eliminar_datos">
                     @csrf
                     @method('DELETE')
@@ -99,6 +102,7 @@
                         </button>
                     </td>
                 </form>
+                @endcan
             </tr>
             @endforeach
         </tbody>

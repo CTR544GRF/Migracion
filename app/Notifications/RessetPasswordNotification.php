@@ -1,12 +1,13 @@
 <?php
 
-namespace Illuminate\Auth\Notifications;
+namespace App\Notifications;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Lang;
 
-class ResetPassword extends Notification
+class RessetPasswordNotification extends Notification
 {
     /**
      * The password reset token.
@@ -75,11 +76,13 @@ class ResetPassword extends Notification
     protected function buildMailMessage($url)
     {
         return (new MailMessage)
-            ->subject(Lang::get('Reset Password Notification'))
-            ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
-            ->action(Lang::get('Reset Password'), $url)
-            ->line(Lang::get('This password reset link will expire in :count minutes.', ['count' => config('auth.passwords.' . config('auth.defaults.passwords') . '.expire')]))
-            ->line(Lang::get('If you did not request a password reset, no further action is required.'));
+            ->greeting('Hola')
+            ->subject('Notificación de restablecimiento de contraseña')
+            ->line('Está recibiendo este correo electrónico porque hemos recibido una solicitud de restablecimiento de contraseña para su cuenta.')
+            ->action('Restablecer contraseña', $url)
+            ->line('Este enlace de restablecimiento de contraseña caducará en 60 minutos')
+            ->line('Si no ha solicitado el restablecimiento de la contraseña, no es necesario realizar ninguna otra acción.')
+            ->salutation('Saludos');
     }
 
     /**

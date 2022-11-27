@@ -59,7 +59,10 @@
                 <th>Color</th>
                 <th>Descripcion</th>
                 <th>Editar</th>
+                @can('admin.articulos.destroy')
                 <th>Eliminar</th>
+                @endcan
+
             </tr>
         </thead>
         <tbody id="myTable">
@@ -93,6 +96,7 @@
                     {{$articulo->descripcion_articulo}}
                 </td>
                 <td data-label="Editar"><a href="{{ route('articulos.edit', $articulo ) }}"><i class="bi bi-pencil-square"></i></a> </td>
+                @can('admin.articulos.destroy')
                 <form action="{{route('articulos.destroy',$articulo)}}" method="post" class="eliminar_datos">
                     @csrf
                     @method('delete')
@@ -102,6 +106,8 @@
                         </button>
                     </td>
                 </form>
+                @endcan
+
             </tr>
             @endforeach
         </tbody>

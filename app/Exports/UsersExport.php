@@ -14,6 +14,6 @@ class UsersExport implements FromCollection
      */
     public function collection()
     {
-        return tbl_usuarios::all();
+        return tbl_usuarios::select('id', 'cedula', 'email', 'nom_user', 'apellidos_user', 'fecha_ingreso', 'telefono_user', 'direccion_user')->get();
     }
 }

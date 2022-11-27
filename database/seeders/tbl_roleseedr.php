@@ -108,5 +108,8 @@ class tbl_roleseedr extends Seeder
         Permission::create(['name' => 'admin.salidas.xlsx'])->syncRoles([$admin]);
         Permission::create(['name' => 'admin.salidas.pdf'])->syncRoles([$admin]);
         Permission::create(['name' => 'admin.salidas.print'])->syncRoles([$admin, $almacenista]);
+
+
+        Permission::create(['name' => 'admin.reportes.index'])->syncRoles([$admin]);
     }
 }

@@ -23,7 +23,7 @@ class usuarios extends Controller
 
     public function exportPdf()
     {
-        $usuarios = tbl_usuarios::get();
+        $usuarios = tbl_usuarios::all()->except('updated_at', 'deleted_at', 'password');
         $pdf = PDF::loadView('pdf.usuarios', compact('usuarios'))->setPaper('a4', 'landscape');
         return $pdf->download('usuarios.pdf');
     }

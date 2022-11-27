@@ -2,11 +2,11 @@
 
 namespace App\Exports;
 
-use App\Models\tbl_empresas;
-use Maatwebsite\Excel\Concerns\Exportable;
+use App\Models\tbl_registros;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\Exportable;
 
-class EmpresasExport implements FromCollection
+class SalidasExport implements FromCollection
 {
     use Exportable;
     /**
@@ -14,6 +14,6 @@ class EmpresasExport implements FromCollection
      */
     public function collection()
     {
-        return tbl_empresas::all();
+        return tbl_registros::where('tipo', '=', 'Salida')->get();
     }
 }
