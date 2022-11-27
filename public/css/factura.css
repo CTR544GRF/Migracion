@@ -25,7 +25,7 @@ main {
     width: 100%;
     align-items: center;
     padding: 15px;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .crear_factura {
@@ -119,6 +119,18 @@ main {
 
 .scs_cuatro_abajo button {
     color: rgb(255, 255, 255);
+}
+
+textarea {
+    width: 500px;
+    color: black;
+    border: 1px solid #000;
+    resize: none;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: bold;
 }
 
 @media screen and (max-width:540px) {

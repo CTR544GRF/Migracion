@@ -49,12 +49,12 @@
     <table>
         <thead>
             <tr>
-                <th>id</th>
-                <th>#factura</th>
+                <th>ID</th>
+                <th># Factura</th>
                 <th>Tipo de factura</th>
-                <th>Codigo articulo</th>
+                <th>Código artículo</th>
                 <th>Valor unitario</th>
-                <th>cantidad</th>
+                <th>Cantidad</th>
                 <th>Descripción</th>
                 <th>Nit</th>
                 <th>Id usuario</th>

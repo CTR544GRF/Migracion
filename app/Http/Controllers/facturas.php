@@ -41,6 +41,19 @@ class facturas extends Controller
 
     public function store(Request $request, tbl_totalfactura $total)
     {
+        $request->validate([
+            'num_factura' => 'required|max:15',
+            'descripcion' => 'max:100',
+            'fecha' => 'required|max:20|date',
+            'tipo_factura' => 'required|max:30',
+            'cod_articulo' => 'max:50',
+            'valor_unitario' => 'max:50',
+            'cantidad' => 'max:50',
+            'iva_producto' => 'max:50',
+            'id_empresa' => 'max:50',
+            'id_user' => 'max:50',
+        ]);
+
 
         $cantidadArticulos = count($request->ca);
 
@@ -59,6 +72,7 @@ class facturas extends Controller
             $facturas->id_user = $request->id_user;
             $facturas->save();
         }
+
 
         $totalFactura = new $total();
         $totalFactura->num_factura = $request->num_factura;

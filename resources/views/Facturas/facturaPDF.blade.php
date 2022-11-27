@@ -88,7 +88,7 @@
       <div class="1">
         <img src="img/Logo letra blanca.png" />
         <h1>Sadidas S.A.S</h1>
-        <p><span>Cr 158B # 138 D - 17, Barrio: Caracoli, Ciudad Bolivar, Bogotá.</span></p>
+        <p><span>Cr 158B # 138 D - 17, Barrio: Caracolí, Ciudad Bolivar, Bogotá.</span></p>
       <hr />
         <h5>N° de factura: <span>{{$facturas[0]->num_factura}}</span></h5>
         <h5>Tipo factura: <span>{{$facturas[0]->tipo_factura}}</span></h5> 
@@ -105,9 +105,9 @@
       <table class="table table-borderless factura">
         <thead>
           <tr>
-            <th>Cod.Articulo</th>
+            <th>Cod.Artículo</th>
             <th>Cant.</th>
-            <th>Descripcion</th>
+            <th>Descripción Artículo</th>
             <th>Precio Unitario</th>
             <th>Iva %</th>
           </tr>
