@@ -43,13 +43,9 @@ class facturas extends Controller
     {
         $request->validate([
             'num_factura' => 'required|max:15',
-            'descripcion' => 'max:100',
+            'descripcion' => 'max:100|required',
             'fecha' => 'required|max:20|date',
             'tipo_factura' => 'required|max:30',
-            'cod_articulo' => 'max:50',
-            'valor_unitario' => 'max:50',
-            'cantidad' => 'max:50',
-            'iva_producto' => 'max:50',
             'id_empresa' => 'max:50',
             'id_user' => 'max:50',
         ]);
@@ -129,7 +125,15 @@ class facturas extends Controller
 
     public function update(Request $request, tbl_facturas $facturas, tbl_totalfactura $total)
     {
-
+        $request->validate([
+            'num_factura' => 'required|max:15',
+            'descripcion' => 'max:100|required',
+            'fecha' => 'required|max:20|date',
+            'tipo_factura' => 'required|max:30',
+            'id_empresa' => 'max:50',
+            'id_user' => 'max:50',
+        ]);
+        
         $cantidadArticulos = count($request->ca);
 
         
