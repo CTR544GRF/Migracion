@@ -5,6 +5,16 @@
 {{asset('css/reportes.css')}}
 @stop
 
+<!--link nav -->
+@section('link')
+{{ route('ver_reportes')}}
+@stop
+
+<!-- palabra nav -->
+@section('palabra-accion')
+{{'Volver'}}
+@stop
+
 <!-- Titulo -->
 @section('titulo')
 {{ 'Reportes Facturas'}}

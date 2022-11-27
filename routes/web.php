@@ -6,6 +6,7 @@ use App\Exports\EntradasExport;
 use App\Exports\FacturasExport;
 use App\Exports\SalidasExport;
 use App\Exports\UsersExport;
+use App\Exports\InventariosExport;
 
 use App\Http\Controllers\articulos;
 use App\Http\Controllers\usuarios;
@@ -117,6 +118,19 @@ Route::get('entradas.csv', function (EntradasExport $entradasExport) {
 Route::get('entradas.xlsx', function (EntradasExport $entradasExport) {
     return $entradasExport->download('entradas.xlsx');
 })->name('entradas.xlsx');
+
+
+//inventarios
+Route::get('inventario.pdf', [inventario::class, 'exportPdf'])->name('inventarios.pdf');
+Route::get('inventario.print', [inventario::class, 'printPdf'])->name('inventarios.print');
+Route::get('inventarios.csv', function (InventariosExport $entradasExport) {
+    return $entradasExport->download('inventarios.csv');
+})->name('inventarios.csv');
+Route::get('inventarios.xlsx', function (InventariosExport $entradasExport) {
+    return $entradasExport->download('inventarios.xlsx');
+})->name('inventarios.xlsx');
+
+
 
 //reportes pruebaaa
 Route::view('/Reportes/Ver', 'reportes.reportes')->name('ver_reportes');
