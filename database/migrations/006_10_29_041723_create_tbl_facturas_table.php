@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('num_factura');
             $table->date('fecha');
             $table->String('tipo_factura', 20);
-            $table->double('valor_unitario');
-            $table->double('cantidad');
+            $table->integer('valor_unitario');
+            $table->integer('cantidad');
+            $table->integer('iva_producto');
             $table->String('descripcion', 150);
             $table->integer('cod_articulo');
             $table->unsignedBigInteger('id_empresa')->nullable();

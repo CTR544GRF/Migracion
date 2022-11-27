@@ -90,12 +90,12 @@
         <h1>Sadidas S.A.S</h1>
         <p><span>Cr 158B # 138 D - 17, Barrio: Caracoli, Ciudad Bolivar, Bogotá.</span></p>
       <hr />
-        <h5>N° de factura: <span>103</span></h5>
-        <h5>Tipo factura: <span>Arian Manuel Garcia Reynoso</span></h5> 
-        <h5>Enviar a/ o enviado por: <span>Cotui, Sanchez Ramirez Santa Fe, #19, arianmanuel75@gmail.com </span></h5>
-        <h5>Descripción: <span>Cotui, Sanchez Ramirez Santa Fe, #19, arianmanuel75@gmail.com </span></h5>
-        <h5>Fecha: <span>09/05/2019</span></h5>
-        <h5>Usuario quien realiza:<span> 1235435 - Esteban Hernandez</span></h5>
+        <h5>N° de factura: <span>{{$facturas[0]->num_factura}}</span></h5>
+        <h5>Tipo factura: <span>{{$facturas[0]->tipo_factura}}</span></h5> 
+        <h5>Enviar a/ o enviado por: <span>{{$facturas[0]->direccion_empresa.", ". $facturas[0]->nom_empresa.",".$facturas[0]->representante.", ". $facturas[0]->email_empresa}}</span></h5>
+        <h5>Descripción: <span>{{$facturas[0]->descripcion}}</span></h5>
+        <h5>Fecha: <span>{{$facturas[0]->fecha}}</span></h5>
+        <h5>Usuario quien realiza:<span> {{$facturas[0]->cedula." ".$facturas[0]->nom_user}}</span></h5>
       </div>
     </div>
   
@@ -105,6 +105,7 @@
       <table class="table table-borderless factura">
         <thead>
           <tr>
+            <th>Cod.Articulo</th>
             <th>Cant.</th>
             <th>Descripcion</th>
             <th>Precio Unitario</th>
@@ -112,37 +113,34 @@
           </tr>
         </thead>
         <tbody>
+          @foreach ($facturas as $item)
           <tr>
-            <td>1</td>
-            <td>Clases de Cha-Cha-Cha</td>
-            <td>3,000.00</td>
-            <td>3,000.00</td>
+            <td>{{$item->cod_articulo }}</td>
+            <td>{{$item->cantidad }}</td>
+            <td>{{$item->descripcion_articulo}}</td>
+            <td>{{$item->valor_unitario}}</td>
+            <td>{{$item->iva_producto}}</td>
           </tr>
-          <tr>
-            <td>3</td>
-            <td>Clases de Salsa</td>
-            <td>4,000.00</td>
-            <td>12,000.00</td>
-          </tr>
+          @endforeach
         </tbody>
         <tfoot>
           <tr>
             <th></th>
             <th></th>
-            <th>SubTotal Factura</th>
-            <th>RD$15,000.00</th>
+            <th>Subtotal Factura</th>
+            <th>{{$facturas[0]->sub_total}}</th>
           </tr>
           <tr>
             <th></th>
             <th></th>
             <th>Total Iva</th>
-            <th>RD$15,000.00</th>
+            <th>{{$facturas[0]->iva}}</th>
           </tr>
           <tr>
             <th></th>
             <th></th>
             <th>Total Factura</th>
-            <th>RD$15,000.00</th>
+            <th>{{$facturas[0]->total}}</th>
           </tr>
         </tfoot>
       </table>

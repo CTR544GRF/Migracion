@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\tbl_registros;
-use App\Models\tbl_facturas;
+use App\Models\tbl_totalfactura;
 use App\Models\tbl_articulos;
 use App\Models\tbl_inventarios;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -76,7 +76,7 @@ class entradas extends Controller
     public function create()
     {
         $articulos = tbl_articulos::all();
-        $facturas = tbl_facturas::all();
+        $facturas = tbl_totalfactura::all();
         return view('entradas.registrar_entrada', compact('articulos', 'facturas'));
     }
 

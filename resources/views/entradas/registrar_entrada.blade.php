@@ -47,7 +47,7 @@
                 <option selected>Seleccione una factura</option>
                 <option value="">No aplica</option>
                 @foreach ($facturas as $factura)
-                <option value="{{$factura->num_factura}}">{{$factura->num_factura}} - {{$factura->tipo_factura}} </option>
+                <option value="{{$factura->num_factura}}">{{$factura->num_factura}} </option>
                 @endforeach
             </select>
         </div>

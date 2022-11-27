@@ -109,7 +109,7 @@ class reportes extends Controller
     public function printPdfArticulos3()
     {
         $articulos = tbl_articulos::where('tipo_articulo', '=', 'Insumo')
-        ->get();
+            ->get();
         $pdf = PDF::loadView('reportes.rarticulos', compact('articulos'))->setPaper('a4', 'landscape');
         return $pdf->stream('rarticulos.pdf');
     }
@@ -143,7 +143,7 @@ class reportes extends Controller
     public function printPdfInventarios3()
     {
         $inventarios = tbl_inventarios::where('tipo_articulo', '=', 'Insumo')
-        ->get();
+            ->get();
         $pdf = PDF::loadView('reportes.rinventarios', compact('inventarios'))->setPaper('a4', 'landscape');
         return $pdf->stream('rinventarios.pdf');
     }
@@ -158,15 +158,27 @@ class reportes extends Controller
 
 
 
-
-
-
-    public function printPdffactura()
+    public function printPdffactura($num_factura)
     {
-        $facturas = tbl_facturas::get();
+
+        $facturas = tbl_facturas::leftJoin('tbl_totalfacturas as tl', 'tbl_facturas.num_factura', '=', 'tl.num_factura')
+            ->leftJoin('tbl_articulos as A', 'tbl_facturas.cod_articulo', '=', 'A.cod_articulo')
+            ->leftJoin('users as U', 'tbl_facturas.id_user', '=', 'U.id')
+            ->leftJoin('tbl_empresas as emp', 'tbl_facturas.id_empresa', '=', 'emp.id')
+            ->select(
+                'tbl_facturas.*',
+                'emp.direccion_empresa',
+                'emp.nom_empresa',
+                'emp.nombre as representante',
+                'emp.email_empresa',
+                'U.cedula',
+                'U.nom_user',
+                'tl.*'
+            )
+            ->where('tl.num_factura', '=', $num_factura)
+            ->get();
+
         $pdf = PDF::loadView('Facturas.facturaPDF', compact('facturas'))->setPaper('a4', 'landscape');
         return $pdf->stream('facturaPDF.pdf');
     }
 }
-    
-

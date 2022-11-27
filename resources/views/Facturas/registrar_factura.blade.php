@@ -109,7 +109,7 @@
                         <div class="cajas" id="iva">
                             <h3>Iva</h3>
                             <div class="tbl_abajo">
-                                <input type="number"  onkeyup="totalArticulos()" class="vi"  id="valor_iva" min="1" value="0" max="100" required>
+                                <input type="number" name="vi[]" onkeyup="totalArticulos()" class="vi"  id="valor_iva" min="1" value="0" max="100" required>
                                 <span>%</span>
                             </div>
                         </div>

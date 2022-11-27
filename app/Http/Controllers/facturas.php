@@ -54,6 +54,7 @@ class facturas extends Controller
             $facturas->cod_articulo = $request->ca[$i];
             $facturas->valor_unitario = $request->pu[$i];
             $facturas->cantidad = $request->vc[$i];
+            $facturas->iva_producto = $request->vi[$i];
             $facturas->id_empresa = $request->nit_empresa;
             $facturas->id_user = $request->id_user;
             $facturas->save();
@@ -120,7 +121,7 @@ class facturas extends Controller
         
         for ($i = 0; $i < $cantidadArticulos; $i++) {
             $affected = $facturas::where('id', $request->id[$i])
-                ->update(['tipo_factura' => $request->tipo_factura, 'cod_articulo' => $request->ca[$i], 'valor_unitario' => $request->pu[$i], 'cantidad' => $request->vc[$i], 'id_empresa' => $request->id_empresa, 'id_user' => $request->id_user, 'descripcion' => $request->descripcion, 'fecha' => $request->fecha]);
+                ->update(['tipo_factura' => $request->tipo_factura, 'cod_articulo' => $request->ca[$i], 'valor_unitario' => $request->pu[$i], 'cantidad' => $request->vc[$i],'iva_producto' => $request->vi[$i] ,'id_empresa' => $request->id_empresa, 'id_user' => $request->id_user, 'descripcion' => $request->descripcion, 'fecha' => $request->fecha]);
            
         }
         
