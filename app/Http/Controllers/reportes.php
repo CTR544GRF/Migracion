@@ -8,8 +8,10 @@ use App\Models\tbl_usuarios;
 use App\Models\tbl_empresas;
 use App\Models\tbl_articulos;
 use App\Models\tbl_facturas;
+use App\Models\tbl_totalfactura;
 use App\Models\tbl_inventarios;
 use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class reportes extends Controller
 {
@@ -174,5 +176,30 @@ class reportes extends Controller
 
         $pdf = PDF::loadView('Facturas.facturaPDF', compact('facturas'))->setPaper('a4', 'landscape');
         return $pdf->stream('facturaPDF.pdf');
+    }
+
+    function reportFactura(Request $request,tbl_facturas $facturas)
+    {
+        $reportes = $facturas::leftJoin('tbl_totalfacturas as tl', 'tbl_facturas.num_factura', '=', 'tl.num_factura')
+        ->select(
+            'fecha',
+            'tl.*'
+        )->whereBetween('fecha', [$request->fechaDesde, $request->fechaHasta])->where('tipo_factura','=',$request->tipo_factura)->distinct()->get();
+
+        $count = tbl_totalfactura::leftJoin('tbl_facturas as tl', 'tbl_totalfacturas.num_factura', '=', 'tl.num_factura')
+        ->select(
+            'fecha',
+            'tl.*'
+        )->whereBetween('fecha', [$request->fechaDesde, $request->fechaHasta])->where('tipo_factura','=',$request->tipo_factura)->distinct()->count();
+        
+        $contador = 1 ;
+        $sumSubtotal = $facturas::leftJoin('tbl_totalfacturas as tl', 'tbl_facturas.num_factura', '=', 'tl.num_factura')->whereBetween('fecha', [$request->fechaDesde, $request->fechaHasta])->where('tipo_factura','=',$request->tipo_factura)->distinct()->sum('sub_total');
+        $sumIva = $facturas::leftJoin('tbl_totalfacturas as tl', 'tbl_facturas.num_factura', '=', 'tl.num_factura')->whereBetween('fecha', [$request->fechaDesde, $request->fechaHasta])->where('tipo_factura','=',$request->tipo_factura)->distinct()->sum('iva');
+        $sumTotal = $facturas::leftJoin('tbl_totalfacturas as tl', 'tbl_facturas.num_factura', '=', 'tl.num_factura')->whereBetween('fecha', [$request->fechaDesde, $request->fechaHasta])->where('tipo_factura','=',$request->tipo_factura)->distinct()->sum('total');
+
+        $pdf = PDF::loadView('reportes.rfacturas', compact('reportes','count','sumSubtotal','sumIva','sumTotal','contador'))->setPaper('a4', 'landscape');
+        return $pdf->stream('factura.pdf');
+
+        var_dump("<pre>".$reportes."</pre>");
     }
 }

@@ -152,18 +152,9 @@
     </header>
     <table class="table table-bordered">
         <thead>
-            <tr>
-                <th>id</th>
-                <th>#factura</th>
-                <th>Tipo de factura</th>
-                <th>Codigo articulo</th>
-                <th>Descripción del artículo articulo</th>
-                <th>Valor unitario</th>
-                <th>cantidad</th>
-                <th>Descripción</th>
-                <th>Nit</th>
-                <th>Cédula usuario</th>
-                <th>Nombre Usuario</th>
+            <tr>    
+                <th>#</th>
+                <th>#factura</th>   
                 <th>Sub total</th>
                 <th>iva</th>
                 <th>Total</th>
@@ -171,48 +162,29 @@
             </tr>
         </thead>
         <tbody id="myTable">
-            @foreach ($facturas as $factura)
+            @foreach ($reportes as $factura)
             <tr>
-                <td data-label="Nu.factura">{{ $factura->id }}</td>
-                <td data-label="Nu.factura">{{ $factura->num_factura }}</td>
-                <td data-label="Tipo de factura">{{ $factura->tipo_factura }}</td>
-                <td data-label="Codigo articulo">{{ $factura->cod_articulo }}</td>
-                <td data-label="Valor unitario">{{ $factura->valor_unitario}}</td>
-                <td data-label="cantidad">{{ $factura->cantidad}}</td>
-                <td data-label="Descripción">{{ $factura->descripcion }}</td>
-                <td data-label="Nit">{{$factura->id_empresa }}</td>
-                <td data-label="Id usuario">{{ $factura->id_user}}</td>
-                <td data-label="Sub total">{{ $factura->sub_total }}</td>
+                <td data-label="id">{{ $contador }}</td>
+                <td data-label="nu-factura">{{ $factura->num_factura }}</td>
+                <td data-label="subtotal">{{ $factura->sub_total }}</td>
                 <td data-label="iva">{{ $factura->iva }}</td>
-                <td data-label="Total">{{ $factura->total }}</td>
-                <td data-label="Fecha">{{ $factura->fecha }}</td>
-                <td data-label="Fecha">{{ $factura->fecha }}</td>
-                <td data-label="Fecha">{{ $factura->fecha }}</td>
+                <td data-label="total">{{ $factura->total }}</td>
+                <td data-label="fecha">{{ $factura->fecha }}</td>
             </tr>
+            {{$contador++}}
             @endforeach
         </tbody>
     </table>
+   
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Total numero de facturas según selección</th>
+                <th>Suma subtotal de facturas</th>
             </tr>
         </thead>
         <tbody id="myTable">
             <tr>
-                <td data-label="totalUsuarios">{{$count}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Total valor de facturas según selección</th>
-            </tr>
-        </thead>
-        <tbody id="myTable">
-            <tr>
-                <td data-label="totalUsuarios">{{$sum}}</td>
+                <td data-label="totalUsuarios">{{$sumSubtotal}}</td>
             </tr>
         </tbody>
     </table>
@@ -220,12 +192,12 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Total unidades de artículos facturadas según selección</th>
+                <th>Suma iva de facturas</th>
             </tr>
         </thead>
         <tbody id="myTable">
             <tr>
-                <td data-label="totalUsuarios">{{$sum}}</td>
+                <td data-label="totalUsuarios">{{$sumIva}}</td>
             </tr>
         </tbody>
     </table>
@@ -233,12 +205,12 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Total artículos facturados según selección</th>
+                <th>Suma total de facturas</th>
             </tr>
         </thead>
         <tbody id="myTable">
             <tr>
-                <td data-label="totalUsuarios">{{$sum}}</td>
+                <td data-label="totalUsuarios">{{$sumTotal}}</td>
             </tr>
         </tbody>
     </table>

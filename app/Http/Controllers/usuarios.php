@@ -23,13 +23,12 @@ class usuarios extends Controller
 
     public function exportPdf()
     {
-<<<<<<< HEAD
         $usuarios = tbl_usuarios::all()->except('updated_at', 'deleted_at', 'password');
-=======
+
         $usuarios = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')
             ->select('users.*', 'r.name')->orderBy('id', 'asc')
             ->get();
->>>>>>> 70965bb5d51b9153e928f3ca1a85440fe7f51174
+
         $pdf = PDF::loadView('pdf.usuarios', compact('usuarios'))->setPaper('a4', 'landscape');
         return $pdf->download('usuarios.pdf');
     }
@@ -169,13 +168,14 @@ class usuarios extends Controller
 
         $usuario->cedula = $request->cedula;
         $usuario->email = $request->email;
-        $usuario->password = $request->contraseña;
+        $usuario->password = bcrypt($request->contraseña);
         $usuario->nom_user = $request->nombres;
         $usuario->apellidos_user = $request->apellidos;
         $usuario->fecha_ingreso = $request->fecha;
         $usuario->telefono_user = $request->telefono;
         $usuario->direccion_user = $request->direccion;
         $usuario->cod_rol = $request->rol;
+        $usuario->syncRoles($request->rol);
         $usuario->save();
 
         $message = $request->cedula;

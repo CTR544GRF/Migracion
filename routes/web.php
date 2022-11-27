@@ -16,6 +16,8 @@ use App\Http\Controllers\roles;
 use App\Http\Controllers\salidas;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\inventario;
+use App\Http\Controllers\reportes;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 /*
@@ -115,3 +117,31 @@ Route::get('entradas.csv', function (EntradasExport $entradasExport) {
 Route::get('entradas.xlsx', function (EntradasExport $entradasExport) {
     return $entradasExport->download('entradas.xlsx');
 })->name('entradas.xlsx');
+
+//reportes pruebaaa
+Route::view('/Reportes/Ver', 'reportes.reportes')->name('ver_reportes');
+Route::view('/Reportes/Ver/UsuariosPDF', 'reportes.reportes_usuarios')->name('reportes_usuarios');
+Route::view('/Reportes/Ver/EmpresasPDF', 'reportes.reportes_empresas')->name('reportes_empresas');
+Route::view('/Reportes/Ver/articulosPDF', 'reportes.reportes_articulos')->name('reportes_articulos');
+Route::view('/Reportes/Ver/facturasPDF', 'reportes.reportes_facturas')->name('reportes_facturas');
+Route::view('/Reportes/Ver/stockPDF', 'reportes.reportes_inventarios')->name('reportes_inventarios');
+
+Route::get('/usuarios/reporte/{id}', [reportes::class, 'printPdf'])->name('rusuarios');
+
+
+Route::get('rempresas.print1', [reportes::class, 'printPdfEmpresas1'])->name('rempresas.print1');
+Route::get('rempresas.print2', [reportes::class, 'printPdfEmpresas2'])->name('rempresas.print2');
+Route::get('rempresas.print3', [reportes::class, 'printPdfEmpresas3'])->name('rempresas.print3');
+
+Route::get('rarticulos.print1', [reportes::class, 'printPdfArticulos1'])->name('rarticulos.print1');
+Route::get('rarticulos.print2', [reportes::class, 'printPdfArticulos2'])->name('rarticulos.print2');
+Route::get('rarticulos.print3', [reportes::class, 'printPdfArticulos3'])->name('rarticulos.print3');
+Route::get('rarticulos.print4', [reportes::class, 'printPdfArticulos4'])->name('rarticulos.print4');
+
+Route::get('rinventarios.print1', [reportes::class, 'printPdfinventarios1'])->name('rinventarios.print1');
+Route::get('rinventarios.print2', [reportes::class, 'printPdfinventarios2'])->name('rinventarios.print2');
+Route::get('rinventarios.print3', [reportes::class, 'printPdfinventarios3'])->name('rinventarios.print3');
+Route::get('rinventarios.print4', [reportes::class, 'printPdfinventarios4'])->name('rinventarios.print4');
+
+Route::get('/reportes/facturas.pdf', [reportes::class, 'reportFactura'])->name('report_factura');
+Route::get('/facturas/reporte/{num_factura}', [reportes::class, 'printPdffactura'])->name('factura_reporte');
