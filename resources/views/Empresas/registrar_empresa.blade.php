@@ -26,7 +26,7 @@
     <div class="form_container">
         <h2 class="form_titulo">Registrar empresa</h2>
         <div class="from_group">
-            <input type="text" id="nit" class="from_input" placeholder="    " name="nit" required maxlength="10">
+            <input type="text" id="nit" class="from_input" placeholder=" " name="nit" required maxlength="10">
             <label for="tipo" class="from_label">Nit empresa</label>
             <span class="from_line"></span>
         </div>
