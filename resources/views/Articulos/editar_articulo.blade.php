@@ -40,11 +40,11 @@
             </select>
         </div>
         <div class="from_group">
-            <input type="text" id="Nombre" class="from_input" placeholder=" " name="nombre" value="{{$articulo->nom_articulo}}">
+            <input type="text" id="Nombre" class="from_input" placeholder=" " name="nombre" value="{{$articulo->nom_articulo}}" required>
             <label for="tipo" class="from_label">Nombre</label>
         </div>
         <div class="from_group">
-            <input type="text" id="Material" class="from_input" placeholder=" " name="material" value="{{$articulo->material_articulo}}">
+            <input type="text" id="Material" class="from_input" placeholder=" " name="material" value="{{$articulo->material_articulo}}" required>
             <label for="tipo" class="from_label">Material</label>
         </div>
         <div class="from_group">
@@ -82,11 +82,11 @@
             </select>
         </div>
         <div class="from_group">
-            <input type="text" id="Color" class="from_input" value="{{$articulo->color_articulo}}" placeholder=" " name="color">
+            <input type="text" id="Color" class="from_input" value="{{$articulo->color_articulo}}" placeholder=" " name="color" required>
             <label for="tipo" class="from_label">Color</label>
         </div>
         <div class="from_group">
-            <input type="text" id="descripción" class="from_input" placeholder=" " value="{{$articulo->descripcion_articulo}}" name="descripcion">
+            <input type="text" id="descripción" class="from_input" placeholder=" " value="{{$articulo->descripcion_articulo}}" name="descripcion" required>
             <label for="tipo" class="from_label">Descripción</label>
         </div>
         <button type="submit" class="form_submit" name="registrarArt">Editar</button>

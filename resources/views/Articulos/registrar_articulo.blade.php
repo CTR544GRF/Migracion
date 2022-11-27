@@ -26,34 +26,34 @@
     <div class="form_container">
         <h2 class="form_titulo">Registrar artículo</h2>
         <div class="from_group">
-            <select name="tipo" id="tipo">
-                <option selected>Seleccione la categoría del artículo</option>
+            <select name="tipo" id="tipo" required>
+                <option value="">Seleccione la categoría del artículo</option>
                 <option value="Producto terminado">Producto terminado</option>
                 <option value="Materia prima">Materia prima</option>
                 <option value="Insumo">Insumo</option>
             </select>
         </div>
         <div class="from_group">
-            <input type="text" id="Nombre" class="from_input" placeholder=" " name="nombre">
+            <input type="text" id="Nombre" class="from_input" placeholder=" " name="nombre" required>
             <label for="tipo" class="from_label">Nombre</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
-            <input type="text" id="material" class="from_input" placeholder=" " name="material">
+            <input type="text" id="material" class="from_input" placeholder=" " name="material" required>
             <label for="tipo" class="from_label">Material</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
-            <select name="linea" id="linea">
-                <option selected>Seleccione línea del producto</option>
+            <select name="linea" id="linea" required>
+                <option value="">Seleccione línea del producto</option>
                 <option value="No">No aplica</option>
                 <option value="Adulto">Adulto</option>
                 <option value="Niño">Niño</option>
             </select>
         </div>
         <div class="from_group">
-            <select name="talla" id="talla">
-                <option selected>Seleccione talla del producto</option>
+            <select name="talla" id="talla" required>
+                <option value="">Seleccione talla del producto</option>
                 <option value="No">No aplica</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
@@ -70,20 +70,20 @@
             </select>
         </div>
         <div class="from_group">
-            <select name="uMedida" id="uMedida">
-                <option selected>Seleccione unidad de medida</option>
+            <select name="uMedida" id="uMedida" required>
+                <option value="">Seleccione unidad de medida</option>
                 <option value="Unidad">Unidad</option>
                 <option value="Centímetros">Centímetros</option>
                 <option value="Metros">Metros</option>
             </select>
         </div>
         <div class="from_group">
-            <input type="text" id="Color" class="from_input" placeholder=" " name="color">
+            <input type="text" id="Color" class="from_input" placeholder=" " name="color" required>
             <label for="tipo" class="from_label">Color</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
-            <input type="text" id="descripción" class="from_input" placeholder=" " name="descripcion">
+            <input type="text" id="descripción" class="from_input" placeholder=" " name="descripcion" required>
             <label for="tipo" class="from_label">Descripción</label>
             <span class="from_line"></span>
         </div>

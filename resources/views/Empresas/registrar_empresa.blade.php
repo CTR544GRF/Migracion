@@ -56,8 +56,8 @@
             <span class="from_line"></span>
         </div>
         <div class="from_group">
-            <select name="rol" class="from_group">
-                <option selected>Seleccione tipo de empresa</option>
+            <select name="rol" class="from_group" required>
+                <option value="">Seleccione tipo de empresa</option>
                 <option value="Cliente">Cliente</option>
                 <option value="Proveedor">Proveedor</option>
             </select>

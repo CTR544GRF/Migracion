@@ -93,7 +93,7 @@
         <h5>N° de factura: <span>{{$facturas[0]->num_factura}}</span></h5>
         <h5>Tipo factura: <span>{{$facturas[0]->tipo_factura}}</span></h5> 
         <h5>Enviar a/ o enviado por: <span>{{$facturas[0]->direccion_empresa.", ". $facturas[0]->nom_empresa.",".$facturas[0]->representante.", ". $facturas[0]->email_empresa}}</span></h5>
-        <h5>Descripción: <span>{{$facturas[0]->descripcion}}</span></h5>
+        <h5>Dirección entrega: <span>{{$facturas[0]->descripcion}}</span></h5>
         <h5>Fecha: <span>{{$facturas[0]->fecha}}</span></h5>
         <h5>Usuario quien realiza:<span> {{$facturas[0]->cedula." ".$facturas[0]->nom_user}}</span></h5>
       </div>
