@@ -157,11 +157,13 @@
                 <th>#factura</th>
                 <th>Tipo de factura</th>
                 <th>Codigo articulo</th>
+                <th>Descripción del artículo articulo</th>
                 <th>Valor unitario</th>
                 <th>cantidad</th>
                 <th>Descripción</th>
                 <th>Nit</th>
-                <th>Id usuario</th>
+                <th>Cédula usuario</th>
+                <th>Nombre Usuario</th>
                 <th>Sub total</th>
                 <th>iva</th>
                 <th>Total</th>
@@ -183,6 +185,8 @@
                 <td data-label="Sub total">{{ $factura->sub_total }}</td>
                 <td data-label="iva">{{ $factura->iva }}</td>
                 <td data-label="Total">{{ $factura->total }}</td>
+                <td data-label="Fecha">{{ $factura->fecha }}</td>
+                <td data-label="Fecha">{{ $factura->fecha }}</td>
                 <td data-label="Fecha">{{ $factura->fecha }}</td>
             </tr>
             @endforeach

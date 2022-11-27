@@ -27,16 +27,11 @@
 @stop
 
 @section('seccion')
-<form class="registrar_usuario" action="{{route('empresas.update',$empresa->id)}}" method="POST">
+<form class="registrar_usuario" action="{{route('empresas.update',$empresa)}}" method="POST">
     @csrf
     @method('PATCH')
     <div class="form_container">
         <h2 class="form_titulo">Editar empresa</h2>
-        <div class="from_group" style="display:none">
-            <input type="text" id="id" class="from_input" placeholder=" " name="id" required maxlength="10" value="{{$empresa->id_empresa}}">
-            <label for="tipo" class="from_label">ID</label>
-            <span class="from_line"></span>
-        </div>
         <div class="from_group">
             <input type="text" id="nit" class="from_input" placeholder=" " name="nit" required maxlength="10" value="{{$empresa->nit_empresa}}">
             <label for="tipo" class="from_label">NIT empresa</label>
@@ -63,7 +58,7 @@
             <span class="from_line"></span>
         </div>
         <div class="from_group">
-            <input type="text" name="nombre" class="from_input" placeholder=" " value="{{$empresa->nombre}}">
+            <input type="text" name="representante" class="from_input" placeholder=" " value="{{$empresa->nombre}}">
             <label for="tipo" class="from_label">Nombre representante</label>
             <span class="from_line"></span>
         </div>
@@ -74,7 +69,7 @@
                 <option value="Proveedor">Proveedor</option>
             </select>
         </div>
-        <button name="registrar" type="submit" class="form_submit">Editar</button>
+        <button  type="submit" class="form_submit">Editar</button>
     </div>
 </form>
 
