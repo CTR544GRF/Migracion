@@ -28,7 +28,7 @@
     <div class="form_container">
         <div class="from_group">
             <select name="cod_articulo" class="from_group">
-                <option selected><button href="{{route('articulos.create')}}"><a>Seleccione un Articulo</a></button></option>
+                <option selected><button href="{{route('articulos.create')}}"><a>Seleccione un Artículo</a></button></option>
                 @foreach ($articulos as $articulo)
                 <option value="{{$articulo->cod_articulo}}">{{$articulo->cod_articulo }} - {{$articulo->nom_articulo}} - {{$articulo->color_articulo}} - {{$articulo->tipo_articulo}}</option>
                 @endforeach
@@ -37,11 +37,11 @@
         <div class="from_group">
             <select name="causal" id="causal">
                 <option selected>Causal salida</option>
-                <option value="Factura de venta - producto">Factura de venta - producto</option>
-                <option value="No conforme - producto">No conforme - producto</option>
-                <option value="Confección Satelite - materia prima">Confección Satelite - materia prima</option>
-                <option value="Baja - materia prima">Baja - materia prima</option>
-                <option value="Baja - insumo">Baja - insumo</option>
+                <option value="Factura de venta - producto">Factura de venta - Producto</option>
+                <option value="No conforme - producto">No conforme - Producto</option>
+                <option value="Confección Satelite - materia prima">Confección Satelite - Materia prima</option>
+                <option value="Baja - materia prima">Baja - Materia prima</option>
+                <option value="Baja - insumo">Baja - Insumo</option>
             </select>
         </div>
         <div class="from_group">
@@ -76,14 +76,14 @@
 
 @if (session('error'))
 <script>
-    error('Dato Errado', '<?php echo session('error') ?>');
+    error('Dato Erróneo', '<?php echo session('error') ?>');
 </script>
 @endif
 
 @if ($errors->any())
 @foreach ($errors->all() as $message)
 <script>
-    error('Dato Errado', 'Dejo algún campo sin seleccionar')
+    error('Dato Erróneo', 'Dejo algún campo sin seleccionar')
 </script>
 @endforeach
 

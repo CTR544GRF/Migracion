@@ -116,7 +116,7 @@
         <thead>
             <tr>
                 <th>NIT</th>
-                <th>Nombre</th>
+                <th>Razón social</th>
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>E-mail</th>

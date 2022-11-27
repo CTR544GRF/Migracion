@@ -99,13 +99,13 @@
             text-align: end;
         }
     </style>
-    <title>Articulos</title>
+    <title>Artículos</title>
 </head>
 
 <body>
     <div class="space">
         <img src="img/Logo letra blanca.png" height="70vw" alt="">
-        <h2>Articulos Registrados</h2>
+        <h2>Artículos Registrados</h2>
     </div>
 
     <div class="logo">
@@ -118,12 +118,12 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Codigo artículo</th>
-                <th>Categoría articulo</th>
+                <th>Código artículo</th>
+                <th>Categoría artículo</th>
                 <th>Nombre</th>
                 <th>Material</th>
                 <th>Talla</th>
-                <th>Linea</th>
+                <th>Línea</th>
                 <th>Unidad de medida</th>
                 <th>Color</th>
                 <th>Descripción</th>

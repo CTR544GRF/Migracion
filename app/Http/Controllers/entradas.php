@@ -46,7 +46,7 @@ class entradas extends Controller
         if ($request->causal == "Factura de compra - Materia prima o insumos" && $request->num_factura == "Seleccione una factura") {
             return redirect()->route('entradas.create')->with('error', 'Debe seleccionar un numero de factura');
         } elseif ($request->causal == "Factura de compra - Materia prima o insumos" && is_null($request->num_factura)) {
-            return redirect()->route('entradas.create')->with('error', 'Debe seleccionar un numero de factura');
+            return redirect()->route('entradas.create')->with('error', 'Debe seleccionar un número de factura');
         }
 
         if ($request->num_factura == "Seleccione una factura") {
@@ -61,7 +61,7 @@ class entradas extends Controller
         $entradas->num_factura = $request->num_factura;
         if ($entradas->save()) :
             $this->updateOrInsertInventory($request->cod_articulo, $request->cantidad);
-            return redirect()->route('entradas.create')->with('guardado', 'El registro de entrada se realizo con exito');
+            return redirect()->route('entradas.create')->with('guardado', 'El registro de entrada se realizó con exito');
         endif;
     }
 

@@ -50,7 +50,7 @@
         <thead>
             <tr>
                 <th>NIT</th>
-                <th>Nombre</th>
+                <th>Razón social</th>
                 <th>Teléfono</th>
                 <th>Dirección</th>
                 <th>E-mail</th>
@@ -114,7 +114,7 @@
 <!-- Script js -->
 @if (session('actualizado'))
 <script>
-    guardado('Actualizacion Exitosa', '<?php echo session('actualizado') ?>');
+    guardado('Actualización Exitosa', '<?php echo session('actualizado') ?>');
 </script>
 @endif
 
@@ -131,14 +131,14 @@
 <!-- Mesajes de confirmacion y error -->
 @if (session('destroy'))
 <script>
-    guardado('Eliminacion Exitosa', '<?php echo session('destroy') ?>');
+    guardado('Eliminación Exitosa', '<?php echo session('destroy') ?>');
 </script>
 @endif
 
 @if ($errors->any())
 @foreach ($errors->all() as $message)
 <script>
-    error('Dato Errado', '<?php echo $message ?>')
+    error('Dato Erróneo', '<?php echo $message ?>')
 </script>
 @endforeach
 @endif

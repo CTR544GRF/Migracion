@@ -24,7 +24,6 @@
                         <li><a href="#section2">Servicios</a></li>
                         <li><a href="#section4">Productos</a></li>
                         <li><a href="#section5">Contáctenos</a></li>
-                        <li><a href="{{ route('login') }}">INGRESAR</a></li>
                     </ul>
                 </div>
             </div>
@@ -35,8 +34,8 @@
                     <h1>Nuestros productos <br>
                         <b>para ti </b>
                     </h1>
-                    <P>Somos una PYME encargada al comercio y distribuidora de ropa deportiva, te invitamos a conocer nuestros productos ¡contáctate con nosotros!</P>
-                    <button class="btn-primary" onclick="location.href='#section3'">Explore más</button>
+                    <P>Somos una PYME encargada del comercio y distribución de ropa deportiva, te invitamos a conocer nuestros productos ¡contáctate con nosotros!</P>
+                    <button class="btn-primary" onclick="location.href='#section2'">Explore más</button>
                 </div>
             </div>
         </div>
@@ -63,7 +62,7 @@
                             la compra de materia prima (telas, hilos, ...), maquinaria e insumos (agujas, aceite, ...) con el fin de confeccionar ropa deportiva a
                             bajos precios para que sean asequible a cualquier persona independientemente de su presupuesto.
                         </p>
-                        <button>¿Quieres saber más? </button>
+                        <button onclick="location.href='#section3'"> ¿Quieres saber más? </button>
                     </article>
                     <article class="fotos">
                         <img src="img/welcome2.png" alt="imagen">
@@ -132,9 +131,9 @@
                 <div class="fila">
                     <article class="card-vertical">
                         <div class="info-card">
-                            <h3>01</h3>
-                            <h2>Compra de sudaderas vioto</h2>
-                            <p>Por último puedes adquirir la compra al por mayor o detal de pantalones, pantalonetas tipo sudadera las cuales cuales estan realizadas en material vioto que es también conocida como tela Lotto o Bioto la cual es un perchado de poliéster satinado, resistente y grueso que permite que nuestros productos tengan una larga duración, comodidad, obteniendo calidad a bajos precios. </p>
+                            <h3>04</h3>
+                            <h2>Venta de sudaderas vioto</h2>
+                            <p>Puedes adquirir nuestros productos al por mayor o detal, contamos con pantalones, pantalonetas realizadas en material vioto conocido como tela Lotto o Bioto la cual es un perchado de poliéster satinado y resistente. </p>
                         </div>
                     </article>
                     <!--
@@ -222,7 +221,7 @@
     </main>
     <footer>
         <div class="container">
-            <p>Copyrigth © 2022 Sadidas S.A.S by Infi-A. All Rights Reserved </p>
+            <p>Copyrigth © 2022 Sadidas S.A.S by Infi-A. All Rights Reserved - <a href="{{ route('login') }}">Sistema INFI-A</a></p>
         </div>
     </footer>
 </body>

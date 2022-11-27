@@ -50,12 +50,12 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Codigo registro</th>
+                <th>Código registro</th>
                 <th>Tipo registro</th>
-                <th>Codigo articulo</th>
-                <th>Descripcion articulo</th>
+                <th>Código artículo</th>
+                <th>Descripción artículo</th>
                 <th>Casual de salida</th>
-                <th>Numero de factura</th>
+                <th>Número de factura</th>
                 <th>Cantidad</th>
                 <th>Fecha Ingreso</th>
             </tr>

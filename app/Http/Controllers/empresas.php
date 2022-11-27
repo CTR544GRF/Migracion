@@ -73,7 +73,7 @@ class empresas extends Controller
             $empresas->id = $request->id;
             $empresas->rol = $request->rol;
             $empresas->save();
-            return redirect()->route('empresas.index')->with('guardado', 'La Empresa a sido guardada con exito');;
+            return redirect()->route('empresas.index')->with('guardado', 'La Empresa ha sido guardada con exito');;
         }
     }
     // Retorno de tablas y selact

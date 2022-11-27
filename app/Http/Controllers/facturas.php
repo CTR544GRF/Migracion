@@ -136,7 +136,7 @@ class facturas extends Controller
             ->select('tbl_facturas.*', 'ar.iva', 'ar.sub_total', 'ar.total', 'art.nom_articulo', 'users.nom_user')
             ->get();
         // $facturas = tbl_facturas::join();
-        session()->flash('guardado', 'La Factura a sido Registrada con exito');
+        session()->flash('guardado', 'La Factura ha sido registrada con exito');
         return redirect()->route('facturas.create');
     }
 }

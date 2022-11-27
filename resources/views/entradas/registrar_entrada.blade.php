@@ -28,7 +28,7 @@
     <div class="form_container">
         <div class="from_group">
             <select name="cod_articulo" class="from_group">
-                <option value=""><button href="{{route('articulos.create')}}"><a>Seleccione un Artículo</a></button></option>
+                <option value=""><button href="{{route('articulos.create')}}"><a>Seleccione un artículo</a></button></option>
                 @foreach ($articulos as $articulo)
                 <option value="{{$articulo->cod_articulo}}">{{$articulo->cod_articulo }} - {{$articulo->nom_articulo}} - {{$articulo->color_articulo}} - {{$articulo->tipo_articulo}}</option>
                 @endforeach
@@ -36,10 +36,10 @@
         </div>
         <div class="from_group">
             <select name="causal" id="causal">
-                <option selected>Causal entrada</option>
-                <option value="Factura de compra - Materia prima o insumos">Factura de compra - Materia prima o insumos</option>
-                <option value="Devolucion - producto">Devolucion - producto</option>
-                <option value="Confección Satelite - producto">Confección Satelite - producto</option>
+                <option selected>Seleccione causal entrada</option>
+                <option value="Factura de compra - Materia prima o insumos">Factura de compra - Materia prima o Insumos</option>
+                <option value="Devolucion - producto">Devolución - Producto</option>
+                <option value="Confección Satelite - producto">Confección Satelite - Producto</option>
             </select>
         </div>
         <div class="from_group">
@@ -69,14 +69,14 @@
 
 @if (session('error'))
 <script>
-    error('Dato Errado', '<?php echo session('error') ?>');
+    error('Dato Erróneo', '<?php echo session('error') ?>');
 </script>
 @endif
 
 @if ($errors->any())
 @foreach ($errors->all() as $message)
 <script>
-    error('Dato Errado', 'Dejo algún campo sin seleccionar')
+    error('Dato Erróneo', 'Dejo algún campo sin seleccionar')
 </script>
 @endforeach
 

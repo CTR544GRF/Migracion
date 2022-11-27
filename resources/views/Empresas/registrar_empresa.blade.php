@@ -27,7 +27,7 @@
         <h2 class="form_titulo">Registrar empresa</h2>
         <div class="from_group">
             <input type="text" id="nit" class="from_input" placeholder=" " name="nit" required maxlength="10">
-            <label for="tipo" class="from_label">Nit empresa</label>
+            <label for="tipo" class="from_label">NIT empresa</label>
             <span class="from_line"></span>
         </div>
         <div class="from_group">
@@ -62,7 +62,7 @@
                 <option value="Proveedor">Proveedor</option>
             </select>
         </div>
-        <button name="registrar" type="submit" class="form_submit"><strong>Registrar empresa</strong></button>
+        <button name="registrar" type="submit" class="form_submit"><strong>Registrar</strong></button>
     </div>
 </form>
 
@@ -80,7 +80,7 @@
 @if ($errors->any())
 @foreach ($errors->all() as $message)
 <script>
-    error('Dato Errado', '<?php echo $message ?>')
+    error('Dato Erróneo', '<?php echo $message ?>')
 </script>
 @endforeach
 @endif

@@ -41,9 +41,9 @@
 
         <thead>
             <tr>
-                <th>Codigo articulo</th>
-                <th>Categoria articulo</th>
-                <th>Descripcion articulo</th>
+                <th>Código artículo</th>
+                <th>Categoría artículo</th>
+                <th>Descripción artículo</th>
                 <th>Stock</th>
             </tr>
         </thead>

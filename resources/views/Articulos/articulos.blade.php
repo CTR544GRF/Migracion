@@ -49,15 +49,15 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Codigo articulo</th>
-                <th>Categoria Articulo</th>
+                <th>Código Artículo</th>
+                <th>Categoría Artículo</th>
                 <th>Nombre</th>
                 <th>Material</th>
                 <th>Talla</th>
-                <th>Linea</th>
+                <th>Línea</th>
                 <th>Unidad de medida</th>
                 <th>Color</th>
-                <th>Descripcion</th>
+                <th>Descripción</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -124,14 +124,14 @@
 <!-- Mesajes de confirmacion y error -->
 @if (session('destroy'))
 <script>
-    guardado('Eliminacion Exitosa', '<?php echo session('destroy') ?>');
+    guardado('Eliminación Exitosa', '<?php echo session('destroy') ?>');
 </script>
 @endif
 
 @if ($errors->any())
 @foreach ($errors->all() as $message)
 <script>
-    error('Dato Errado', '<?php echo $message ?>')
+    error('Dato Erróneo', '<?php echo $message ?>')
 </script>
 @endforeach
 @endif

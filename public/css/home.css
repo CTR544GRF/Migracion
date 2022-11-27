@@ -81,14 +81,14 @@ ul li a:hover {
 
 }
 
-ul li:nth-child(6) a {
+ul li:nth-child(5) a {
     background: var(--secondary-color);
     padding: 20px;
     color: #fff;
     border-radius: 10px;
 }
 
-ul li:nth-child(6) a:hover {
+ul li:nth-child(5) a:hover {
     border: 0;
     background: var(--primary-color);
 }
