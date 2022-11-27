@@ -97,6 +97,7 @@ class usuarios extends Controller
             return redirect()->route('usuarios.create')->with('guardado', 'Tarea creada correctamente');
         }
     }
+    
     public function index()
     {
         $usuarios = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')

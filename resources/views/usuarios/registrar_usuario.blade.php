@@ -75,7 +75,7 @@
             <span class="from_line"></span>
         </div>
         <div class="from_group">
-            <input type="date" id="fecha" class="from_input" placeholder="Fecha de ingreso" name="fechaDesde" required>
+            <input type="date" id="fecha" class="from_input" placeholder="Fecha de ingreso" name="fecha" required>
         </div>
         <div class="from_group">
             <select name="rol" id="rol" required>
@@ -86,7 +86,7 @@
             </select>
         </div>
         <button class="form_submit" type='submit'> Registrar </button>
-        <button class="form_submit"><a href="{{ route('roles.create')}}"> Crear rol </a></button>
+        
     </div>
 </form>
 
