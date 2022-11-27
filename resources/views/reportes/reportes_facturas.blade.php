@@ -11,7 +11,7 @@
 @stop
 
 @section('seccion')
-<form class="registrar_usuario" enctype="multipart/form-data">
+<form class="registrar_usuario" action="{{route('report_factura')}}" enctype="multipart/form-data">
 @csrf
 <h2 class="form_titulo"><img class="mo" src="{{asset('img/icons8-invoices-60.png')}}" alt="facturas">Reporte Facturas</h2>
 <div class="form_container">
@@ -34,7 +34,7 @@
             <option value="venta">Factura de Venta</option>
         </select>
     </div>
-    <button class="form_submit" type='submit'> Generar PDF </button>
+    <button class="form_submit" type='submit' > Generar PDF </button>
    
 </div>
 </form>
