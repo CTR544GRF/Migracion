@@ -123,7 +123,7 @@
                 </div>  
         <section class="seccion_cuatro">
             <div class="scs_cuatro_arriba">
-                <input type="text" id="Descripcion" name="descripcion" placeholder="Descripcion...">
+                <input class="ph-center" type="text" id="Descripcion" name="descripcion" placeholder="Descripcion...">
                 <div class="total">
                     <h3>Sub Total: <input type='text' readonly name="resultado_sub_total" id="resultado_sub_total"></span></h3>
                     <h3>iva: <input type='text' readonly name ='resultado_iva' id="resultado_iva"></span></h3>
