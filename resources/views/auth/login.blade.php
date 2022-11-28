@@ -26,7 +26,7 @@
             <a id="form_rc" href="{{ route('password.request') }}">Recuperar Contraseña</a>
         </div>
         <!-- <input type="submit" value="Ingresar" class="form_submit" name="submit"> -->
-        <button type="submit" class="form_submit">Registrar</button>
+        <button type="submit" class="form_submit">Ingresar</button>
     </div>
 </form>
 @endsection

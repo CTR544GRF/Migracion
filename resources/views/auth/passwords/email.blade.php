@@ -17,7 +17,7 @@
             <label for="E-mail" class="from_label">E-mail</label>
             <span class="from_line"></span>
         </div>
-        <button type="submit" class="form_submit">Registrar</button>
+        <button type="submit" class="form_submit">Enviar</button>
     </div>
 </form>
 @endsection
