@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SADIDAS S.A.S</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/swetalerts.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/home.css')}}">
 </head>
 
@@ -136,29 +138,6 @@
                             <p>Puedes adquirir nuestros productos al por mayor o detal, contamos con pantalones, pantalonetas realizadas en material vioto conocido como tela Lotto o Bioto la cual es un perchado de poliéster satinado y resistente. </p>
                         </div>
                     </article>
-                    <!--
-                    <article class="card-vertical">
-                        <div class="info-card">
-                            <h3>02</h3>
-                            <h2>Quality Management</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis reiciendis aspernatur accusamus facilis consectetur provident commodi maxime. Libero, eveniet cum!</p>
-                        </div>
-                    </article>
-                    <article class="card-vertical">
-                        <div class="info-card">
-                            <h3>03</h3>
-                            <h2>Quality Management</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis reiciendis aspernatur accusamus facilis consectetur provident commodi maxime. Libero, eveniet cum!</p>
-                        </div>
-                    </article>
-                    <article class="card-vertical">
-                        <div class="info-card">
-                            <h3>01</h3>
-                            <h2>Quality Management</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis reiciendis aspernatur accusamus facilis consectetur provident commodi maxime. Libero, eveniet cum!</p>
-                        </div>
-                    </article>
-                    -->
                 </div>
             </div>
         </section>
@@ -198,14 +177,18 @@
             <div class="container">
                 <h2>Contáctenos</h2>
                 <div class="fila">
-                    <article class="formulario">
-                        <input type="text" name="nombre" placeholder="Nombre">
-                        <input type="text" name="celular" placeholder="Celular">
-                        <input type="text" name="correo" placeholder="Correo">
-                        <input type="text" name="ciudad" placeholder="Ciudad">
-                        <textarea name="mensaje" placeholder="Describe lo que desea saber ..."></textarea>
-                        <button>Enviar</button>
-                    </article>
+                    <form action="{{route('contactanos.store')}}" method="POST">
+                        @csrf
+                        <article class="formulario">
+                            <input type="text" name="nombre" placeholder="Nombre">
+                            <input type="text" name="celular" placeholder="Celular">
+                            <input type="text" name="correo" placeholder="Correo">
+                            <input type="text" name="ciudad" placeholder="Ciudad">
+                            <textarea name="mensaje" placeholder="Describe lo que desea saber ..."></textarea>
+                            <button type="submit"> Enviar</button>
+                        </article>
+                    </form>
+
                     <article class="informacion">
                         <p>Para nosotros es un placer convertirnos en su aliado y lograr juntos el crecimiento de su empresa. no dude en escribirnos o contactarnos por cualquiera de los siguientes medios, estaremos atentos para brindarle nuestra asesoría y resolver cualquier duda de los servicios a adquirir.</p>
                         <ul>
@@ -227,3 +210,16 @@
 </body>
 
 </html>
+@if (session('guardado'))
+<script>
+    guardado('Registro Exitoso', '<?php echo session('guardado') ?>');
+</script>
+@endif
+
+@if ($errors->any())
+@foreach ($errors->all() as $message)
+<script>
+    error('Dato Erróneo', '<?php echo $message ?>')
+</script>
+@endforeach
+@endif

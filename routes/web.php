@@ -9,6 +9,7 @@ use App\Exports\UsersExport;
 use App\Exports\InventariosExport;
 
 use App\Http\Controllers\articulos;
+use App\Http\Controllers\contactanosController;
 use App\Http\Controllers\usuarios;
 use App\Http\Controllers\empresas;
 use App\Http\Controllers\facturas;
@@ -37,7 +38,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // /*Pagina comercial*/
-Route::view('/', 'welcome')->name('onepage');
+Route::view('/', 'welcome')->name('welcome');
 Route::view('/login', 'auth.login')->name('login');
 Route::view('/reportes', 'reportes')->name('reportes');
 
@@ -159,3 +160,7 @@ Route::get('rinventarios.print4', [reportes::class, 'printPdfinventarios4'])->na
 
 Route::get('/reportes/facturas.pdf', [reportes::class, 'reportFactura'])->name('report_factura');
 Route::get('/facturas/reporte/{num_factura}', [reportes::class, 'printPdffactura'])->name('factura_reporte');
+
+//Contactanos
+Route::post('contactanos', [contactanosController::class, 'store'])->name('contactanos.store');
+Route::get('contactanos', [contactanosController::class, 'index'])->name('contactanos.index');
