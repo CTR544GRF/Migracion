@@ -59,8 +59,8 @@ class salidas extends Controller
             $entradas->cantidad = $request->vc[$i];
             $entradas->causal = $request->causal;
             $entradas->num_factura = $request->num_factura;
-            if($entradas->save()){
-                $this->updateOrInsertInventory($request->ca[$i], $request->vc[$i]);
+            if($this->updateOrInsertInventory($request->ca[$i], $request->vc[$i])){
+                $entradas->save();
             $count++;
             }
         }
