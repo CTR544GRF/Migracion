@@ -49,7 +49,7 @@
         </div>
         <div class="from_group">
             <select name="linea" id="linea">
-                <option value="{{$articulo->talla_articulo}}">{{$articulo->talla_articulo}}</option>
+                <option value="{{$articulo->linea}}">{{$articulo->linea}}</option>
                 <option value="No">No aplica</option>
                 <option value="Adulto">Adulto</option>
                 <option value="Niño">Niño</option>
@@ -57,7 +57,7 @@
         </div>
         <div class="from_group">
             <select name="talla" id="talla">
-                <option value="{{$articulo->linea}}">{{$articulo->linea}}</option>
+                <option value="{{$articulo->talla_articulo}}">{{$articulo->talla_articulo}}</option>
                 <option value="No">No aplica</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
