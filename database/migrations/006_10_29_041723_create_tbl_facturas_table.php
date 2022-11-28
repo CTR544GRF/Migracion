@@ -29,7 +29,6 @@ return new class extends Migration
         });
         Schema::table('tbl_facturas', function (Blueprint $table) {
             $table->foreign('cod_articulo')->references('cod_articulo')->on('tbl_articulos')->onDelete('cascade');
-            $table->foreign('id_empresa')->references('id')->on('tbl_empresas')->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('set null');
         });
     }

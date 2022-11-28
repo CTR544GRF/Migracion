@@ -60,7 +60,7 @@
                 </select>
                 <h4>NIT de Empresa:</h4>
                 <select readonly name="id_empresa" required>
-                    <option selected="true" value="{{$factura[0]->nit_empresa}}" >{{$factura[0]->nit_empresa}}</option>
+                    <option selected="true" value="{{$factura[0]->id_empresa}}" >{{$factura[0]->id_empresa}}</option>
                 </select>
             </div>
             <div id="seccion_two_rigth">

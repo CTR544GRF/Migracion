@@ -42,7 +42,7 @@
                 <select name="nit_empresa" id="">
                     <option value="">Selecione una empresa</option>
                     @foreach ($empresas_view as $empresa )
-                    <option value="{{$empresa->id}}"> {{$empresa->id}} - {{$empresa->nom_empresa}} </option>
+                    <option value="{{$empresa->nit_empresa}}"> {{$empresa->id}} - {{$empresa->nom_empresa}} </option>
                     @endforeach
                 </select>
             </div>
