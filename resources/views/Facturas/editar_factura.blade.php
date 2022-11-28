@@ -56,11 +56,11 @@
                 <select name="tipo_factura" id="Tipo_Factura" required>
                     <option value='{{$factura[0]->tipo_factura}}'> {{$factura[0]->tipo_factura}}</option>
                     <option value='venta'>Factura de Venta</option>
-                    <option value='compra'>Factura de Compra</option>
+                    <option value='compra'>Factura de Compra</option>   
                 </select>
                 <h4>NIT de Empresa:</h4>
                 <select readonly name="id_empresa" required>
-                    <option selected="true" value="{{$factura[0]->id_empresa}}" >{{$factura[0]->id_empresa}}</option>
+                    <option selected="true" value="{{$factura[0]->nit_empresa}}" >{{$factura[0]->nit_empresa}}</option>
                 </select>
             </div>
             <div id="seccion_two_rigth">
