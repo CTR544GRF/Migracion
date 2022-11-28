@@ -123,6 +123,12 @@
 </script>
 @endif
 
+@if (session('actualizado'))
+<script>
+    guardado('Actualizacion Exitosa', '<?php echo session('actualizado') ?>');
+</script>
+@endif
+
 @if ($errors->any())
 @foreach ($errors->all() as $message)
 <script>

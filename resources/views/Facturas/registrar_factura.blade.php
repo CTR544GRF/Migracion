@@ -72,7 +72,7 @@
                         <select class="ca" name="ca[]" id="cod_articulo" required>
                             <option value="">Seleccione artículo</option>
                             @foreach ($articulos_view as $articulo)
-                            <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->nom_articulo}}</option>
+                            <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->descripcion_articulo}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -149,7 +149,11 @@
     guardado('Registro Exitoso', '<?php echo session('guardado') ?>');
 </script>
 @endif
-
+@if (session('error'))
+<script>
+    warning('Advertencia', '<?php echo session('error') ?>');
+</script>
+@endif
 @if ($errors->any())
 @foreach ($errors->all() as $message)
 <script>
@@ -157,7 +161,6 @@
 </script>
 @endforeach
 @endif
-
 
 @section('script')
 {{ asset('js/registro_factura.js') }}

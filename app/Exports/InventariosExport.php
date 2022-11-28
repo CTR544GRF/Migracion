@@ -2,9 +2,10 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use app\Models\tbl_inventarios;
+use Maatwebsite\Excel\Concerns\Exportable;
+use App\Models\tbl_inventarios;
+
 
 class InventariosExport implements FromCollection
 {
@@ -14,6 +15,6 @@ class InventariosExport implements FromCollection
      */
     public function collection()
     {
-        return tbl_inventarios::all();
+        return tbl_inventarios::get();
     }
 }

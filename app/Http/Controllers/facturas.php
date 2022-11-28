@@ -41,51 +41,61 @@ class facturas extends Controller
 
     public function store(Request $request, tbl_totalfactura $total)
     {
-        $request->validate([
-            'num_factura' => 'required|max:15',
-            'descripcion' => 'max:100|required',
-            'fecha' => 'required|max:20|date',
-            'tipo_factura' => 'required|max:30',
-            'id_empresa' => 'max:50',
-            'id_user' => 'max:50',
-        ]);
+        $numFactura = tbl_facturas::select('num_factura')
+            ->where('num_factura', '=', $request->num_factura)
+            ->exists();
+
+        if ($numFactura) {
+
+            return redirect()->route('facturas.create')->with('error', 'El numero de factura ya existe');
+        } else {
+
+            $request->validate([
+                'num_factura' => 'required|max:15',
+                'descripcion' => 'max:100|required',
+                'fecha' => 'required|max:20|date',
+                'tipo_factura' => 'required|max:30',
+                'id_empresa' => 'max:50',
+                'id_user' => 'max:50',
+            ]);
 
 
-        $cantidadArticulos = count($request->ca);
+            $cantidadArticulos = count($request->ca);
 
-        for ($i = 0; $i < $cantidadArticulos; $i++) {
+            for ($i = 0; $i < $cantidadArticulos; $i++) {
 
-            $facturas = new tbl_facturas();
-            $facturas->num_factura = $request->num_factura;
-            $facturas->descripcion = $request->descripcion;
-            $facturas->fecha = $request->fecha;
-            $facturas->tipo_factura = $request->tipo_factura;
-            $facturas->cod_articulo = $request->ca[$i];
-            $facturas->valor_unitario = $request->pu[$i];
-            $facturas->cantidad = $request->vc[$i];
-            $facturas->iva_producto = $request->vi[$i];
-            $facturas->id_empresa = $request->nit_empresa;
-            $facturas->id_user = $request->id_user;
-            $facturas->save();
+                $facturas = new tbl_facturas();
+                $facturas->num_factura = $request->num_factura;
+                $facturas->descripcion = $request->descripcion;
+                $facturas->fecha = $request->fecha;
+                $facturas->tipo_factura = $request->tipo_factura;
+                $facturas->cod_articulo = $request->ca[$i];
+                $facturas->valor_unitario = $request->pu[$i];
+                $facturas->cantidad = $request->vc[$i];
+                $facturas->iva_producto = $request->vi[$i];
+                $facturas->id_empresa = $request->nit_empresa;
+                $facturas->id_user = $request->id_user;
+                $facturas->save();
+            }
+
+
+            $totalFactura = new $total();
+            $totalFactura->num_factura = $request->num_factura;
+            $totalFactura->sub_total = $request->resultado_sub_total;
+            $totalFactura->iva = $request->resultado_iva;
+            $totalFactura->total = $request->resultado_total;
+            $totalFactura->save();
+
+            $facturas = tbl_facturas::leftJoin('tbl_totalfacturas as ar', 'tbl_facturas.num_factura', '=', 'ar.num_factura')
+                ->leftJoin('tbl_articulos as art', 'tbl_facturas.cod_articulo', '=', 'art.cod_articulo')
+                ->leftJoin('users', 'tbl_facturas.id_user', '=', 'users.id')
+                ->leftJoin('tbl_empresas as emp', 'tbl_facturas.id_empresa', '=', 'emp.id')
+                ->select('tbl_facturas.*', 'ar.iva', 'ar.sub_total', 'ar.total', 'art.nom_articulo', 'users.nom_user')
+                ->get();
+            // $facturas = tbl_facturas::join();
+            session()->flash('guardado', 'La Factura a sido Registrada con exito');
+            return redirect()->route('facturas.create');
         }
-
-
-        $totalFactura = new $total();
-        $totalFactura->num_factura = $request->num_factura;
-        $totalFactura->sub_total = $request->resultado_sub_total;
-        $totalFactura->iva = $request->resultado_iva;
-        $totalFactura->total = $request->resultado_total;
-        $totalFactura->save();
-
-        $facturas = tbl_facturas::leftJoin('tbl_totalfacturas as ar', 'tbl_facturas.num_factura', '=', 'ar.num_factura')
-            ->leftJoin('tbl_articulos as art', 'tbl_facturas.cod_articulo', '=', 'art.cod_articulo')
-            ->leftJoin('users', 'tbl_facturas.id_user', '=', 'users.id')
-            ->leftJoin('tbl_empresas as emp', 'tbl_facturas.id_empresa', '=', 'emp.id')
-            ->select('tbl_facturas.*', 'ar.iva', 'ar.sub_total', 'ar.total', 'art.nom_articulo', 'users.nom_user')
-            ->get();
-        // $facturas = tbl_facturas::join();
-        session()->flash('guardado', 'La Factura a sido Registrada con exito');
-        return redirect()->route('facturas.create');
     }
 
     public function index()
@@ -125,27 +135,30 @@ class facturas extends Controller
 
     public function update(Request $request, tbl_facturas $facturas, tbl_totalfactura $total)
     {
-        $request->validate([
+
+        var_dump($request->id_empresa);
+
+        
+        /* $request->validate([
             'num_factura' => 'required|max:15',
             'descripcion' => 'max:100|required',
             'fecha' => 'required|max:20|date',
             'tipo_factura' => 'required|max:30',
             'id_empresa' => 'max:50',
-            'id_user' => 'max:50',
+            'id_user' => 'required|max:50',
         ]);
-        
+
         $cantidadArticulos = count($request->ca);
 
-        
+
         for ($i = 0; $i < $cantidadArticulos; $i++) {
             $affected = $facturas::where('id', $request->id[$i])
-                ->update(['tipo_factura' => $request->tipo_factura, 'cod_articulo' => $request->ca[$i], 'valor_unitario' => $request->pu[$i], 'cantidad' => $request->vc[$i],'iva_producto' => $request->vi[$i] ,'id_empresa' => $request->id_empresa, 'id_user' => $request->id_user, 'descripcion' => $request->descripcion, 'fecha' => $request->fecha]);
-           
+                ->update(['tipo_factura' => $request->tipo_factura, 'cod_articulo' => $request->ca[$i], 'valor_unitario' => $request->pu[$i], 'cantidad' => $request->vc[$i], 'iva_producto' => $request->vi[$i], 'id_empresa' => $request->id_empresa, 'id_user' => $request->id_user, 'descripcion' => $request->descripcion, 'fecha' => $request->fecha]);
         }
-        
-        $total::where('num_factura','=',$request->num_factura)
-              ->update(['sub_total' =>$request->resultado_sub_total,'iva' =>  $request->resultado_iva,'total' => $request->resultado_total]);
-        
+
+        $total::where('num_factura', '=', $request->num_factura)
+            ->update(['sub_total' => $request->resultado_sub_total, 'iva' =>  $request->resultado_iva, 'total' => $request->resultado_total]);
+
 
         $facturas = tbl_facturas::leftJoin('tbl_totalfacturas as ar', 'tbl_facturas.num_factura', '=', 'ar.num_factura')
             ->leftJoin('tbl_articulos as art', 'tbl_facturas.cod_articulo', '=', 'art.cod_articulo')
@@ -154,7 +167,7 @@ class facturas extends Controller
             ->select('tbl_facturas.*', 'ar.iva', 'ar.sub_total', 'ar.total', 'art.nom_articulo', 'users.nom_user')
             ->get();
         // $facturas = tbl_facturas::join();
-        session()->flash('guardado', 'La Factura ha sido registrada con exito');
-        return redirect()->route('facturas.create');
-    }
+        session()->flash('actualizado', 'La Factura ha sido actualizada con exito');
+        return redirect()->route('facturas.index');
+ */    }
 }

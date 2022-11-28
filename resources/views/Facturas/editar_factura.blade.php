@@ -21,7 +21,7 @@
 
 <!-- palabra nav2 -->
 @section('palabra-accion2')
-{{'Registar'}}
+{{'Registrar'}}
 @stop
 
 <!-- Script js -->
@@ -59,11 +59,8 @@
                     <option value='compra'>Factura de Compra</option>
                 </select>
                 <h4>NIT de Empresa:</h4>
-                <select disabled name="id_empresa" id="" required>
-                    <option value="{{$factura[0]->id_empresa}}">{{$factura[0]->id_empresa}}</option>
-                    @foreach ($empresas as $empresa )
-                    <option value="{{$empresa->nit_empresa}}"> {{$empresa->nit_empresa}} - {{$empresa->nom_empresa}} </option>
-                    @endforeach
+                <select value="{{$factura[0]->id_empresa}}" name="id_empresa" id="" required>
+                    <option  disabled >{{$factura[0]->id_empresa}}</option>
                 </select>
             </div>
             <div id="seccion_two_rigth">
@@ -125,7 +122,7 @@
         <section class="seccion_cuatro">
             <div class="scs_cuatro_arriba">
                 <div>
-                    <textarea required name="descripcion" id="" cols="30" rows="10" placeholder="Dirección ...">{{$item->descripcion}}</textarea>
+                    <textarea required class="description" name="descripcion" id="" cols="30" rows="10" placeholder="Dirección ...">{{$item->descripcion}}</textarea>
                 </div>
                 @foreach ($total_factura as $item)
                 <div class="total">
