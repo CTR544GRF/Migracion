@@ -139,7 +139,7 @@ class facturas extends Controller
         var_dump($request->id_empresa);
 
         
-        /* $request->validate([
+         $request->validate([
             'num_factura' => 'required|max:15',
             'descripcion' => 'max:100|required',
             'fecha' => 'required|max:20|date',
@@ -153,7 +153,7 @@ class facturas extends Controller
 
         for ($i = 0; $i < $cantidadArticulos; $i++) {
             $affected = $facturas::where('id', $request->id[$i])
-                ->update(['tipo_factura' => $request->tipo_factura, 'cod_articulo' => $request->ca[$i], 'valor_unitario' => $request->pu[$i], 'cantidad' => $request->vc[$i], 'iva_producto' => $request->vi[$i], 'id_empresa' => $request->id_empresa, 'id_user' => $request->id_user, 'descripcion' => $request->descripcion, 'fecha' => $request->fecha]);
+                ->update(['tipo_factura' => $request->tipo_factura, 'cod_articulo' => $request->ca[$i], 'valor_unitario' => $request->pu[$i], 'cantidad' => $request->vc[$i], 'iva_producto' => $request->vi[$i], 'id_user' => $request->id_user, 'descripcion' => $request->descripcion, 'fecha' => $request->fecha]);
         }
 
         $total::where('num_factura', '=', $request->num_factura)
@@ -169,5 +169,5 @@ class facturas extends Controller
         // $facturas = tbl_facturas::join();
         session()->flash('actualizado', 'La Factura ha sido actualizada con exito');
         return redirect()->route('facturas.index');
- */    }
+    }
 }
