@@ -160,7 +160,7 @@ class reportes extends Controller
         $facturas = tbl_facturas::leftJoin('tbl_totalfacturas as tl', 'tbl_facturas.num_factura', '=', 'tl.num_factura')
             ->leftJoin('tbl_articulos as A', 'tbl_facturas.cod_articulo', '=', 'A.cod_articulo')
             ->leftJoin('users as U', 'tbl_facturas.id_user', '=', 'U.id')
-            ->leftJoin('tbl_empresas as emp', 'tbl_facturas.id_empresa', '=', 'emp.id')
+            ->join('tbl_empresas as emp', 'tbl_facturas.id_empresa', '=', 'emp.nit_empresa')
             ->select(
                 'tbl_facturas.*',
                 'emp.direccion_empresa',

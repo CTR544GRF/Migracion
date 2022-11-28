@@ -62,6 +62,8 @@ class salidas extends Controller
             if($this->updateOrInsertInventory($request->ca[$i], $request->vc[$i])){
                 $entradas->save();
             $count++;
+            }else{
+                return redirect()->route('salidas.create')->with('error', 'No se puede ingresar una salida mayor a la cantidad actual en inventario');
             }
         }
 
