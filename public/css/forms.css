@@ -169,3 +169,26 @@ form.registrar_usuario a {
         font-size: 1.8rem;
     }
 }
+
+#container_id{
+    display: flex !important;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+.container_entrada{
+    display: flex;
+    flex-flow: column;
+}
+
+.cantidad {
+   
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+    justify-content: start !important;
+}
+
+.l-cantidad  {
+    position: relative !important;
+}

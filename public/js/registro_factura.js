@@ -36,7 +36,7 @@ var contador = 0;
 function itemCreate() {
     let article = document.querySelector(".form_factura_prueba");
     let articleChield = article.cloneNode(true);
-    let container_article = document.querySelector(".container_section_three");
+    let container_article = document.querySelector(".container_section_three,.container_entrada");
     container_article.appendChild(articleChield);
 
     let ca = document.querySelectorAll(".ca");
@@ -54,8 +54,14 @@ function itemCreate() {
     }
     contador++;
 }
+
+
 function borrar() {
-    let cont = document.querySelector(".container_section_three");
-    var hijo = cont.lastChild;
-    cont.removeChild(hijo);
+    if (contador >0) {
+        let cont = document.querySelector(".container_section_three,.container_entrada");
+        var hijo = cont.lastChild;
+        cont.removeChild(hijo);
+        contador--
+    }
+   
 }

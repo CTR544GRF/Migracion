@@ -35,9 +35,9 @@ class entradas extends Controller
     {
         /* El validate funciona, pero los datos que se estan enviando no cumplen    */
         $request->validate([
-            'cod_articulo' => 'required|max:10',
+            'ca' => 'required|max:10',
             'tipo' => 'max:30',
-            'cantidad' => 'required|max:20',
+            'vc' => 'required|max:20',
             'causal' => 'required|max:50',
             'num_factura' => 'max:50',
         ]);
@@ -53,14 +53,22 @@ class entradas extends Controller
             return redirect()->route('entradas.create')->with('error', 'Dejo algún campo sin seleccionar');
         }
 
-        $entradas = new tbl_registros();
-        $entradas->cod_articulo = $request->cod_articulo;
-        $entradas->tipo = "Entrada";
-        $entradas->cantidad = $request->cantidad;
-        $entradas->causal = $request->causal;
-        $entradas->num_factura = $request->num_factura;
-        if ($entradas->save()) :
-            $this->updateOrInsertInventory($request->cod_articulo, $request->cantidad);
+        $count = 0;
+
+        for ($i=0; $i < count($request->ca) ; $i++) { 
+            $entradas = new tbl_registros();
+            $entradas->cod_articulo = $request->ca[$i];
+            $entradas->tipo = "Entrada";
+            $entradas->cantidad = $request->vc[$i];
+            $entradas->causal = $request->causal;
+            $entradas->num_factura = $request->num_factura;
+            if($entradas->save()){
+                $this->updateOrInsertInventory($request->ca[$i], $request->vc[$i]);
+            $count++;
+            }
+        }
+
+        if ($count>0) :
             return redirect()->route('entradas.create')->with('guardado', 'El registro de entrada se realizó con exito');
         endif;
     }

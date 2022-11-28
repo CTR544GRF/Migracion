@@ -33,9 +33,9 @@ class salidas extends Controller
     {
         /* El validate funciona, pero los datos que se estan enviando no cumplen    */
         $request->validate([
-            'cod_articulo' => 'required|max:10',
+            'ca' => 'required|max:10',
             'tipo' => 'max:30',
-            'cantidad' => 'required|max:20',
+            'vc' => 'required|max:20',
             'causal' => 'required|max:50',
             'num_factura' => 'max:50',
         ]);
@@ -50,19 +50,24 @@ class salidas extends Controller
             return redirect()->route('salidas.create')->with('error', 'Dejo algún campo sin seleccionar');
         }
 
-        $salidas = new tbl_registros();
-        $salidas->cod_articulo = $request->cod_articulo;
-        $salidas->tipo = "Salida";
-        $salidas->cantidad = $request->cantidad;
-        $salidas->causal = $request->causal;
-        $salidas->num_factura = $request->num_factura;
-        if ($a = $this->updateOrInsertInventory($request->cod_articulo, $request->cantidad)) {
-            if ($salidas->save()) {
-                return redirect()->route('salidas.create')->with('guardado', 'El registro de salida se realizo con exito');
+        $count = 0;
+
+        for ($i=0; $i < count($request->ca) ; $i++) { 
+            $entradas = new tbl_registros();
+            $entradas->cod_articulo = $request->ca[$i];
+            $entradas->tipo = "Salida";
+            $entradas->cantidad = $request->vc[$i];
+            $entradas->causal = $request->causal;
+            $entradas->num_factura = $request->num_factura;
+            if($entradas->save()){
+                $this->updateOrInsertInventory($request->ca[$i], $request->vc[$i]);
+            $count++;
             }
-        } else {
-            return redirect()->route('salidas.create')->with('error', 'No se puede ingresar una salida mayor a la cantidad actual en inventario');
         }
+
+        if ($count>0) :
+            return redirect()->route('salidas.create')->with('guardado', 'El registro de entrada se realizó con exito');
+        endif;
     }
 
     public function index()
