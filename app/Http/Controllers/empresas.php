@@ -93,40 +93,40 @@ class empresas extends Controller
         return view('Empresas.editar_empresa', compact('empresa', 'usuarios'));
     }
 
-    public function update(Request $request, tbl_empresas $empresas)
+    public function update(Request $request, tbl_empresas $empresa)
     {
 
-    $empre = tbl_empresas::select('nit_empresa', 'email_empresa')
-            ->where('id', '!=', $request->empresa)
-            ->get();
-        // 987456321 jecatro648@misena.edu.co
-        $nit_empresa = $empresas::select('nit_empresa')
-            ->where('id', '!=',$request->empresa)
-            ->where('nit_empresa','=', $request->nit)
-            ->count();
+        // $empre = tbl_empresas::select('nit_empresa', 'email_empresa')
+        //     ->where('id', '!=', $request->empresa)
+        //     ->get();
+        // // 987456321 jecatro648@misena.edu.co
+        // $nit_empresa = $empresa::select('nit_empresa')
+        //     ->where('id', '!=', $request->empresa)
+        //     ->where('nit_empresa', '=', $request->nit)
+        //     ->count();
 
-        $email = $empresas::select('email_empresa')
-            ->where('id', '!=', $request->empresa)
-            ->where('email_empresa', '=', $request->e_mail)
-            ->count();
-        if ($nit_empresa > 0 || $email > 0) {
-            if ($nit_empresa > 0 && $email) {
-                $info = 'El nit y el email, ya está en uso.';
-                return redirect()->route('empresas.index')->with('error', $info);
-                die();
-            }
-            if ($nit_empresa > 0) {
-                $info = 'El nit ' . $request->nit . ' ya está en uso.';
-                return redirect()->route('empresas.index')->with('error', $info);
-                die();
-            }
+        // $email = $empresa::select('email_empresa')
+        //     ->where('id', '!=', $request->empresa)
+        //     ->where('email_empresa', '=', $request->e_mail)
+        //     ->count();
+        // if ($nit_empresa > 0 || $email > 0) {
+        //     if ($nit_empresa > 0 && $email) {
+        //         $info = 'El nit y el email, ya está en uso.';
+        //         return redirect()->route('empresas.index')->with('error', $info);
+        //         die();
+        //     }
+        //     if ($nit_empresa > 0) {
+        //         $info = 'El nit ' . $request->nit . ' ya está en uso.';
+        //         return redirect()->route('empresas.index')->with('error', $info);
+        //         die();
+        //     }
 
-            if ($email > 0) {
-                $info = 'El email ' . $request->email . ' ya está en uso.';
-                return redirect()->route('empresas.index')->with('error', $info);
-                die();
-            }
-        }
+        //     if ($email > 0) {
+        //         $info = 'El email ' . $request->email . ' ya está en uso.';
+        //         return redirect()->route('empresas.index')->with('error', $info);
+        //         die();
+        //     }
+        // }
 
         $request->validate([
             'nit' => 'required|max:10',
@@ -135,16 +135,17 @@ class empresas extends Controller
             'direccion' => 'required|max:30',
             'e_mail' => 'required|max:30|email',
         ]);
-        $empresas->nit_empresa = $request->nit;
-        $empresas->nom_empresa = $request->nombre;
-        $empresas->tel_empresa = $request->telefono;
-        $empresas->direccion_empresa = $request->direccion;
-        $empresas->email_empresa = $request->e_mail;
-        $empresas->rol = $request->rol;
-        $empresas->nombre = $request->representante;
-        $empresas->save();
+        $empresa = tbl_empresas::find($empresa->id);
+        $empresa->nit_empresa = $request->nit;
+        $empresa->nom_empresa = $request->nombre;
+        $empresa->tel_empresa = $request->telefono;
+        $empresa->direccion_empresa = $request->direccion;
+        $empresa->email_empresa = $request->e_mail;
+        $empresa->rol = $request->rol;
+        $empresa->nombre = $request->representante;
+        $empresa->save();
         return redirect()->route('empresas.index')->with('actualizado', 'Usuario actualizado');
-        return view('Articulos.editar_articulo', compact('articulo')); 
+        return view('Articulos.editar_articulo', compact('articulo'));
     }
 
     public function destroy(tbl_empresas $empresa)

@@ -100,7 +100,7 @@ class usuarios extends Controller
             return redirect()->route('usuarios.create')->with('guardado', 'Tarea creada correctamente');
         }
     }
-    
+
     public function index()
     {
         $usuarios = tbl_usuarios::leftJoin('roles as r', 'users.cod_rol', '=', 'r.id')
@@ -121,37 +121,37 @@ class usuarios extends Controller
     public function update(Request $request, tbl_usuarios $usuario)
     {
 
-        
+
 
         $cedula = $usuario::select('cedula')
-            ->where('id', '!=',$request->usuario->id)
-            ->where('cedula','=', $request->cedula)
+            ->where('id', '!=', $request->usuario->id)
+            ->where('cedula', '=', $request->cedula)
             ->count();
 
         $email = $usuario::select('email')
             ->where('id', '!=', $request->usuario->id)
             ->where('email', '=', $request->email)
             ->count();
-        
-        if ( $cedula >0 || $email > 0) {     
+
+        if ($cedula > 0 || $email > 0) {
             if ($cedula > 0 && $email) {
                 $info = 'La cédula  y el email, ya está en uso.';
                 return redirect()->route('usuarios.index')->with('error', $info);
                 die();
-            }   
+            }
             if ($cedula > 0) {
                 $info = 'La cédula ' . $request->cedula . ' ya está en uso.';
                 return redirect()->route('usuarios.index')->with('error', $info);
                 die();
             }
-                
+
             if ($email > 0) {
                 $info = 'El email ' . $request->email . ' ya está en uso.';
                 return redirect()->route('usuarios.index')->with('error', $info);
                 die();
             }
-        } 
-         /// 987456321 jecatro648@misena.edu.coi 
+        }
+        /// 987456321 jecatro648@misena.edu.coi
         $request->validate([
             'email' => 'required|max:30|email',
             'cedula' => 'required|max:10',
