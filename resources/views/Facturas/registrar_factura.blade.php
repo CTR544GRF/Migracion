@@ -98,9 +98,14 @@
                     </div>
                 </div>
                 <div onclick="itemCreate()" class="cajas">
-                    <h3>Agregar</h3>
+                    <!-- <h3>Agregar</h3> -->
                     <div class="tbl_abajo">
                         <i class="bi bi-plus-circle-fill"></i>
+                    </div>
+                </div>
+                <div onclick="borrar()" class="cajas">
+                    <div class="tbl_abajo">
+                        <i class="bi bi-x-circle-fill"></i>
                     </div>
                 </div>
             </section>

@@ -64,7 +64,7 @@ main {
 
 .seccion_tres {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-around;
     flex-flow: row wrap;
     border: 5px solid var(--verde);
@@ -191,4 +191,8 @@ h1 {
     margin: 0;
     padding: 0;
     width: 40%;
+}
+
+.tbl_abajo i {
+    font-size: 1.33rem;
 }
