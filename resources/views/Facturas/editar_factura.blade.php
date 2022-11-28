@@ -51,7 +51,7 @@
         <section class="seccion_dos">
             <div id="seccion_two_left">
                 <h3>Número de Factura:</h3>
-                <input type="text" placeholder="Nu. Factura" name="num_factura" id="num_factura" value="{{$factura[0]->num_factura}}" disabled required>
+                <input type="text" placeholder="Nu. Factura" name="num_factura" id="num_factura" value="{{$factura[0]->num_factura}}" readonly required>
                 <h4>Tipo de Factura:</h4>
                 <select name="tipo_factura" id="Tipo_Factura" required>
                     <option value='{{$factura[0]->tipo_factura}}'> {{$factura[0]->tipo_factura}}</option>
