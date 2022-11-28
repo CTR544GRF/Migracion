@@ -29,13 +29,13 @@
         <h3>Desde:</h3>
     </div>
     <div class="from_group">
-        <input type="date" id="fecha" class="from_input" placeholder="Fecha de ingreso" name="fechaDesde" required>
+        <input type="date" id="fecha" class="fecha" placeholder="Fecha de ingreso" name="fechaDesde" required>
     </div>
     <div class="from_group">
         <h3>Hasta:</h3>
     </div>
     <div class="from_group">
-        <input type="date" id="fecha" class="from_input" placeholder="Fecha de ingreso" name="fechaHasta" required>
+        <input type="date" id="fecha" class="fecha" placeholder="Fecha de ingreso" name="fechaHasta" required>
     </div>
     <div class="from_group">
         <select name="tipo_factura" id="tipo_factura" required>

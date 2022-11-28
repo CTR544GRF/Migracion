@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tbl_facturas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('num_factura');
+            $table->string('num_factura')->unique();
             $table->date('fecha');
             $table->String('tipo_factura', 20);
             $table->integer('valor_unitario');
