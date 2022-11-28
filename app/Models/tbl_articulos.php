@@ -21,28 +21,4 @@ class tbl_articulos extends Model
     //     'color_articulo',
     //     'descripcion_articulo'
     // ];
-
-    //Mutadores y Accesores
-    protected function nom_articulo(): Attribute
-    {
-        return new Attribute(
-            get: fn ($value) => ucwords($value),
-            set: fn ($value) => strtolower($value)
-        );
-    }
-
-    protected function material_articulo(): Attribute
-    {
-        return new Attribute(
-            get: fn ($value) => ucwords($value),
-            set: fn ($value) => strtolower($value)
-        );
-    }
-    protected function color_articulo(): Attribute
-    {
-        return new Attribute(
-            get: fn ($value) => ucwords($value),
-            set: fn ($value) => strtolower($value)
-        );
-    }
 }

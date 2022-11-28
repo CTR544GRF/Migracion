@@ -90,12 +90,12 @@ class tbl_roleseedr extends Seeder
 
         //Inventarios
 
-        Permission::create(['name' => 'admin.inventarios.index'])->syncRoles([$admin]);
+        Permission::create(['name' => 'admin.inventarios.index'])->syncRoles([$admin, $contador]);
 
-        Permission::create(['name' => 'admin.inventarios.csv'])->syncRoles([$admin]);
-        Permission::create(['name' => 'admin.inventarios.xlsx'])->syncRoles([$admin]);
-        Permission::create(['name' => 'admin.inventarios.pdf'])->syncRoles([$admin]);
-        Permission::create(['name' => 'admin.inventarios.print'])->syncRoles([$admin]);
+        Permission::create(['name' => 'admin.inventarios.csv'])->syncRoles([$admin, $contador]);
+        Permission::create(['name' => 'admin.inventarios.xlsx'])->syncRoles([$admin, $contador]);
+        Permission::create(['name' => 'admin.inventarios.pdf'])->syncRoles([$admin, $contador]);
+        Permission::create(['name' => 'admin.inventarios.print'])->syncRoles([$admin, $contador]);
 
         //Salidas amacenista
 
