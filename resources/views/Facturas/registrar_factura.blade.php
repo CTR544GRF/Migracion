@@ -42,7 +42,7 @@
                 <select name="nit_empresa" id="">
                     <option value="">Selecione una empresa</option>
                     @foreach ($empresas_view as $empresa )
-                    <option value="{{$empresa->nit_empresa}}"> {{$empresa->id}} - {{$empresa->nom_empresa}} </option>
+                    <option value="{{$empresa->nit_empresa}}"> {{$empresa->id}} - {{$empresa->nom_empresa}} - {{$empresa->rol}}</option>
                     @endforeach
                 </select>
             </div>
@@ -72,7 +72,9 @@
                         <select class="ca" name="ca[]" id="cod_articulo" required>
                             <option value="">Seleccione artículo</option>
                             @foreach ($articulos_view as $articulo)
-                            <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->descripcion_articulo}}</option>
+                            <option value="{{$articulo->cod_articulo}}"> {{$articulo->cod_articulo}} - {{$articulo->nom_articulo}} -
+                                {{$articulo->tipo_articulo}}
+                            </option>
                             @endforeach
                         </select>
                     </div>

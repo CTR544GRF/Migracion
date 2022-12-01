@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\tbl_registros;
 use App\Models\tbl_totalfactura;
 use App\Models\tbl_articulos;
+use App\Models\tbl_facturas;
 use App\Models\tbl_inventarios;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Dompdf\FrameDecorator\Table;
@@ -55,20 +56,20 @@ class entradas extends Controller
 
         $count = 0;
 
-        for ($i=0; $i < count($request->ca) ; $i++) { 
+        for ($i = 0; $i < count($request->ca); $i++) {
             $entradas = new tbl_registros();
             $entradas->cod_articulo = $request->ca[$i];
             $entradas->tipo = "Entrada";
             $entradas->cantidad = $request->vc[$i];
             $entradas->causal = $request->causal;
             $entradas->num_factura = $request->num_factura;
-            if($entradas->save()){
+            if ($entradas->save()) {
                 $this->updateOrInsertInventory($request->ca[$i], $request->vc[$i]);
-            $count++;
+                $count++;
             }
         }
 
-        if ($count>0) :
+        if ($count > 0) :
             return redirect()->route('entradas.create')->with('guardado', 'El registro de entrada se realizó con exito');
         endif;
     }
@@ -84,8 +85,9 @@ class entradas extends Controller
     public function create()
     {
         $articulos = tbl_articulos::all();
-        $facturas = tbl_totalfactura::all();
-        return view('entradas.registrar_entrada', compact('articulos', 'facturas'));
+        $facturas_t = tbl_totalfactura::all();
+        $facturas = tbl_facturas::all();
+        return view('entradas.registrar_entrada', compact('articulos', 'facturas_t', 'facturas'));
     }
 
     private function updateOrInsertInventory($id, $cantidadEntrada)
@@ -105,11 +107,11 @@ class entradas extends Controller
                 ->update(['existencias' => $total]);
         //si no existe el registro del articulo en el inventario lo crea
         else :
-            $nomnbreArticulo = tbl_articulos::select('tipo_articulo','descripcion_articulo')
+            $nomnbreArticulo = tbl_articulos::select('tipo_articulo', 'descripcion_articulo')
                 ->where('cod_articulo', '=', $id)->get();
             DB::table('tbl_inventarios')->upsert(
                 [
-                    ['cod_articulo' => $id, 'tipo_articulo' => $nomnbreArticulo[0]->tipo_articulo,  'descripcion_articulo' => $nomnbreArticulo[0]->descripcion_articulo,'existencias' => $cantidadEntrada],
+                    ['cod_articulo' => $id, 'tipo_articulo' => $nomnbreArticulo[0]->tipo_articulo,  'descripcion_articulo' => $nomnbreArticulo[0]->descripcion_articulo, 'existencias' => $cantidadEntrada],
                 ],
                 ['cod_articulo'],
                 ['existencias']

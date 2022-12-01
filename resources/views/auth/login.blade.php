@@ -6,7 +6,7 @@
 
 @section('seccion') <form class="inicio_Secion" method="POST" action="{{route('login')}}">
     @csrf
-    <a href="{{ route('home') }}">
+    <a href="{{ route('welcome') }}">
         <img src="{{asset('img/WhatsApp_Image_2022-08-02_at_1.40.46_PM .svg')}}" alt="logo" height="120em">
     </a>
     <h2 class="form_titulo">Iniciar Sesión</h2>

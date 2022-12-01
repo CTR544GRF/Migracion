@@ -8,7 +8,7 @@
         <img src="{{asset('img/WhatsApp_Image_2022-08-02_at_1.40.46_PM .svg')}}" alt="logo" height="120em">
     </a>
 
-    <h2 class="form_titulo">Restableser Contraseña</h2>
+    <h2 class="form_titulo">Restablecer contraseña</h2>
     <input type="hidden" name="token" value="{{ $token }}">
     <div class="from_container">
         <div class="from_group">
@@ -26,7 +26,7 @@
             <label for="E-mail" class="from_label">Confirmar Contraseña</label>
             <span class="from_line"></span>
         </div>
-        <button type="submit" class="form_submit">Res</button>
+        <button type="submit" class="form_submit">Cambiar Contraseña</button>
     </div>
 </form>
 @endsection
